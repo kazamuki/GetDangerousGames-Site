@@ -2,7 +2,7 @@
 purpose: Maps the hashed image filenames in Google-Page-Oriignal/PUBLISHED/ to what they actually are, so future work doesn't need to re-open every file to check.
 ---
 
-All paths are relative to `Google-Page-Oriignal/PUBLISHED/`. Same set exists under `DRAFT/` (content is identical — Google Sites just duplicates the media library into both).
+All paths are relative to `Google-Page-Oriignal/PUBLISHED/`. A content-identical `DRAFT/` copy existed alongside this but was removed from the repo (2026-09-05) to cut size — nothing was lost, it duplicated PUBLISHED/ exactly.
 
 ## Shared across every page (nav / footer)
 

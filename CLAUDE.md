@@ -62,8 +62,9 @@ straight over when those pages get designed.
 
 ```
 Google-Page-Oriignal/     Raw Google Sites export (archival — don't hand-edit; source of truth for old images)
-  PUBLISHED/               The version that was actually live at GetDangerous.net
-  DRAFT/                   Google Sites' draft copy — checked, content is identical to PUBLISHED
+  PUBLISHED/               The version that was actually live at GetDangerous.net — kept only until
+                           Writing/Podcasts/YouTube/Updates have real replacement art; DRAFT/ (a
+                           content-identical duplicate) was removed 2026-09-05 to cut repo size
 content/                  Extracted page content from the old site, as Markdown (see below)
 brand/theme.md                 Brand guide (colors, type, voice) — condensed from GUIDE_Brand_Guidelines.md
 brand/asset-licensing.md       What art in the shared Shadows asset library is safe to use where — read before pulling in any image
