@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "original-site-server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "Google-Page-Oriignal", "-l", "8765"],
+      "port": 8765
+    },
+    {
+      "name": "design-preview-server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "C:/Users/Kazam/AppData/Local/Temp/claude/C--Apps-GetDangerousGames-Site/c5bff91d-69e5-4c0b-b8c1-c3787a186f8b/scratchpad/design", "-l", "8766"],
+      "port": 8766
+    }
+  ]
+}
