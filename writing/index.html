@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Writing - Get Dangerous
-description: Original short fiction from Get Dangerous — coming soon, hosted right here.
+description: Original short fiction from Get Dangerous — hosted in full, right here.
 permalink: /writing/
 ---
 
@@ -10,46 +10,37 @@ permalink: /writing/
   <div class="page-header-overlay"></div>
 
   <span class="eyebrow" style="color: var(--ghostly-green);">ORIGINAL FICTION</span>
-  <h1>The Stories Are Coming Home</h1>
-  <p>Our short fiction used to live out on other platforms. We're bringing every story back here, in full, so you never have to leave to read them.</p>
+  <h1>The Stories Are Home</h1>
+  <p>Our short fiction used to live out on other platforms. It lives here now, in full — no accounts, no paywalls, no leaving the site to read it.</p>
 </section>
 
 <section class="content-section">
   <div class="section-heading">
-    <span class="eyebrow" style="color: var(--neon-veil);">IN PROGRESS</span>
-    <h2>Four stories, on their way</h2>
-    <p>These are the works we're rehoming first. Full chapters are being prepared for native pages here — check back soon, or join the Discord and we'll let you know the moment the first one goes up.</p>
+    <span class="eyebrow" style="color: var(--neon-veil);">SEVEN STORIES</span>
+    <h2>Pick your poison</h2>
+    <p>Dark fantasy, cyberpunk horror, a fairy tale retold from the other side of the mirror, and one story that isn't trying to scare you at all. A few are still being written — those are marked below.</p>
   </div>
 
   <div class="story-grid">
-    <div class="story-card">
-      <span class="coming-soon-tag">COMING SOON</span>
-      <h3>Alabas Warbold No. 1</h3>
-      <p>A young boy gifted with the power to see the spirit world is brought into the horrors of the gift. Haunted by nightmares only to find himself in another one — facing death changes you.</p>
-    </div>
-
-    <div class="story-card">
-      <span class="coming-soon-tag">COMING SOON</span>
-      <h3>Once Bitten</h3>
-      <p>A team returning to their hidden HQ is surprised to find intruders waiting for them. The security systems shouldn't have failed — but something worse than a breach is waiting.</p>
-    </div>
-
-    <div class="story-card">
-      <span class="coming-soon-tag">COMING SOON</span>
-      <h3>The Last Encounter</h3>
-      <p>A vessel investigating an anomaly is attacked by an alien force yet unknown.</p>
-    </div>
-
-    <div class="story-card">
-      <span class="coming-soon-tag">COMING SOON</span>
-      <h3>LRRH - Retold</h3>
-      <p>We've all heard the tale of Little Red Riding Hood. This is a retelling — except now there's magic, Fey, and danger, and a young witch who must travel alone to earn her place in her family's coven.</p>
-    </div>
+    {% assign stories = site.stories | sort: "order" %}
+    {% for story in stories %}
+    <a class="story-card" href="{{ story.url | relative_url }}" style="border-top: 3px solid {{ story.accent }};">
+      <span class="status-badge status-badge--{{ story.status }}" style="--story-accent: {{ story.accent }};">
+        {% if story.status == "ongoing" %}Ongoing{% else %}Complete{% endif %}
+      </span>
+      <h3>{{ story.title }}</h3>
+      <p>{{ story.blurb }}</p>
+      <div class="story-card-foot">
+        <span>By {{ story.author }}</span>
+        <span>{{ story.reading_time }}</span>
+      </div>
+    </a>
+    {% endfor %}
   </div>
 
   <div class="section-cta">
     <a class="btn-ghost" href="{{ site.social.discord }}">
-      Get notified on Discord
+      Talk about them on Discord
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--signal-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>

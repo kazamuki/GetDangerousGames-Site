@@ -5,26 +5,27 @@ purpose: Running list of ideas, gaps, and decisions spotted while porting the ol
 
 ## From building YouTube / Podcasts / Contact / Writing (2026-09-05)
 
-- **YouTube playlist lineup is stale.** The original `content/youtube.md` teaser list (8 playlists)
-  was written against an old snapshot of the channel. The live channel now has 30+ playlists,
-  including several newer Shadows actual-play campaigns not reflected anywhere in our content docs:
-  **Shadows 2.0**, **Shadows: The Old Regime**, **Shadows: 13th Floor**, **Shadows: World's Apart**.
-  "Shadows: Trouble in Neverlands" and "Shadows 3.0" (the two Shadows entries in the old teaser list)
-  couldn't be found in a reasonable scroll of the current Playlists tab — they may have been renamed,
-  archived, or just buried further down a long list. Worth asking Ken which campaigns he actually
-  wants featured on the site now, rather than carrying forward a list from years ago. The current
-  page (`youtube/index.html`) keeps the old 8-item list as "fan-favorite" teasers but links most of
-  them to the general Playlists tab rather than a specific (unverifiable) playlist ID — only
-  Vermintide 2 has a real direct link, since that one was already confirmed working in the old
-  content file.
-- **YouTube also has a "Podcasts" tab now**, separate from Spotify — spotted a "Fiction Factory
-  Podcast" listed there with **14 episodes** (vs. the 4 captured in `content/podcasts.md`). Worth
-  deciding whether the site's Podcasts page should also surface the YouTube-hosted episodes, or stay
-  Spotify-only as built.
-- **Podcast episode counts are stale too.** `content/podcasts.md` has 3 Myriad Circle + 4 Fiction
-  Factory episodes; the real shows likely have more by now (see above). The built page only embeds
-  what's in the content file — a pass to add newer episodes would be easy once Ken confirms the
-  current episode list.
+- ~~YouTube playlist lineup is stale~~ **Resolved 2026-09-06**: pulled the live Playlists tab
+  directly (channel now has 35 playlists) and confirmed both old mysteries — "Shadows: Trouble in
+  Neverlands" is now **Shadows 2.0** (63 episodes, same Cult of Personality storyline confirmed via
+  episode titles) and "Shadows 3.0" is now **Shadows: World's Apart** (41 episodes, "games after the
+  last big campaign") — they were renamed, not deleted. Also live now: **Shadows: The Old Regime**
+  (3 episodes) and **Shadows: 13th Floor** (2 episodes). All four got real direct playlist links in a
+  new dedicated **"Shadows RPG, at the table"** section on `youtube/index.html`, separate from the
+  general "Playlist Picks" grid — Ken specifically wanted Shadows actual-play broken out so visitors
+  can see the game played before buying the book. Also confirmed **Vermintide 2's old playlist ID is
+  dead** ("The playlist does not exist") — dropped from Playlist Picks and replaced with Elden Ring
+  (10 episodes, real link verified). Every card in both sections now links to a real, live playlist
+  ID pulled straight from the channel, not the general Playlists tab.
+- ~~YouTube also has a "Podcasts" tab now~~ **Resolved 2026-09-06**: added a "Watch the full run on
+  YouTube" link on the Fiction Factory show (`podcasts/index.html`) pointing at the real 14-episode
+  YouTube playlist (`list=PLWXG_a-sQ0aEaScUiA8bYKgjdBnPdWbF2`) alongside the existing 4-episode Spotify
+  embeds — kept as a companion link rather than embedding all 14 videos inline, since the YouTube run
+  goes deep on Shadows rules specifically while the Spotify episodes are the broader-topic version.
+- ~~Podcast episode counts are stale too~~ **Resolved 2026-09-06**: pulled the real Spotify show
+  directly. Myriad Circle is genuinely complete at 3 episodes (no change needed) — Fiction Factory
+  had grown to 14 episodes on Spotify (matching the YouTube run), only 4 of which were embedded on
+  the site. Added the missing 10 (episodes 5-14) to `podcasts/index.html` and `content/podcasts.md`.
 - ~~Voice decision still open for creator pages~~ **Resolved 2026-09-05**: Ken confirmed the
   creator-page (studio) voice from brand/theme.md — not d33Kode's old personal first-person voice —
   is the standard for Writing/YouTube/Podcast copy going forward. Rewrote the remaining quippy/personal

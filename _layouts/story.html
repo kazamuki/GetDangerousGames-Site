@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<article class="story-article" style="--story-accent: {{ page.accent }}; --story-glow-1: {{ page.glow_1 }}; --story-glow-2: {{ page.glow_2 }};">
+  <header class="page-header story-header">
+    <div class="page-header-overlay"></div>
+
+    <span class="eyebrow">
+      {% if page.universe %}{{ page.universe | upcase }} &middot; {% endif %}ORIGINAL FICTION
+    </span>
+    <h1>{{ page.title }}</h1>
+
+    <div class="story-meta">
+      <span class="story-meta-item">By {{ page.author }}</span>
+      <span class="story-meta-divider">&middot;</span>
+      <span class="story-meta-item">{{ page.reading_time }}</span>
+      <span class="story-meta-divider">&middot;</span>
+      <span class="status-badge status-badge--{{ page.status }}">
+        {% if page.status == "ongoing" %}Ongoing{% else %}Complete{% endif %}
+      </span>
+    </div>
+
+    {% if page.status_note %}
+    <p class="story-status-note">{{ page.status_note }}</p>
+    {% endif %}
+  </header>
+
+  <div class="content-section tight story-body">
+    {{ content }}
+  </div>
+
+  <div class="content-section tight post-footer">
+    <a class="pillar-link" href="{{ '/writing/' | relative_url }}" style="color: var(--story-accent);">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="var(--story-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Writing
+    </a>
+  </div>
+</article>
