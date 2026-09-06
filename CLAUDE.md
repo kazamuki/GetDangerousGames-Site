@@ -10,7 +10,30 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 
 **Step 1 (done):** the old Google Sites export has been crawled and converted into readable Markdown content files, and the brand guide has been brought into the repo.
 **Step 2 (done):** a first-direction visual design was drafted and approved — see "Design" below.
-**Step 3 (not started):** actual Jekyll implementation. Nothing has been scaffolded yet — no `_config.yml`, no layouts, no real site files exist in this repo. That's the next session's work.
+**Step 3 (in progress):** real Jekyll implementation. The Home page is built and matches the approved design — see "Jekyll site" below. Writing/Podcasts/YouTube/Blog/Contact pages don't exist yet; their nav links currently point to `#`. **GitHub Pages is not yet enabled on the repo** — the site won't be reachable at a URL until that's turned on (Settings → Pages, or ask Claude to do it via `gh api` — the `gh` CLI here is already authenticated with repo access).
+
+## Jekyll site
+
+Standard Jekyll layout, buildable by GitHub Pages' native Jekyll support (no GitHub Actions workflow needed — `Gemfile` pins the `github-pages` gem so a local `bundle exec jekyll serve` would match GitHub's build, though no Gemfile.lock is committed since Ruby isn't installed on this machine to generate one).
+
+```
+_config.yml       Site title/description, social URLs, baseurl set for a project page
+                  (kazamuki.github.io/GetDangerousGames-Site) — update if the custom domain ever
+                  gets attached, since a real domain typically means clearing baseurl.
+Gemfile           gem "github-pages" — keeps local and GitHub's Jekyll versions in sync
+_layouts/default.html   Header (logo, nav, Shadows RPG CTA, social icons) + footer, wraps every page
+index.html        Home page content (hero, Shadows RPG band, three pillars, blog empty-state)
+assets/css/main.css     All page styling — CSS custom properties for the brand palette, one class
+                  per component, translated directly from the approved design canvas
+assets/images/    gd-bear-icon.png, shadows-logo.png, hero-skyline.jpg, shadows-band-bg.jpg — the
+                  same optimized images used in the design canvas, copied in as real files
+```
+
+No Ruby/Jekyll is installed locally, so this couldn't be build-tested with the real Jekyll engine — it
+was verified by manually flattening the layout+page into static HTML (substituting the Liquid tags by
+hand) and checking that in the Browser pane, plus a careful read of the Liquid syntax used (`relative_url`,
+`site.social.*`, `{{ content }}`). **Treat GitHub Pages' own build as the first real test** — if it fails,
+check the repo's Pages build log first.
 
 ## Design
 
@@ -61,6 +84,7 @@ straight over when those pages get designed.
 ## Repo structure
 
 ```
+index.html, _config.yml, Gemfile, _layouts/, assets/   The actual Jekyll site — see "Jekyll site" above
 Google-Page-Oriignal/     Raw Google Sites export (archival — don't hand-edit; source of truth for old images)
   PUBLISHED/               The version that was actually live at GetDangerous.net — kept only until
                            Writing/Podcasts/YouTube/Updates have real replacement art; DRAFT/ (a
@@ -71,6 +95,10 @@ brand/asset-licensing.md       What art in the shared Shadows asset library is s
 brand/shutterstock-catalog.md  Catalog of all 40 licensed Shutterstock images with per-section fit notes
 .claude/launch.json       `original-site-server` config — serves Google-Page-Oriignal/ locally via `npx serve` so old pages can be re-inspected in the Browser pane
 ```
+
+`_config.yml` excludes `Google-Page-Oriignal/`, `content/`, and `brand/` from the Jekyll build (they're
+planning/reference material, not site output) — update that `exclude:` list if more top-level
+reference folders get added later.
 
 ### Content files (`content/`)
 
@@ -142,7 +170,7 @@ Everything the old site pointed out to — needed wherever the new footer/nav is
 1. **Import Blogspot's back-catalog or not** — launching blank for now; may backfill later. Revisit once the new blog exists and has some native posts of its own.
 2. **Custom domain** — deferred until the default `*.github.io` deployment is confirmed working.
 3. **Design for Writing, Podcasts, YouTube, Contact** — only Home is designed so far; extend the approved style sheet to these next.
-4. **Jekyll scaffolding** — nothing built yet: no `_config.yml`, no `_layouts`, no build. First real implementation task.
+4. **Enable GitHub Pages** — not turned on yet. Needs a decision on source (branch `main` root is simplest given the Jekyll files already live at repo root) before the site is reachable at all.
 
 ## Working notes for future sessions
 

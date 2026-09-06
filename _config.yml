@@ -1,0 +1,21 @@
+title: Get Dangerous
+description: Writing. Gaming. Badassery.
+url: "https://kazamuki.github.io"
+baseurl: "/GetDangerousGames-Site"
+
+markdown: kramdown
+
+social:
+  shadows_rpg: https://www.shadowsrpg.com/
+  discord: https://discord.gg/getdangerous
+  youtube: https://www.youtube.com/@d33kode
+  twitch: https://www.twitch.tv/d33kode
+  twitter: https://twitter.com/d33KODE
+  patreon: https://www.patreon.com/d33kode
+
+exclude:
+  - Google-Page-Oriignal
+  - content
+  - brand
+  - README.md
+  - CLAUDE.md
