@@ -25,11 +25,12 @@ purpose: Running list of ideas, gaps, and decisions spotted while porting the ol
   Factory episodes; the real shows likely have more by now (see above). The built page only embeds
   what's in the content file — a pass to add newer episodes would be easy once Ken confirms the
   current episode list.
-- **Voice decision still open for creator pages.** Per CLAUDE.md, whether Writing/YouTube/Podcast
-  copy keeps more of d33Kode's personal first-person voice vs. the "studio" brand voice was flagged
-  as unresolved. The pages built this session split the difference — first-person, warm, but tightened
-  up from the original's very casual tone. Worth a explicit voice-approval pass with Ken once he's
-  seen these live pages, since it'll set the tone for the eventual real Writing story pages too.
+- ~~Voice decision still open for creator pages~~ **Resolved 2026-09-05**: Ken confirmed the
+  creator-page (studio) voice from brand/theme.md — not d33Kode's old personal first-person voice —
+  is the standard for Writing/YouTube/Podcast copy going forward. Rewrote the remaining quippy/personal
+  lines on YouTube (e.g. "Need I say more?", "lots of shenanigans") and Podcasts ("the wonderful app
+  Wisdom") to match. Apply this same standard to the real Writing story pages once their full text
+  is ready.
 - **YouTube channel banner art** (`GD Assets/Updated YT Banner.png` — the neon pixel-art bear-and-flames
   banner currently live on the real YouTube channel) is fun but stylistically inconsistent with the
   site's moody-painted Shutterstock art direction. Didn't use it as the page hero for that reason —
