@@ -18,7 +18,7 @@ Old background: skyline/aether-glow image (`Home/c3a25d3f9882529edc6aa64fa56800b
 Full-width section, background image `Home/b326bdef7429826fd75bb6b0adacd441.jpg` (cyberpunk skyline), with the Shadows triangle/skull logo (`Home/8c5633dc59c092ab5f9a8d34cdd68ad8.jpg` or `Home/06db45c22077f02538f397f775c55839.jpg` — logo variants).
 
 > ### Shadows RPG
-> The homebrew TTRPG that has been in development for years is finally here. Magic and technology clash in N.Y.T.E City in the year 2074. The brainchild of d33Kode, learn how you can use the Synergy System to combat the many obstacles you'll encounter.
+> The homebrew TTRPG that has been in development for years is finally here. Magic and technology clash in N.Y.T.E City in the year 2099. The brainchild of d33Kode, learn how you can use the Synergy System to combat the many obstacles you'll encounter.
 
 Links to: https://www.shadowsrpg.com/
 

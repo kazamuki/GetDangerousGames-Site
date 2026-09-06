@@ -42,3 +42,24 @@ purpose: Running list of ideas, gaps, and decisions spotted while porting the ol
 - **Contact page has no secondary channel listed** besides Discord, per the existing decision — worth
   double-checking that's still right once the other social links (Twitch/Twitter/Patreon) are visible
   in the header icon row on every page; a visitor landing on Contact already has those one click away.
+
+## From reviewing Home (2026-09-06)
+
+Fixed in passing, not open questions: Shadows RPG setting year corrected 2074 → 2099 (`index.html`
+and `content/home.md`), a carried-over "thought"/"though" typo in the footer disclaimer, the YouTube
+pillar card linking out to the external channel instead of the new `/youtube/` page, and the pillar
+card copy still carrying pre-decision personal "I" voice ("As an avid writer, I want to share my
+imagination...") — brought in line with the studio/creator-page voice call from the YouTube/Podcasts
+pass.
+
+Actual open items:
+- **Home's pillar cards are static teasers now that YouTube/Podcasts/Writing have real pages behind
+  them.** Worth considering a small "latest" strip — most recent video thumbnail, latest podcast
+  episode — to make Home feel more alive instead of three unchanging blurbs. Bigger scope than a copy
+  fix: needs either manual upkeep or a live embed/API call, so worth scoping with Ken before starting.
+- **Blog is the last unbuilt page in the primary nav/sitemap.** Once it exists, Home's "Nothing here
+  yet" empty-state block needs replacing with a real latest-posts teaser (2-3 most recent post cards,
+  matching the pillar-card visual language).
+- **Home has no direct link to Contact**, relying entirely on the footer link and header social icons.
+  The blog-empty CTA ("Join the Discord") already covers the "get in touch" impulse directly, so this
+  may be intentional — flagging only in case Ken wants a more explicit path to Contact from Home.
