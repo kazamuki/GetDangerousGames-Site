@@ -10,19 +10,21 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 
 **Step 1 (done):** the old Google Sites export has been crawled and converted into readable Markdown content files, and the brand guide has been brought into the repo.
 **Step 2 (done):** a first-direction visual design was drafted and approved — see "Design" below.
-**Step 3 (in progress):** real Jekyll implementation. The Home page is built and matches the approved design — see "Jekyll site" below. Writing/Podcasts/YouTube/Blog/Contact pages don't exist yet; their nav links currently point to `#`.
+**Step 3 (in progress):** real Jekyll implementation. The Home page is built and matches the approved design — see "Jekyll site" below. Writing/Podcasts/YouTube/Blog/Contact pages don't exist yet; their nav links currently point to `#`. Ruby is now installed locally and `bundle exec jekyll serve` works for real local iteration — no more flattening templates by hand to preview.
 
 **Live:** https://kazamuki.github.io/GetDangerousGames-Site/ — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded, confirmed rendering correctly including all asset paths under the project-page baseurl. Every push to `main` triggers a fresh Pages build automatically.
 
 ## Jekyll site
 
-Standard Jekyll layout, buildable by GitHub Pages' native Jekyll support (no GitHub Actions workflow needed — `Gemfile` pins the `github-pages` gem so a local `bundle exec jekyll serve` would match GitHub's build, though no Gemfile.lock is committed since Ruby isn't installed on this machine to generate one).
+Standard Jekyll layout, buildable by GitHub Pages' native Jekyll support (no GitHub Actions workflow needed — `Gemfile` pins the `github-pages` gem so a local `bundle exec jekyll serve` matches GitHub's build).
 
 ```
 _config.yml       Site title/description, social URLs, baseurl set for a project page
                   (kazamuki.github.io/GetDangerousGames-Site) — update if the custom domain ever
                   gets attached, since a real domain typically means clearing baseurl.
-Gemfile           gem "github-pages" — keeps local and GitHub's Jekyll versions in sync
+Gemfile           gem "github-pages" — keeps local and GitHub's Jekyll versions in sync. Also
+                  carries a Ruby-version compatibility shim — see below, don't remove it.
+Gemfile.lock      Committed — generated once Ruby was installed locally (2026-09-05).
 _layouts/default.html   Header (logo, nav, Shadows RPG CTA, social icons) + footer, wraps every page
 index.html        Home page content (hero, Shadows RPG band, three pillars, blog empty-state)
 assets/css/main.css     All page styling — CSS custom properties for the brand palette, one class
@@ -31,11 +33,35 @@ assets/images/    gd-bear-icon.png, shadows-logo.png, hero-skyline.jpg, shadows-
                   same optimized images used in the design canvas, copied in as real files
 ```
 
-No Ruby/Jekyll is installed locally, so this couldn't be build-tested with the real Jekyll engine — it
-was verified by manually flattening the layout+page into static HTML (substituting the Liquid tags by
-hand) and checking that in the Browser pane, plus a careful read of the Liquid syntax used (`relative_url`,
-`site.social.*`, `{{ content }}`). **Treat GitHub Pages' own build as the first real test** — if it fails,
-check the repo's Pages build log first.
+### Local dev environment (Ruby)
+
+Ruby 4.0.6 + Devkit installed 2026-09-05 to `C:\Ruby40-x64` (via RubyInstaller). Two non-obvious
+things had to be fixed to get `bundle exec jekyll serve` working locally — both already fixed in
+the repo, documented here so nobody "fixes" them back to the naive version later:
+
+1. **`github-pages` pins ancient gems** (Jekyll 3.9.0, Liquid 4.0.3 — matching GitHub's own frozen
+   Pages build environment) that assume things modern Ruby removed: `webrick`/`csv`/`logger`/
+   `base64`/`bigdecimal` left Ruby's default gems over several versions (added explicitly to the
+   Gemfile), and Liquid still calls Ruby's fully-removed taint methods (`String#tainted?` etc.) —
+   fixed with a shim **in the Gemfile itself**, not a `_plugins/` file (github-pages forces Jekyll's
+   `safe` mode, which disables custom plugins entirely — the shim has to run before that even
+   matters). The shim must use `::Object.class_eval` rather than `class Object ... end` — the
+   latter silently reopens a shadow class nested inside Bundler's own Gemfile-eval context instead
+   of the real top-level `Object`, so it looks like it worked but doesn't.
+2. **None of this affects the real GitHub Pages build** — confirmed by polling the Pages build API
+   after every push in this session; GitHub builds on its own older Ruby where these methods still
+   exist. This is purely a "modern Ruby running 2019-era gems" local problem.
+3. **`.claude/launch.json`'s `jekyll-site` config runs through `cmd.exe /c` with an explicit
+   `PATH=C:\Ruby40-x64\bin;%PATH%` prefix**, not a bare `bundle`/`ruby` call. Two independent
+   Windows gotchas forced this: the preview tool's process spawner can't invoke `.bat` files
+   without a shell, and `ruby -S bundle` (needed instead of a literal path to the `bundle` script —
+   the literal-path form triggers a separate RubyGems bin-resolution bug that manifests as a
+   misleading `bundler: command not found: jekyll`) needs Ruby's bin dir on `PATH` to find `bundle`
+   at all, which isn't guaranteed for a freshly spawned process on this machine.
+
+If `bundle exec jekyll serve` ever breaks again with `command not found: jekyll`, don't trust that
+message — run with real args to see the underlying exception (`ruby.exe -S bundle exec jekyll build`
+without swallowing stderr) before assuming gems are missing.
 
 ## Design
 
