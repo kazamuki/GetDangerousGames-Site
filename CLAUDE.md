@@ -10,7 +10,9 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 
 **Step 1 (done):** the old Google Sites export has been crawled and converted into readable Markdown content files, and the brand guide has been brought into the repo.
 **Step 2 (done):** a first-direction visual design was drafted and approved — see "Design" below.
-**Step 3 (in progress):** real Jekyll implementation. The Home page is built and matches the approved design — see "Jekyll site" below. Writing/Podcasts/YouTube/Blog/Contact pages don't exist yet; their nav links currently point to `#`. **GitHub Pages is not yet enabled on the repo** — the site won't be reachable at a URL until that's turned on (Settings → Pages, or ask Claude to do it via `gh api` — the `gh` CLI here is already authenticated with repo access).
+**Step 3 (in progress):** real Jekyll implementation. The Home page is built and matches the approved design — see "Jekyll site" below. Writing/Podcasts/YouTube/Blog/Contact pages don't exist yet; their nav links currently point to `#`.
+
+**Live:** https://kazamuki.github.io/GetDangerousGames-Site/ — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded, confirmed rendering correctly including all asset paths under the project-page baseurl. Every push to `main` triggers a fresh Pages build automatically.
 
 ## Jekyll site
 
@@ -170,7 +172,7 @@ Everything the old site pointed out to — needed wherever the new footer/nav is
 1. **Import Blogspot's back-catalog or not** — launching blank for now; may backfill later. Revisit once the new blog exists and has some native posts of its own.
 2. **Custom domain** — deferred until the default `*.github.io` deployment is confirmed working.
 3. **Design for Writing, Podcasts, YouTube, Contact** — only Home is designed so far; extend the approved style sheet to these next.
-4. **Enable GitHub Pages** — not turned on yet. Needs a decision on source (branch `main` root is simplest given the Jekyll files already live at repo root) before the site is reachable at all.
+4. ~~Enable GitHub Pages~~ — done 2026-09-05, see "Live" note above.
 
 ## Working notes for future sessions
 
