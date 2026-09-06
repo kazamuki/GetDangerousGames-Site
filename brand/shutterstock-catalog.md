@@ -17,6 +17,15 @@ hero scale — better reserved for smaller spots (Podcasts/YouTube thumbnails).
 |---|---|
 | `March 2023/shutterstock_2216124455.jpg` | Home hero background |
 | `October 2022/shutterstock_1621160803.jpg` | Shadows RPG feature band background |
+| `March 2023/shutterstock_2022594419.jpg` | Writing page header (`writing/index.html`) |
+| `February 2023/shutterstock_260711438.jpg` | Blog page header (`blog/index.html`, also reused on every individual post via `_layouts/post.html`) |
+| `October 2022/shutterstock_1354127294.jpg` | YouTube page header (`youtube/index.html`) |
+| `November 2022/shutterstock_551337679.jpg` | Podcasts page header (`podcasts/index.html`) |
+| `March 2023/shutterstock_1504647500.jpg` | Contact page header (`contact/index.html`) |
+
+Individual story pages (`_stories/`, via `_layouts/story.html`) intentionally use a flat
+per-story accent-color glow instead of a Shutterstock photo (see "Writing built" in the root
+CLAUDE.md) — that's a deliberate design choice, confirm with Ken before changing it.
 
 ## February 2023
 
@@ -37,7 +46,7 @@ hero scale — better reserved for smaller spots (Podcasts/YouTube thumbnails).
 | shutterstock_1139536517.jpg | Boy on cliff faces a floating haunted shack across a rainbow-nebula chasm | Multicolor cosmic, whimsical-eerie | Writing | Off-brand rainbow palette, storybook mood |
 | shutterstock_1190830267.jpg | Giant robed entity with tentacle-hair raises arm over a zombie horde | Grey-green, cosmic horror dread | Writing | Strong dark fantasy, intense for hero |
 | shutterstock_1450052378.jpg | Vertical bust of grotesque cyborg with toothed chest cavity, bleeding | Red/teal, body-horror | Poor-fit | Too graphic for public marketing |
-| shutterstock_1504647500.jpg | Family walks a neon night street as UFOs hover above palm trees | Teal-orange, lived-in sci-fi city | Writing / Podcasts | Grounded street-level narrative scene |
+| **shutterstock_1504647500.jpg** | Family walks a neon night street as UFOs hover above palm trees | Teal-orange, lived-in sci-fi city | **Contact (in use)** | Only image in the set showing people together warmly — good fit for a "come hang out" mood |
 | shutterstock_1633431265.jpg | Cyborg woman, back to camera, wired with tubes, before giant sunset orb | Warm sepia-pink, lonely android myth | Shadows-band | Large plain sky/sun disc |
 | shutterstock_1726923523.jpg | Suited gunman before a glowing neon triangle portal with tentacles | Pink/teal, occult-tech noir | Shadows-band | Portal motif fits flagship band well |
 | shutterstock_1991802452.jpg | Cyber-shaman warrior with wired dreadlock-antennae wields a glowing energy blade over ruins | Warm gold, tech-shaman hybrid | Shadows-band | Great magic+tech fusion image |
@@ -82,6 +91,6 @@ hero scale — better reserved for smaller spots (Podcasts/YouTube thumbnails).
 
 - **Hero background alternates:** `February/shutterstock_1074377570.jpg` (umbrella figure, vast dark void — most negative space in the set), `February/shutterstock_2218612343.jpg` (spear-bearer under empty sky).
 - **Shadows-band alternates:** `March/shutterstock_1726923523.jpg` (gunman before neon portal), `October/shutterstock_1295291155.jpg` (cyber-mage with arcane staff).
-- **Writing section candidates:** `March/shutterstock_2022594419.jpg` (boy + starfield lantern), `February/shutterstock_1926604859.png` (woman + butterfly), `March/shutterstock_1504647500.jpg` (family + UFOs street scene).
+- **Writing section candidates:** `March/shutterstock_2022594419.jpg` (boy + starfield lantern), `February/shutterstock_1926604859.png` (woman + butterfly).
 - **Podcasts/YouTube candidates (photo-real, good for smaller UI):** `November/shutterstock_1911841012.jpg` (hologram smartwatch), `October/shutterstock_1354127294.jpg` (flying car convoy), `November/shutterstock_551337679.jpg` (neon street crowd).
 - **Avoid for public marketing:** `March/shutterstock_1450052378.jpg` and `November/shutterstock_1520824547.jpg` — both graphic/gory, tonally off even though technically licensed.
