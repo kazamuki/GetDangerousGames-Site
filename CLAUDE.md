@@ -12,6 +12,8 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 **Step 2 (done):** a first-direction visual design was drafted and approved — see "Design" below.
 **Step 3 (in progress):** real Jekyll implementation. Home, YouTube, Podcasts, and Contact are built and live in nav; Writing is a "coming soon" shell (real story pages still blocked on full chapter text — see below). Only Blog has no page yet and still points nav at `#`. Ruby is now installed locally and `bundle exec jekyll serve` works for real local iteration — no more flattening templates by hand to preview. See [content/wishlist.md](content/wishlist.md) for ideas/gaps spotted while porting content — review with Ken once the porting pass is fully done.
 
+**Home page cleanup pass (2026-09-06):** header/footer social row now uses real current brand icons (Discord/Twitch/X/YouTube/Patreon via simple-icons SVGs, shared through `_includes/social-icons.html`) instead of letter placeholders. Also fixed on Home: Shadows RPG's setting year corrected 2074 → 2099 (matches the real current setting), a carried-over footer typo ("thought" → "though"), the YouTube pillar card linking externally instead of to the new `/youtube/` page, and pillar-card copy that still had pre-decision personal "I" voice.
+
 **Live:** https://kazamuki.github.io/GetDangerousGames-Site/ — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded, confirmed rendering correctly including all asset paths under the project-page baseurl. Every push to `main` triggers a fresh Pages build automatically.
 
 ### To migrate the next page (Writing, Podcasts, YouTube, Blog, or Contact)
