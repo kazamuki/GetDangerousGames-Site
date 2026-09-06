@@ -183,14 +183,6 @@ rather than deleted (a `rm -rf` was blocked by this environment's safety classif
 the right call — deleting it locally was never necessary, since the exposure was about it being *public
 on GitHub*, not about it existing on disk).
 
-**Still needs a human, not git**: GitHub's secret-scanning alerts (repo → Security tab) stay open until
-manually resolved, and — far more importantly — history rewrite does not undo the fact that these 6 key
-values were already public. Check each of the 6 keys below against Google Cloud Console; rotate any
-that trace back to a project Ken controls, regardless of the git cleanup:
-`AIzaSyCF97XfLoejM9NhWDAZeOcjC6kOEsEmv6A`, `AIzaSyAjb7yrM53w_0_0y9jCxkCAV12Ux5G30TI`,
-`AIzaSyD2aoAETJHXO1f_X3uPTOvwcMmDBK5-yEk`, `AIzaSyDaZup8JMoUszICq24hC3gjW69v7xXjb6M`,
-`AIzaSyC5fSInmRgPcwXTFvk7mnVLT4rYPiLh3BI`, `AIzaSyAWGrfCCr7albM3lmCc937gx4uIphbpeKQ`
-
 The images that were still useful (Writing/Podcasts/YouTube/Updates thumbnails and cover art —
 everything except the `.html` files, which were the actual leak vector) were copied out to
 `C:\Apps\GetDangerousGames-Site-reference\old-site-images\` **before** removal — that folder lives
