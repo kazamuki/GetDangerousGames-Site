@@ -106,13 +106,27 @@ Writing/Podcasts/YouTube/Updates have real replacement art") was **removed from 
 files too, and their now-deleted `DRAFT/` copies in earlier history) — flagged `publicly_leaked: true`
 since the repo is public. **Do not re-add this folder to the repo.** It's now git-ignored.
 
-What happened, for context: it's untracked from the current tip and the working copy on Ken's machine
-was left in place (a `rm -rf` was blocked by this environment's safety classifier, which turned out to
-be the right call — deleting it locally was never actually necessary, since the security exposure was
-about it being *public on GitHub*, not about it existing on disk). Git history still needed a proper
-rewrite to purge the blobs — check `git log` for whether that happened yet and whether it's been
-force-pushed; if you're not sure, treat any of those 6 key values as still historically present until
-confirmed otherwise, and don't assume `git rm` alone was sufficient.
+**Resolved 2026-09-05**: `git rm --cached` alone wasn't enough (that only fixes the current tip; the
+6 keys were still reachable in earlier commits `735e575`/`c065526`/`e515e7c`/`1f30eb2`). Ran
+`git filter-branch --index-filter 'git rm -r --cached --ignore-unmatch Google-Page-Oriignal' --prune-empty -- --all`,
+verified with `git log main -S"<each key>"` returning zero hits on the rewritten branch, then
+force-pushed. **Every commit hash in the repo changed as a result** — if you ever see a commit SHA
+referenced somewhere (an old link, a note) that doesn't resolve, this is why. Confirmed via the GitHub
+API afterward that the current tree and a GitHub code search both come back clean.
+
+A local-only branch, `archive/pre-secret-purge`, keeps the true original history (leaked keys and all)
+for recovery purposes — **never push this branch**. The working copy on Ken's machine was left in place
+rather than deleted (a `rm -rf` was blocked by this environment's safety classifier, which was actually
+the right call — deleting it locally was never necessary, since the exposure was about it being *public
+on GitHub*, not about it existing on disk).
+
+**Still needs a human, not git**: GitHub's secret-scanning alerts (repo → Security tab) stay open until
+manually resolved, and — far more importantly — history rewrite does not undo the fact that these 6 key
+values were already public. Check each of the 6 keys below against Google Cloud Console; rotate any
+that trace back to a project Ken controls, regardless of the git cleanup:
+`AIzaSyCF97XfLoejM9NhWDAZeOcjC6kOEsEmv6A`, `AIzaSyAjb7yrM53w_0_0y9jCxkCAV12Ux5G30TI`,
+`AIzaSyD2aoAETJHXO1f_X3uPTOvwcMmDBK5-yEk`, `AIzaSyDaZup8JMoUszICq24hC3gjW69v7xXjb6M`,
+`AIzaSyC5fSInmRgPcwXTFvk7mnVLT4rYPiLh3BI`, `AIzaSyAWGrfCCr7albM3lmCc937gx4uIphbpeKQ`
 
 The images that were still useful (Writing/Podcasts/YouTube/Updates thumbnails and cover art —
 everything except the `.html` files, which were the actual leak vector) were copied out to
