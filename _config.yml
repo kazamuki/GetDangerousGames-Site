@@ -6,12 +6,22 @@ baseurl: "/GetDangerousGames-Site"
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 
+collections:
+  stories:
+    output: true
+    permalink: /writing/:path/
+
 defaults:
   - scope:
       path: ""
       type: posts
     values:
       layout: post
+  - scope:
+      path: ""
+      type: stories
+    values:
+      layout: story
 
 social:
   shadows_rpg: https://www.shadowsrpg.com/
