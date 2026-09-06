@@ -262,7 +262,7 @@ Everything the old site pointed out to — needed wherever the new footer/nav is
 | Channel | URL |
 |---|---|
 | Shadows RPG | https://www.shadowsrpg.com/ |
-| Discord | https://discord.gg/getdangerous |
+| Discord | https://discord.gg/yMfKRtuvwt |
 | YouTube | https://www.youtube.com/@d33kode |
 | Twitch | https://www.twitch.tv/d33kode |
 | Twitter/X | https://twitter.com/d33KODE |
