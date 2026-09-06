@@ -10,7 +10,7 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 
 **Step 1 (done):** the old Google Sites export has been crawled and converted into readable Markdown content files, and the brand guide has been brought into the repo.
 **Step 2 (done):** a first-direction visual design was drafted and approved — see "Design" below.
-**Step 3 (in progress):** real Jekyll implementation. The Home page is built and matches the approved design — see "Jekyll site" below. Writing/Podcasts/YouTube/Blog/Contact pages don't exist yet; their nav links currently point to `#`. Ruby is now installed locally and `bundle exec jekyll serve` works for real local iteration — no more flattening templates by hand to preview.
+**Step 3 (in progress):** real Jekyll implementation. Home, YouTube, Podcasts, and Contact are built and live in nav; Writing is a "coming soon" shell (real story pages still blocked on full chapter text — see below). Only Blog has no page yet and still points nav at `#`. Ruby is now installed locally and `bundle exec jekyll serve` works for real local iteration — no more flattening templates by hand to preview. See [content/wishlist.md](content/wishlist.md) for ideas/gaps spotted while porting content — review with Ken once the porting pass is fully done.
 
 **Live:** https://kazamuki.github.io/GetDangerousGames-Site/ — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded, confirmed rendering correctly including all asset paths under the project-page baseurl. Every push to `main` triggers a fresh Pages build automatically.
 
@@ -38,10 +38,19 @@ Gemfile           gem "github-pages" — keeps local and GitHub's Jekyll version
 Gemfile.lock      Committed — generated once Ruby was installed locally (2026-09-05).
 _layouts/default.html   Header (logo, nav, Shadows RPG CTA, social icons) + footer, wraps every page
 index.html        Home page content (hero, Shadows RPG band, three pillars, blog empty-state)
+writing/index.html      Writing "coming soon" shell — real story pages pending full chapter text
+youtube/index.html      YouTube page — all-videos CTA + playlist-pick cards
+podcasts/index.html     Podcasts page — Myriad Circle + Fiction Factory, real embedded Spotify players
+contact/index.html      Contact page — Discord CTA, no form
 assets/css/main.css     All page styling — CSS custom properties for the brand palette, one class
-                  per component, translated directly from the approved design canvas
-assets/images/    gd-bear-icon.png, shadows-logo.png, hero-skyline.jpg, shadows-band-bg.jpg — the
-                  same optimized images used in the design canvas, copied in as real files
+                  per component, translated directly from the approved design canvas (Home) and
+                  extended with matching components (page-header, media-card, episode-embed,
+                  story-card, contact-card) for the pages built after it
+assets/images/    gd-bear-icon.png, shadows-logo.png, hero-skyline.jpg, shadows-band-bg.jpg (Home,
+                  from the design canvas) plus youtube-header.jpg, podcasts-header.jpg,
+                  writing-header.jpg — page-header backgrounds for the newer pages, sourced from the
+                  licensed Shutterstock catalog (see brand/shutterstock-catalog.md) and resized/
+                  compressed the same way as the Home images (~1600px wide, JPEG ~80-140KB)
 ```
 
 ### Local dev environment (Ruby)
@@ -178,13 +187,14 @@ the repo; the text content it produced is already fully captured in `content/*.m
 Each corresponds to one page from the old site, with its text content, image references, and outbound links transcribed:
 
 - [home.md](content/home.md) — landing page content. **Already built** — see "Jekyll site" above; treat `index.html` as more authoritative than this file for Home specifically now.
-- [writing.md](content/writing.md) — four stories. Old site just linked out to Belletristica/Webnovel; **decided** these get hosted natively instead, but only teaser blurbs are captured here so far — the migration checklist at the bottom of the file lists exactly which URLs still need their full chapter text pulled before the real pages can be built. **Not started.**
-- [youtube.md](content/youtube.md) — channel blurb + 8 playlists. **Not started** (no Jekyll page yet).
-- [podcasts.md](content/podcasts.md) — Myriad Circle (3 eps) and Fiction Factory (4 eps), both on Spotify. **Not started.**
+- [writing.md](content/writing.md) — four stories. Old site just linked out to Belletristica/Webnovel; **decided** these get hosted natively instead, but only teaser blurbs are captured here so far — the migration checklist at the bottom of the file lists exactly which URLs still need their full chapter text pulled before the real pages can be built. **Shell built** (`writing/index.html`) — a "coming soon" page with the four teaser blurbs as cards, no outbound links (Belletristica is being retired per the decision above). Real per-story pages still blocked on pulling full chapter text.
+- [youtube.md](content/youtube.md) — channel blurb + 8 playlists. **Built** (`youtube/index.html`). The 8-playlist teaser list is carried over from this file, but the live channel has grown a lot since — see [wishlist.md](content/wishlist.md) for specifics (new Shadows campaigns not reflected here, two old entries that couldn't be re-located). Most cards link to the general Playlists tab rather than a specific ID; only Vermintide 2 has a confirmed direct link.
+- [podcasts.md](content/podcasts.md) — Myriad Circle (3 eps) and Fiction Factory (4 eps), both on Spotify. **Built** (`podcasts/index.html`) with real embedded Spotify players for every episode listed here (IDs verified against Spotify directly). Episode counts in this file are stale — see [wishlist.md](content/wishlist.md).
 - [updates.md](content/updates.md) — a changelog page, stale since 2023-03-02, **not** the current news source (see blog.md). Superseded by native blogging (see "Decided → Blogging") — probably doesn't need its own page in the rebuild at all, confirm with Ken rather than assuming.
 - [blog.md](content/blog.md) — old site just iframed an external Blogspot blog. **Decided**: native Jekyll posts instead, launching blank — nothing to migrate here, just needs `_posts/` wired up and a blog index page/layout. **Not started.**
-- [contact.md](content/contact.md) — effectively empty on the old site. **Decided**: dedicated page pointing to Discord, no form. **Not started.**
+- [contact.md](content/contact.md) — effectively empty on the old site. **Decided**: dedicated page pointing to Discord, no form. **Built** (`contact/index.html`).
 - [images-manifest.md](content/images-manifest.md) — maps every hashed old-site image filename to what it actually is/does. Reference only now that the images themselves live at the external reference folder (see below) or are being replaced by Shutterstock/GD Assets art.
+- [wishlist.md](content/wishlist.md) — running backlog of ideas/gaps/decisions spotted while porting content into real pages. Not scoped work — review with Ken once the full porting pass is done.
 
 ### Nav reality check (historical — superseded)
 
@@ -242,7 +252,7 @@ Everything the old site pointed out to — needed wherever the new footer/nav is
 
 1. **Import Blogspot's back-catalog or not** — launching blank for now; may backfill later. Revisit once the new blog exists and has some native posts of its own.
 2. **Custom domain** — deferred until the default `*.github.io` deployment is confirmed working.
-3. **Design for Writing, Podcasts, YouTube, Contact** — only Home is designed so far; extend the approved style sheet to these next.
+3. ~~Design for Writing, Podcasts, YouTube, Contact~~ — done 2026-09-05, built directly as real Jekyll pages extending `assets/css/main.css`'s existing component classes rather than a separate design-canvas pass (no layout shape needed that the style sheet didn't already cover). Blog is the only page left undesigned/unbuilt.
 4. ~~Enable GitHub Pages~~ — done 2026-09-05, see "Live" note above.
 
 ## Working notes for future sessions

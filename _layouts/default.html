@@ -18,10 +18,10 @@
 
     <nav class="main-nav">
       <a href="{{ '/' | relative_url }}">Home</a>
-      <a href="#">Writing</a>
+      <a href="{{ '/writing/' | relative_url }}">Writing</a>
       <a href="#">Blog</a>
-      <a href="#">YouTube</a>
-      <a href="#">Podcasts</a>
+      <a href="{{ '/youtube/' | relative_url }}">YouTube</a>
+      <a href="{{ '/podcasts/' | relative_url }}">Podcasts</a>
     </nav>
 
     <div class="header-actions">
@@ -45,10 +45,11 @@
       <div class="footer-nav">
         <img src="{{ '/assets/images/gd-bear-icon.png' | relative_url }}" alt="">
         <a class="footer-link" href="{{ '/' | relative_url }}">Home</a>
-        <a class="footer-link" href="#">Writing</a>
+        <a class="footer-link" href="{{ '/writing/' | relative_url }}">Writing</a>
         <a class="footer-link" href="#">Blog</a>
-        <a class="footer-link" href="#">YouTube</a>
-        <a class="footer-link" href="#">Podcasts</a>
+        <a class="footer-link" href="{{ '/youtube/' | relative_url }}">YouTube</a>
+        <a class="footer-link" href="{{ '/podcasts/' | relative_url }}">Podcasts</a>
+        <a class="footer-link" href="{{ '/contact/' | relative_url }}">Contact</a>
       </div>
       <div class="social-row">
         <a class="social-badge" href="{{ site.social.discord }}" title="Discord">D</a>
