@@ -17,6 +17,15 @@ hero scale — better reserved for smaller spots (Podcasts/YouTube thumbnails).
 |---|---|
 | `March 2023/shutterstock_2216124455.jpg` | Home hero background |
 | `October 2022/shutterstock_1621160803.jpg` | Shadows RPG feature band background |
+| `March 2023/shutterstock_2022594419.jpg` | Writing page header (`writing/index.html`) |
+| `February 2023/shutterstock_260711438.jpg` | Blog page header (`blog/index.html`, also reused on every individual post via `_layouts/post.html`) |
+| `October 2022/shutterstock_1354127294.jpg` | YouTube page header (`youtube/index.html`) |
+| `November 2022/shutterstock_551337679.jpg` | Podcasts page header (`podcasts/index.html`) |
+
+Individual story pages (`_stories/`, via `_layouts/story.html`) and the Contact page
+(`contact/index.html`) do **not** use a Shutterstock header image — stories intentionally use a
+flat per-story accent-color glow instead (see "Writing built" in the root CLAUDE.md), and Contact
+was kept deliberately light/photo-free. Confirm with Ken before changing either of those choices.
 
 ## February 2023
 
