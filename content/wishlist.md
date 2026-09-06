@@ -22,10 +22,10 @@ purpose: Running list of ideas, gaps, and decisions spotted while porting the ol
   YouTube playlist (`list=PLWXG_a-sQ0aEaScUiA8bYKgjdBnPdWbF2`) alongside the existing 4-episode Spotify
   embeds — kept as a companion link rather than embedding all 14 videos inline, since the YouTube run
   goes deep on Shadows rules specifically while the Spotify episodes are the broader-topic version.
-- **Podcast episode counts are stale too.** `content/podcasts.md` has 3 Myriad Circle + 4 Fiction
-  Factory episodes; the real shows likely have more by now (see above). The built page only embeds
-  what's in the content file — a pass to add newer episodes would be easy once Ken confirms the
-  current episode list.
+- ~~Podcast episode counts are stale too~~ **Resolved 2026-09-06**: pulled the real Spotify show
+  directly. Myriad Circle is genuinely complete at 3 episodes (no change needed) — Fiction Factory
+  had grown to 14 episodes on Spotify (matching the YouTube run), only 4 of which were embedded on
+  the site. Added the missing 10 (episodes 5-14) to `podcasts/index.html` and `content/podcasts.md`.
 - ~~Voice decision still open for creator pages~~ **Resolved 2026-09-05**: Ken confirmed the
   creator-page (studio) voice from brand/theme.md — not d33Kode's old personal first-person voice —
   is the standard for Writing/YouTube/Podcast copy going forward. Rewrote the remaining quippy/personal
