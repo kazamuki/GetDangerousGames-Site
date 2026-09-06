@@ -2,7 +2,7 @@
 purpose: Maps the hashed image filenames in Google-Page-Oriignal/PUBLISHED/ to what they actually are, so future work doesn't need to re-open every file to check.
 ---
 
-All paths are relative to `Google-Page-Oriignal/PUBLISHED/`. A content-identical `DRAFT/` copy existed alongside this but was removed from the repo (2026-09-05) to cut size — nothing was lost, it duplicated PUBLISHED/ exactly.
+All paths below were originally relative to `Google-Page-Oriignal/PUBLISHED/` in this repo. That folder no longer exists here — it was removed entirely on 2026-09-05 after GitHub flagged leaked Google API keys baked into its `.html` files (see [asset-licensing.md](../brand/asset-licensing.md) and CLAUDE.md for the full story). The images themselves (not the `.html` files, which were the actual leak) were copied out first and now live at `C:\Apps\GetDangerousGames-Site-reference\old-site-images\` — outside this repo, never tracked by git — for the Writing/Podcasts/Updates/YouTube subfolders specifically (Home and shared nav/footer images weren't preserved since they're already superseded by real brand assets, see brand/asset-licensing.md).
 
 ## Shared across every page (nav / footer)
 

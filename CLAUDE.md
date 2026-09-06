@@ -87,20 +87,40 @@ straight over when those pages get designed.
 
 ```
 index.html, _config.yml, Gemfile, _layouts/, assets/   The actual Jekyll site — see "Jekyll site" above
-Google-Page-Oriignal/     Raw Google Sites export (archival — don't hand-edit; source of truth for old images)
-  PUBLISHED/               The version that was actually live at GetDangerous.net — kept only until
-                           Writing/Podcasts/YouTube/Updates have real replacement art; DRAFT/ (a
-                           content-identical duplicate) was removed 2026-09-05 to cut repo size
 content/                  Extracted page content from the old site, as Markdown (see below)
 brand/theme.md                 Brand guide (colors, type, voice) — condensed from GUIDE_Brand_Guidelines.md
 brand/asset-licensing.md       What art in the shared Shadows asset library is safe to use where — read before pulling in any image
 brand/shutterstock-catalog.md  Catalog of all 40 licensed Shutterstock images with per-section fit notes
-.claude/launch.json       `original-site-server` config — serves Google-Page-Oriignal/ locally via `npx serve` so old pages can be re-inspected in the Browser pane
 ```
 
-`_config.yml` excludes `Google-Page-Oriignal/`, `content/`, and `brand/` from the Jekyll build (they're
-planning/reference material, not site output) — update that `exclude:` list if more top-level
-reference folders get added later.
+`_config.yml`'s `exclude:` list references `Google-Page-Oriignal/`, `content/`, and `brand/` so Jekyll
+never tries to build them — harmless to leave even though the first no longer exists (see below), but
+clean that entry up if it's ever confusing.
+
+### The old Google Sites export is gone from this repo — REAL SECURITY REASON, not just cleanup
+
+`Google-Page-Oriignal/` (the raw Google Sites export, previously described here as "kept until
+Writing/Podcasts/YouTube/Updates have real replacement art") was **removed from git entirely on
+2026-09-05** after GitHub's secret scanning flagged 6 real Google API keys
+(`AIzaSy...`) baked into the minified JS blob inside `YouTube.html` (and likely the other `.html`
+files too, and their now-deleted `DRAFT/` copies in earlier history) — flagged `publicly_leaked: true`
+since the repo is public. **Do not re-add this folder to the repo.** It's now git-ignored.
+
+What happened, for context: it's untracked from the current tip and the working copy on Ken's machine
+was left in place (a `rm -rf` was blocked by this environment's safety classifier, which turned out to
+be the right call — deleting it locally was never actually necessary, since the security exposure was
+about it being *public on GitHub*, not about it existing on disk). Git history still needed a proper
+rewrite to purge the blobs — check `git log` for whether that happened yet and whether it's been
+force-pushed; if you're not sure, treat any of those 6 key values as still historically present until
+confirmed otherwise, and don't assume `git rm` alone was sufficient.
+
+The images that were still useful (Writing/Podcasts/YouTube/Updates thumbnails and cover art —
+everything except the `.html` files, which were the actual leak vector) were copied out to
+`C:\Apps\GetDangerousGames-Site-reference\old-site-images\` **before** removal — that folder lives
+outside this repo entirely (sibling directory, never tracked by git) and is the place to look for that
+art when those pages get designed. The `.claude/launch.json` `original-site-server` config that used to
+serve `Google-Page-Oriignal/` for re-inspection has been removed since the source folder is gone from
+the repo; the text content it produced is already fully captured in `content/*.md`.
 
 ### Content files (`content/`)
 
@@ -176,7 +196,6 @@ Everything the old site pointed out to — needed wherever the new footer/nav is
 
 ## Working notes for future sessions
 
-- To re-inspect the old site visually, run the `original-site-server` launch config (serves `Google-Page-Oriignal/` on :8765) and open `/PUBLISHED/<Page>.html` in the Browser pane — the export is a Google Sites JS app, so reading the raw HTML files directly is useless (all content lives in a ~1.7MB minified data blob on line 1); render it and read the DOM instead.
-- `Google-Page-Oriignal/` is kept as an untouched archive. Do the actual rebuild elsewhere in the repo (a new top-level app/ or src/ once the stack is chosen), don't edit inside that folder.
+- The old Google Sites export is **gone from the repo** (leaked API keys — see above). Its text is fully captured in `content/*.md`; leftover images live at `C:\Apps\GetDangerousGames-Site-reference\old-site-images\` (Writing/Podcasts/YouTube/Updates only, no `.html` files, outside git entirely). There's nothing left to re-inspect via a local server for this.
 - To continue iterating on the design: read the artifact back (Artifact tool, `action: "read"`, the URL in the "Design" section above) before editing it — never publish an update to it blind. If starting fresh work on a new page (Writing, Podcasts, etc.), match its color/type/component choices by eye from the Style Sheet artboard rather than trying to recover the original `.dc.html` source, which won't exist in a new session.
 - The Shutterstock/GD Assets art referenced throughout lives outside this repo, under `C:\Users\Kazam\OneDrive\Documents\Gaming\Shadows\` — see [brand/asset-licensing.md](brand/asset-licensing.md) for exact paths. None of it is copied into this repo yet; that should happen once Step 3 (real Jekyll build) needs actual asset files to serve.

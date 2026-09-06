@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "original-site-server",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["--yes", "serve", "Google-Page-Oriignal", "-l", "8765"],
-      "port": 8765
+      "name": "jekyll-site",
+      "runtimeExecutable": "bundle",
+      "runtimeArgs": ["exec", "jekyll", "serve"],
+      "port": 4000
     }
   ]
 }

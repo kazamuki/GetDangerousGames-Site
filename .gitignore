@@ -4,3 +4,7 @@ _site/
 .bundle/
 vendor/
 .sass-cache/
+
+# Removed 2026-09-05: contained leaked Google API keys (GitHub secret scanning alerts #1-6),
+# baked into the Google Sites export's minified JS blob. Do not re-add. See CLAUDE.md.
+Google-Page-Oriignal/
