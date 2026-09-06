@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "jekyll-site",
-      "runtimeExecutable": "C:\\Ruby40-x64\\bin\\ruby.exe",
-      "runtimeArgs": ["C:\\Ruby40-x64\\bin\\bundle", "exec", "jekyll", "serve"],
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "set PATH=C:\\Ruby40-x64\\bin;%PATH% && ruby.exe -S bundle exec jekyll serve"],
       "port": 4000
     }
   ]
