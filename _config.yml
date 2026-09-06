@@ -4,6 +4,14 @@ url: "https://kazamuki.github.io"
 baseurl: "/GetDangerousGames-Site"
 
 markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
 
 social:
   shadows_rpg: https://www.shadowsrpg.com/

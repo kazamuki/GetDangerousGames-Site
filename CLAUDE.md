@@ -10,13 +10,17 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 
 **Step 1 (done):** the old Google Sites export has been crawled and converted into readable Markdown content files, and the brand guide has been brought into the repo.
 **Step 2 (done):** a first-direction visual design was drafted and approved — see "Design" below.
-**Step 3 (in progress):** real Jekyll implementation. Home, YouTube, Podcasts, and Contact are built and live in nav; Writing is a "coming soon" shell (real story pages still blocked on full chapter text — see below). Only Blog has no page yet and still points nav at `#`. Ruby is now installed locally and `bundle exec jekyll serve` works for real local iteration — no more flattening templates by hand to preview. See [content/wishlist.md](content/wishlist.md) for ideas/gaps spotted while porting content — review with Ken once the porting pass is fully done.
+**Step 3 (in progress):** real Jekyll implementation. Home, Blog, YouTube, Podcasts, and Contact are built and live in nav; Writing is a "coming soon" shell (real story pages still blocked on full chapter text — see below). Every primary nav item now points somewhere real. Ruby is now installed locally and `bundle exec jekyll serve` works for real local iteration — no more flattening templates by hand to preview. See [content/wishlist.md](content/wishlist.md) for ideas/gaps spotted while porting content — review with Ken once the porting pass is fully done.
 
 **Home page cleanup pass (2026-09-06):** header/footer social row now uses real current brand icons (Discord/Twitch/X/YouTube/Patreon via simple-icons SVGs, shared through `_includes/social-icons.html`) instead of letter placeholders. Also fixed on Home: Shadows RPG's setting year corrected 2074 → 2099 (matches the real current setting), a carried-over footer typo ("thought" → "though"), the YouTube pillar card linking externally instead of to the new `/youtube/` page, and pillar-card copy that still had pre-decision personal "I" voice.
 
+**Blog built (2026-09-06):** native Jekyll blog is live — `/blog/` index, `_layouts/post.html`, and `_posts/` all built extending the existing component system (no new design pass). See "Decided → Blogging" below for the scope call (one blog, this site only) and the curated-backfill call (5 of 28 exported Blogspot posts brought in as history). Also this session: `brand/asset-licensing.md` updated — newly-located license files resolved nearly all of the previously-"restricted, no license found" DriveThruRPG art packs (Godbound, House Of Bone And Amber, Scarlet Heroes, Silent Legion, SotD, Stars Without Number Revised) as public-domain/free-commercial-use; only Dean Spencer's commissioned art is still CRB-book-only.
+
+**Blog follow-ups (2026-09-06):** the 2 backfilled posts with inline images had those images pulled off Blogger's CDN and self-hosted at `assets/images/blog/` — except one, which got caught, not carried forward: the Quick Start Guide teaser's YouTube thumbnail carried a visible **"ArturSadlos.co" watermark**, the same third-party concept-artist signature already flagged in `brand/asset-licensing.md` for the old Home background. That image was dropped from the post (replaced with a plain video link) instead of self-hosted — see [blog.md](content/blog.md) and the updated asset-licensing note below; don't re-add it if you come across it again while migrating Writing. `/blog/` also got client-side tag-pill filtering (vanilla JS, `.tag-pill`/`.tag-filter` in main.css) — worth flagging one non-obvious CSS fix that goes with it: `.post-card[hidden] { display: none; }` had to be added explicitly because `.post-card { display: flex }` (an author rule) otherwise overrides the browser's default `[hidden]` behavior at equal specificity — don't remove that override rule, filtering silently breaks without it.
+
 **Live:** https://kazamuki.github.io/GetDangerousGames-Site/ — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded, confirmed rendering correctly including all asset paths under the project-page baseurl. Every push to `main` triggers a fresh Pages build automatically.
 
-### To migrate the next page (Writing, Podcasts, YouTube, Blog, or Contact)
+### To migrate the next page (Writing is the only one left)
 
 1. Read `content/<page>.md` for the source copy and its migration notes/checklist.
 2. For Writing specifically: pull the actual full chapter text from the Belletristica/Webnovel URLs listed in its migration checklist — the content file currently only has teaser blurbs, not the real story text.
@@ -39,22 +43,31 @@ Gemfile           gem "github-pages" — keeps local and GitHub's Jekyll version
                   carries a Ruby-version compatibility shim — see below, don't remove it.
 Gemfile.lock      Committed — generated once Ruby was installed locally (2026-09-05).
 _layouts/default.html   Header (logo, nav, Shadows RPG CTA, social icons) + footer, wraps every page
+_layouts/post.html      Blog post layout — page-header (date/tags/title) + prose body + back-to-blog link
 _includes/social-icons.html  Discord/Twitch/X/YouTube/Patreon icon row, shared by header + footer —
                   real current brand marks (simple-icons SVGs), not placeholder letters
-index.html        Home page content (hero, Shadows RPG band, three pillars, blog empty-state)
+index.html        Home page content (hero, Shadows RPG band, three pillars, latest-3-posts/empty-state)
 writing/index.html      Writing "coming soon" shell — real story pages pending full chapter text
+blog/index.html         Blog index — reverse-chronological post-card list with tag-pill filtering
+                  (vanilla JS), empty-state if _posts/ is empty
+_posts/                 Native Jekyll blog posts (see "Decided → Blogging" for the backfill/scope calls)
 youtube/index.html      YouTube page — all-videos CTA + playlist-pick cards
 podcasts/index.html     Podcasts page — Myriad Circle + Fiction Factory, real embedded Spotify players
 contact/index.html      Contact page — Discord CTA, no form
 assets/css/main.css     All page styling — CSS custom properties for the brand palette, one class
                   per component, translated directly from the approved design canvas (Home) and
                   extended with matching components (page-header, media-card, episode-embed,
-                  story-card, contact-card) for the pages built after it
+                  story-card, contact-card, post-card, post-body) for the pages built after it
 assets/images/    gd-bear-icon.png, shadows-logo.png, hero-skyline.jpg, shadows-band-bg.jpg (Home,
                   from the design canvas) plus youtube-header.jpg, podcasts-header.jpg,
-                  writing-header.jpg — page-header backgrounds for the newer pages, sourced from the
-                  licensed Shutterstock catalog (see brand/shutterstock-catalog.md) and resized/
-                  compressed the same way as the Home images (~1600px wide, JPEG ~80-140KB)
+                  writing-header.jpg, blog-header.jpg — page-header backgrounds for the newer pages,
+                  sourced from the licensed Shutterstock catalog (see brand/shutterstock-catalog.md)
+                  and resized/compressed the same way as the Home images (~1600px wide, JPEG
+                  ~80-140KB; no ImageMagick/Python on this machine — used PowerShell's
+                  System.Drawing to resize+recompress instead)
+assets/images/blog/     Inline images referenced from individual blog posts (as opposed to page-header
+                  backgrounds, which stay flat in assets/images/) — self-hosted copies of images
+                  pulled from the Blogspot export, vetted against brand/asset-licensing.md first
 ```
 
 ### Local dev environment (Ruby)
@@ -124,7 +137,7 @@ straight over when those pages get designed.
 
 - **Hosting:** GitHub Pages. Custom domain (GetDangerous.net) is **not** being pointed at it yet — Ken wants to confirm the default `*.github.io` deployment works end-to-end first, then add the CNAME later.
 - **Stack:** Jekyll.
-- **Blogging:** native Jekyll posts going forward — the external Blogspot embed (`getdangerousupdates.blogspot.com`) is retired. **Launch blank**: no back-catalog import for now, may backfill old Blogspot posts later. See [blog.md](content/blog.md).
+- **Blogging:** native Jekyll posts, built 2026-09-06 — the external Blogspot embed (`getdangerousupdates.blogspot.com`) is retired. **Scope confirmed 2026-09-06**: one blog, lives on this (Get Dangerous Games) site only — Shadows RPG is a separate product/domain and doesn't get its own native blog or a content-sync pipeline; it can link out to specific posts if it wants a presence. **Backfill confirmed 2026-09-06**: Ken exported the full Blogspot history via Google Takeout, which unblocked this; rather than importing all 28 posts, a curated subset of 5 (the ones with real substance — Shadows dev/lore updates, a podcast-series announcement, a cadence-change reflection, a creator collab) were brought in as historical `_posts/`, skipping the daily "new video is up!" cross-posts the YouTube page already covers. See [blog.md](content/blog.md) for the full rundown.
 - **Writing:** stories move to being hosted natively (Jekyll pages/collection) instead of linking out to Belletristica, which is being treated as defunct as a host. Full text still needs to be pulled from the old Belletristica/Webnovel URLs — see the migration checklist in [writing.md](content/writing.md).
 - **Contact page:** points to Discord as the contact channel — no form.
 - **Voice:** site copy shifts to the brand guide's studio-level "creator-page" voice (gritty-but-hopeful, confident-not-arrogant, player-first — see brand/theme.md), moving away from the old site's casual first-person "d33Kode" voice. **Confirmed 2026-09-05**: this applies to Writing/YouTube/Podcast blurbs too, not just Home/Blog — Ken opted for the studio voice over keeping more of d33Kode's personal tone on the inherently personal-creator pages. Applied when writing the YouTube/Podcasts pages; apply the same standard to the real Writing story pages once their full text is ready.
@@ -195,7 +208,7 @@ Each corresponds to one page from the old site, with its text content, image ref
 - [youtube.md](content/youtube.md) — channel blurb + 8 playlists. **Built** (`youtube/index.html`). The 8-playlist teaser list is carried over from this file, but the live channel has grown a lot since — see [wishlist.md](content/wishlist.md) for specifics (new Shadows campaigns not reflected here, two old entries that couldn't be re-located). Most cards link to the general Playlists tab rather than a specific ID; only Vermintide 2 has a confirmed direct link.
 - [podcasts.md](content/podcasts.md) — Myriad Circle (3 eps) and Fiction Factory (4 eps), both on Spotify. **Built** (`podcasts/index.html`) with real embedded Spotify players for every episode listed here (IDs verified against Spotify directly). Episode counts in this file are stale — see [wishlist.md](content/wishlist.md).
 - [updates.md](content/updates.md) — a changelog page, stale since 2023-03-02, **not** the current news source (see blog.md). Superseded by native blogging (see "Decided → Blogging") — probably doesn't need its own page in the rebuild at all, confirm with Ken rather than assuming.
-- [blog.md](content/blog.md) — old site just iframed an external Blogspot blog. **Decided**: native Jekyll posts instead, launching blank — nothing to migrate here, just needs `_posts/` wired up and a blog index page/layout. **Not started.**
+- [blog.md](content/blog.md) — old site just iframed an external Blogspot blog. **Built** (`blog/index.html` + `_layouts/post.html` + `_posts/`) — native Jekyll posts, one blog for this site only, 5 curated historical posts backfilled from the Blogspot export. See the file for the full scope/backfill rundown.
 - [contact.md](content/contact.md) — effectively empty on the old site. **Decided**: dedicated page pointing to Discord, no form. **Built** (`contact/index.html`).
 - [images-manifest.md](content/images-manifest.md) — maps every hashed old-site image filename to what it actually is/does. Reference only now that the images themselves live at the external reference folder (see below) or are being replaced by Shutterstock/GD Assets art.
 - [wishlist.md](content/wishlist.md) — running backlog of ideas/gaps/decisions spotted while porting content into real pages. Not scoped work — review with Ken once the full porting pass is done.
@@ -218,11 +231,14 @@ Full detail in [brand/theme.md](brand/theme.md). Key points:
 See [brand/asset-licensing.md](brand/asset-licensing.md). Short version: the
 `Shadows/Core Rule Book/Art Assets/Shutterstock/` folder (42 images, confirmed unlimited-distribution
 license) and `Shadows/GD Assets/` (owned brand marks — bear mascot, Shadows logo, banner) are clear
-to use on the site. Dean Spencer commissioned art and DriveThruRPG marketplace packs living in the
-same overall asset library are restricted to the CRB book itself and must not be used on the website
-without separately confirming it's OK. Several of the old Google Sites background images also have
-unknown or third-party provenance (one carries a visible outside artist's signature) — don't carry
-those forward either.
+to use on the site. **Updated 2026-09-06**: license files located at `Core Rule Book\Licenses\`
+confirmed nearly all of the DriveThruRPG marketplace packs (Godbound, House Of Bone And Amber,
+Scarlet Heroes, Silent Legion, SotD, Stars Without Number Revised) as Kevin Crawford/Sine Nomine
+public-domain releases — free for commercial use, credit-the-artist as a courtesy — so they're now
+clear to use on the website too, not just CRB-book-only. Dean Spencer's commissioned art is the only
+one still restricted to the CRB book specifically (one-time print/web license, not a blanket grant).
+Several of the old Google Sites background images also have unknown or third-party provenance (one
+carries a visible outside artist's signature) — don't carry those forward either.
 
 ### Outstanding brand items (carried over from brand/theme.md, still unresolved)
 - [ ] Purchase a commercial license for Cerulean Nights from Chequered Ink before it ships live; confirm whether self-hosted webfont use needs a specific license tier.
@@ -254,9 +270,9 @@ Everything the old site pointed out to — needed wherever the new footer/nav is
 
 ## Still-open decisions for the rebuild (ask Ken before locking these in)
 
-1. **Import Blogspot's back-catalog or not** — launching blank for now; may backfill later. Revisit once the new blog exists and has some native posts of its own.
+1. ~~Import Blogspot's back-catalog or not~~ — decided 2026-09-06: Ken exported the full history via Google Takeout, a curated subset of 5 posts (out of 28) was backfilled as historical `_posts/`, the rest were left out as same-day video-cross-post filler. See [blog.md](content/blog.md).
 2. **Custom domain** — deferred until the default `*.github.io` deployment is confirmed working.
-3. ~~Design for Writing, Podcasts, YouTube, Contact~~ — done 2026-09-05, built directly as real Jekyll pages extending `assets/css/main.css`'s existing component classes rather than a separate design-canvas pass (no layout shape needed that the style sheet didn't already cover). Blog is the only page left undesigned/unbuilt.
+3. ~~Design for Writing, Podcasts, YouTube, Contact, Blog~~ — done 2026-09-05/06, built directly as real Jekyll pages extending `assets/css/main.css`'s existing component classes rather than a separate design-canvas pass (no layout shape needed that the style sheet didn't already cover). Writing is the only page left as a shell (blocked on full chapter text, not on design).
 4. ~~Enable GitHub Pages~~ — done 2026-09-05, see "Live" note above.
 
 ## Working notes for future sessions

@@ -1,0 +1,91 @@
+---
+layout: default
+title: Blog - Get Dangerous
+description: Dev notes, studio updates, and dispatches from the Get Dangerous crew.
+permalink: /blog/
+---
+
+<section class="page-header">
+  <img class="page-header-bg" src="{{ '/assets/images/blog-header.jpg' | relative_url }}" alt="">
+  <div class="page-header-overlay"></div>
+
+  <span class="eyebrow" style="color: var(--signal-gold);">FROM THE STUDIO</span>
+  <h1>The <span class="accent" style="background: linear-gradient(120deg, var(--signal-gold), var(--neon-veil)); -webkit-background-clip: text; background-clip: text; color: transparent;">Blog</span></h1>
+  <p>Dev notes, studio updates, and dispatches from wherever the crew's attention has wandered — Shadows RPG progress, new content, and whatever else feels worth writing down.</p>
+</section>
+
+<section class="content-section">
+  {% if site.posts.size > 0 %}
+  {% assign all_tags = site.tags | sort %}
+  {% if all_tags.size > 0 %}
+  <div class="tag-filter" role="group" aria-label="Filter posts by tag">
+    <button type="button" class="tag-pill active" data-tag-filter="all">All</button>
+    {% for tag in all_tags %}
+    <button type="button" class="tag-pill" data-tag-filter="{{ tag[0] }}">{{ tag[0] }}</button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="post-list" id="post-list">
+    {% for post in site.posts %}
+    <a class="post-card" data-tags="{{ post.tags | join: '|' }}" href="{{ post.url | relative_url }}">
+      <span class="eyebrow post-card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.excerpt | strip_html }}</p>
+      {% if post.tags.size > 0 %}
+      <ul class="topic-tags post-card-tags">
+        {% for tag in post.tags %}<li>{{ tag }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+      <span class="pillar-link" style="color: var(--signal-gold);">
+        Read the post
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--signal-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <p class="post-list-empty" id="post-list-empty" hidden>No posts with that tag yet.</p>
+
+  <script>
+    (function () {
+      var pills = document.querySelectorAll('.tag-pill');
+      var cards = document.querySelectorAll('.post-card');
+      var emptyMsg = document.getElementById('post-list-empty');
+      if (!pills.length) return;
+
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          pills.forEach(function (p) { p.classList.remove('active'); });
+          pill.classList.add('active');
+
+          var filter = pill.getAttribute('data-tag-filter');
+          var visibleCount = 0;
+
+          cards.forEach(function (card) {
+            var tags = card.getAttribute('data-tags').split('|');
+            var show = filter === 'all' || tags.indexOf(filter) !== -1;
+            card.hidden = !show;
+            if (show) visibleCount++;
+          });
+
+          emptyMsg.hidden = visibleCount !== 0;
+        });
+      });
+    })();
+  </script>
+  {% else %}
+  <div class="blog-empty-wrap" style="padding: 0;">
+    <div class="blog-empty">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M3 5C3 5 6 3.5 9.5 4.2C11 4.5 12 5.3 12 5.3C12 5.3 13 4.5 14.5 4.2C18 3.5 21 5 21 5V17C21 17 18 15.5 14.5 16.2C13 16.5 12 17.3 12 17.3C12 17.3 11 16.5 9.5 16.2C6 15.5 3 17 3 17V5Z" stroke="var(--static-cyan)" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 5.3V17.3" stroke="var(--static-cyan)" stroke-width="1.6"/></svg>
+      <span class="eyebrow">FROM THE BLOG</span>
+      <h3>Nothing here yet</h3>
+      <p>We're just getting the presses running. Check back soon — or better yet, join the Discord and we'll tell you the second something's up.</p>
+      <a class="btn-ghost" href="{{ site.social.discord }}">
+        Join the Discord
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--signal-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</section>

@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<article>
+  <header class="page-header post-header">
+    <img class="page-header-bg" src="{{ '/assets/images/blog-header.jpg' | relative_url }}" alt="">
+    <div class="page-header-overlay"></div>
+
+    <span class="eyebrow" style="color: var(--signal-gold);">
+      {{ page.date | date: "%B %-d, %Y" }}{% if page.tags.size > 0 %} &middot; {{ page.tags | join: " / " }}{% endif %}
+    </span>
+    <h1>{{ page.title }}</h1>
+  </header>
+
+  <div class="content-section tight post-body">
+    {{ content }}
+  </div>
+
+  <div class="content-section tight post-footer">
+    <a class="pillar-link" href="{{ '/blog/' | relative_url }}" style="color: var(--static-cyan);">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="var(--static-cyan)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to the Blog
+    </a>
+  </div>
+</article>

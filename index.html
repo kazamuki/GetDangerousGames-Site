@@ -78,6 +78,35 @@ description: Writing. Gaming. Badassery.
   </div>
 </section>
 
+{% if site.posts.size > 0 %}
+<section class="content-section tight">
+  <div class="section-heading">
+    <span class="eyebrow" style="color: var(--signal-gold);">FROM THE BLOG</span>
+    <h2>Latest from the studio</h2>
+  </div>
+
+  <div class="post-list">
+    {% for post in site.posts limit: 3 %}
+    <a class="post-card" href="{{ post.url | relative_url }}">
+      <span class="eyebrow post-card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.excerpt | strip_html }}</p>
+      <span class="pillar-link" style="color: var(--signal-gold);">
+        Read the post
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--signal-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="section-cta">
+    <a class="btn-ghost" href="{{ '/blog/' | relative_url }}">
+      Read the full blog
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--signal-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+{% else %}
 <div class="blog-empty-wrap">
   <div class="blog-empty">
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M3 5C3 5 6 3.5 9.5 4.2C11 4.5 12 5.3 12 5.3C12 5.3 13 4.5 14.5 4.2C18 3.5 21 5 21 5V17C21 17 18 15.5 14.5 16.2C13 16.5 12 17.3 12 17.3C12 17.3 11 16.5 9.5 16.2C6 15.5 3 17 3 17V5Z" stroke="var(--static-cyan)" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 5.3V17.3" stroke="var(--static-cyan)" stroke-width="1.6"/></svg>
@@ -90,3 +119,4 @@ description: Writing. Gaming. Badassery.
     </a>
   </div>
 </div>
+{% endif %}
