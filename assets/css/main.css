@@ -9,7 +9,11 @@
   --ghostly-green: #71C388;
   --text-light: #FFFFFF;
   --text-dark: #111111;
-  --card-bg: #121B38;
+  /* Deep Circuit blended into Midnight — every card surface ties back to a
+     named brand color instead of an arbitrary navy. */
+  --card-bg: #16294F;
+  --card-border: rgba(32, 63, 123, 0.45);
+  --card-border-hover: rgba(27, 187, 196, 0.55);
   --gutter: clamp(20px, 6vw, 48px);
 }
 
@@ -354,7 +358,7 @@ a { text-decoration: none; color: inherit; }
 
 .pillar-card {
   background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--card-border);
   border-radius: 14px;
   padding: 34px 30px;
   display: flex;
@@ -377,7 +381,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-size: 15px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--neutral-zone);
   margin: 0;
 }
 
@@ -509,7 +513,7 @@ a { text-decoration: none; color: inherit; }
 .section-heading p {
   font-size: 16px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--neutral-zone);
   margin: 0;
   max-width: 660px;
 }
@@ -525,7 +529,7 @@ a { text-decoration: none; color: inherit; }
 
 .media-card {
   background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--card-border);
   border-radius: 14px;
   padding: 26px 24px;
   display: flex;
@@ -534,7 +538,7 @@ a { text-decoration: none; color: inherit; }
   transition: transform .15s, border-color .15s;
 }
 
-.media-card:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.16); }
+.media-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover); }
 
 .media-card h3 {
   font-family: 'Unbounded', sans-serif;
@@ -546,7 +550,7 @@ a { text-decoration: none; color: inherit; }
 .media-card p {
   font-size: 14px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--neutral-zone);
   margin: 0;
   flex: 1;
 }
@@ -579,7 +583,7 @@ a { text-decoration: none; color: inherit; }
 .podcast-show-head p {
   font-size: 15px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--neutral-zone);
   margin: 0;
 }
 
@@ -614,7 +618,7 @@ a { text-decoration: none; color: inherit; }
 
 .episode-embed {
   background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--card-border);
   border-radius: 14px;
   padding: 12px;
 }
@@ -636,7 +640,7 @@ a { text-decoration: none; color: inherit; }
 
 .story-card {
   background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--card-border);
   border-radius: 14px;
   padding: 28px 26px;
   display: flex;
@@ -645,7 +649,7 @@ a { text-decoration: none; color: inherit; }
   transition: transform .15s, border-color .15s;
 }
 
-.story-card:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.16); }
+.story-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover); }
 
 .story-card .status-badge { align-self: flex-start; }
 
@@ -681,7 +685,7 @@ a { text-decoration: none; color: inherit; }
 .story-card p {
   font-size: 14px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--neutral-zone);
   margin: 0;
 }
 
@@ -769,7 +773,7 @@ a { text-decoration: none; color: inherit; }
 
 .post-card {
   background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--card-border);
   border-radius: 14px;
   padding: 30px 32px;
   display: flex;
@@ -779,7 +783,7 @@ a { text-decoration: none; color: inherit; }
   transition: transform .15s, border-color .15s;
 }
 
-.post-card:hover { transform: translateY(-3px); border-color: rgba(255, 255, 255, 0.16); }
+.post-card:hover { transform: translateY(-3px); border-color: var(--card-border-hover); }
 
 .post-card[hidden] { display: none; }
 
@@ -795,7 +799,7 @@ a { text-decoration: none; color: inherit; }
 .post-card p {
   font-size: 15px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--neutral-zone);
   margin: 0;
 }
 
