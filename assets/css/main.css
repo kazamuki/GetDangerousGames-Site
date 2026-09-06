@@ -150,11 +150,11 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 12px;
-  font-weight: 700;
   color: rgba(255, 255, 255, 0.55);
+  transition: color .15s, border-color .15s;
 }
+
+.social-badge svg { width: 16px; height: 16px; fill: currentColor; display: block; }
 
 .social-badge:hover { color: var(--signal-gold); border-color: var(--signal-gold); }
 

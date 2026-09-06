@@ -37,6 +37,8 @@ Gemfile           gem "github-pages" — keeps local and GitHub's Jekyll version
                   carries a Ruby-version compatibility shim — see below, don't remove it.
 Gemfile.lock      Committed — generated once Ruby was installed locally (2026-09-05).
 _layouts/default.html   Header (logo, nav, Shadows RPG CTA, social icons) + footer, wraps every page
+_includes/social-icons.html  Discord/Twitch/X/YouTube/Patreon icon row, shared by header + footer —
+                  real current brand marks (simple-icons SVGs), not placeholder letters
 index.html        Home page content (hero, Shadows RPG band, three pillars, blog empty-state)
 writing/index.html      Writing "coming soon" shell — real story pages pending full chapter text
 youtube/index.html      YouTube page — all-videos CTA + playlist-pick cards
