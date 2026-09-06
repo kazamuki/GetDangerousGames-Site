@@ -14,6 +14,17 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 
 **Live:** https://kazamuki.github.io/GetDangerousGames-Site/ — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded, confirmed rendering correctly including all asset paths under the project-page baseurl. Every push to `main` triggers a fresh Pages build automatically.
 
+### To migrate the next page (Writing, Podcasts, YouTube, Blog, or Contact)
+
+1. Read `content/<page>.md` for the source copy and its migration notes/checklist.
+2. For Writing specifically: pull the actual full chapter text from the Belletristica/Webnovel URLs listed in its migration checklist — the content file currently only has teaser blurbs, not the real story text.
+3. Check `brand/shutterstock-catalog.md` for already-cataloged image candidates before searching for new art; check `brand/asset-licensing.md` before using anything else. Old-site images (if still relevant — most aren't, prefer fresh art) live at `C:\Apps\GetDangerousGames-Site-reference\old-site-images\`, outside this repo.
+4. Reuse `assets/css/main.css`'s existing classes/tokens rather than re-deriving the design from scratch — it's the real, proven system (Home is live using it), more authoritative at this point than going back to the Claude Design canvas artifact. Only spin up a new canvas exploration if the new page needs a genuinely different layout shape the style sheet doesn't already cover.
+5. Build the page as a real Jekyll file (front matter + `layout: default`, following `index.html`'s pattern) — not a design-tool mockup.
+6. Test locally: run the `jekyll-site` launch config, check `http://localhost:4000/GetDangerousGames-Site/<page>/`.
+7. Update the nav links in `_layouts/default.html` (currently `#` placeholders) to point at the new page.
+8. Commit, push, confirm the GitHub Pages build succeeds (`gh api repos/kazamuki/GetDangerousGames-Site/pages/builds/latest`) before considering it done.
+
 ## Jekyll site
 
 Standard Jekyll layout, buildable by GitHub Pages' native Jekyll support (no GitHub Actions workflow needed — `Gemfile` pins the `github-pages` gem so a local `bundle exec jekyll serve` matches GitHub's build).
@@ -166,18 +177,18 @@ the repo; the text content it produced is already fully captured in `content/*.m
 
 Each corresponds to one page from the old site, with its text content, image references, and outbound links transcribed:
 
-- [home.md](content/home.md) — landing page (hero, Shadows RPG callout, Writing/YouTube/Podcasts cards)
-- [writing.md](content/writing.md) — four short stories, each linking out to Belletristica (and one to Webnovel)
-- [youtube.md](content/youtube.md) — channel blurb + 8 playlists
-- [podcasts.md](content/podcasts.md) — Myriad Circle (3 eps) and Fiction Factory (4 eps), both on Spotify
-- [updates.md](content/updates.md) — a changelog page, stale since 2023-03-02, **not** the current news source (see blog.md)
-- [blog.md](content/blog.md) — thin wrapper page that just iframes an external Blogspot blog, which has newer content than updates.md
-- [contact.md](content/contact.md) — effectively empty; no contact method existed on the old site
-- [images-manifest.md](content/images-manifest.md) — maps every hashed image filename to what it actually is/does
+- [home.md](content/home.md) — landing page content. **Already built** — see "Jekyll site" above; treat `index.html` as more authoritative than this file for Home specifically now.
+- [writing.md](content/writing.md) — four stories. Old site just linked out to Belletristica/Webnovel; **decided** these get hosted natively instead, but only teaser blurbs are captured here so far — the migration checklist at the bottom of the file lists exactly which URLs still need their full chapter text pulled before the real pages can be built. **Not started.**
+- [youtube.md](content/youtube.md) — channel blurb + 8 playlists. **Not started** (no Jekyll page yet).
+- [podcasts.md](content/podcasts.md) — Myriad Circle (3 eps) and Fiction Factory (4 eps), both on Spotify. **Not started.**
+- [updates.md](content/updates.md) — a changelog page, stale since 2023-03-02, **not** the current news source (see blog.md). Superseded by native blogging (see "Decided → Blogging") — probably doesn't need its own page in the rebuild at all, confirm with Ken rather than assuming.
+- [blog.md](content/blog.md) — old site just iframed an external Blogspot blog. **Decided**: native Jekyll posts instead, launching blank — nothing to migrate here, just needs `_posts/` wired up and a blog index page/layout. **Not started.**
+- [contact.md](content/contact.md) — effectively empty on the old site. **Decided**: dedicated page pointing to Discord, no form. **Not started.**
+- [images-manifest.md](content/images-manifest.md) — maps every hashed old-site image filename to what it actually is/does. Reference only now that the images themselves live at the external reference folder (see below) or are being replaced by Shutterstock/GD Assets art.
 
-### Nav reality check
+### Nav reality check (historical — superseded)
 
-The live nav only ever showed: **Home · Writing · YouTube · Podcasts · Discord**. `Blog.html` and `Contact.html` exist as files in the export but were never linked from navigation — they were orphaned pages reachable only by direct URL. Decide during rebuild whether either earns a real spot in nav.
+The **old** live nav only ever showed: Home · Writing · YouTube · Podcasts · Discord, with `Blog.html`/`Contact.html` orphaned (never linked). **This has been decided for the rebuild already** — see "Decided → Nav structure" above (`Home · Writing · Blog · YouTube · Podcasts` + CTA). Kept here only as historical context for why the old export looked the way it did.
 
 ## Brand guide summary
 
