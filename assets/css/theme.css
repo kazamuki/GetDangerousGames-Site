@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Shared theme tokens + light/dark toggle button
+   ==========================================================================
+   Shared across Get Dangerous Games, Shadows RPG, and the Shadows Character
+   Sheet app — all three sites can drop this file in as-is to get the same
+   palette and toggle behavior. Keep it in sync across the three repos.
+
+   Pair with assets/js/theme-init.js (blocking, sets html[data-theme] before
+   first paint) and assets/js/theme-toggle.js (wires up the toggle button).
+   See CLAUDE.md's "Light mode toggle" note for the full architecture and the
+   WCAG contrast math behind the light-mode reassignments below.
+   ========================================================================== */
+
+:root {
+  /* Brand constants — fixed, never swap with theme. Solid-fill buttons and
+     photo-band scrims reference these directly and are theme-invariant. */
+  --aether-pulse: #712B8C;
+  --deep-circuit: #203F7B;
+  --neutral-zone: #E7E7E7;
+  --neon-veil: #BC489A;
+  --midnight: #0D1731;
+  --signal-gold: #F2C94C;
+  --static-cyan: #1BBBC4;
+  --ghostly-green: #71C388;
+  --text-light: #FFFFFF;
+  --text-dark: #111111;
+
+  /* Semantic tokens — dark theme (default) */
+  --bg-page: var(--midnight);
+  --bg-header: rgba(13, 23, 49, 0.88);
+
+  --card-bg: #16294F;
+  --card-border: rgba(32, 63, 123, 0.45);
+  --card-border-hover: rgba(27, 187, 196, 0.55);
+  --chip-bg: rgba(255, 255, 255, 0.06);
+  --chip-border: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-visible: rgba(255, 255, 255, 0.16);
+
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-tertiary: rgba(255, 255, 255, 0.55);
+  --text-faint: rgba(255, 255, 255, 0.28);
+
+  /* Accent roles — the three dark-bg-optimized accents (cyan/gold/green,
+     see CLAUDE.md's "Brand-color consistency pass") pass through as-is in
+     dark mode; each gets a light-mode-safe stand-in below. */
+  --accent-cyan: var(--static-cyan);
+  --accent-green: var(--ghostly-green);
+  --accent-gold: var(--signal-gold);
+  --accent-magenta: var(--neon-veil);
+
+  --gutter: clamp(20px, 6vw, 48px);
+}
+
+:root[data-theme="light"] {
+  --bg-page: #F5F4F2;
+  --bg-header: rgba(245, 244, 242, 0.88);
+
+  --card-bg: #FFFFFF;
+  --card-border: rgba(32, 63, 123, 0.22);
+  --card-border-hover: rgba(32, 63, 123, 0.55);
+  --chip-bg: rgba(32, 63, 123, 0.06);
+  --chip-border: rgba(32, 63, 123, 0.16);
+  --border-subtle: rgba(17, 17, 17, 0.12);
+  --border-visible: rgba(17, 17, 17, 0.22);
+
+  --text-primary: var(--text-dark);
+  --text-secondary: rgba(17, 17, 17, 0.78);
+  --text-tertiary: rgba(17, 17, 17, 0.58);
+  --text-faint: rgba(17, 17, 17, 0.32);
+
+  /* Static Cyan / Signal Gold / Ghostly Green all fail WCAG text contrast
+     against a light background (1.28-2.35:1 — see CLAUDE.md math). Primary
+     palette (Deep Circuit, Aether Pulse) takes over the text/icon role;
+     Neon Veil also fails at normal-text size so it folds into Aether Pulse
+     too rather than getting its own light-mode value. */
+  --accent-cyan: var(--deep-circuit);
+  --accent-green: var(--deep-circuit);
+  --accent-gold: var(--aether-pulse);
+  --accent-magenta: var(--aether-pulse);
+}
+
+/* Per-story accent (set inline per-story as --story-accent) darkened for
+   legibility in light mode via the same color-mix idiom status-badge already
+   used. Scoped to .story-article/.story-card so it can read the inherited
+   --story-accent regardless of where that was set inline. */
+.story-article, .story-card {
+  --story-accent-safe: var(--story-accent, var(--accent-cyan));
+}
+
+:root[data-theme="light"] .story-article,
+:root[data-theme="light"] .story-card {
+  --story-accent-safe: color-mix(in srgb, var(--story-accent, var(--accent-cyan)) 65%, black 30%);
+}
+
+/* Light/dark toggle button */
+.theme-toggle {
+  width: clamp(30px, calc(30px + 4 * (100vw - 640px) / 560), 36px);
+  height: clamp(30px, calc(30px + 4 * (100vw - 640px) / 560), 36px);
+  border-radius: 50%;
+  border: 1px solid var(--border-visible);
+  background: transparent;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: color .15s, border-color .15s;
+}
+
+.theme-toggle:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
+
+/* No display here — each icon below sets its own display, and (.theme-toggle svg)
+   has higher specificity than (.theme-toggle-icon--sun) alone, so a display
+   value here would always win and show both icons at once regardless of theme. */
+.theme-toggle svg { width: 16px; height: 16px; fill: none; stroke: currentColor; }
+
+.theme-toggle-icon--sun { display: none; }
+.theme-toggle-icon--moon { display: block; }
+
+:root[data-theme="light"] .theme-toggle-icon--sun { display: block; }
+:root[data-theme="light"] .theme-toggle-icon--moon { display: none; }

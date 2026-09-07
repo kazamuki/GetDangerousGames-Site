@@ -17,7 +17,7 @@ hero scale — better reserved for smaller spots (Podcasts/YouTube thumbnails).
 |---|---|
 | `March 2023/shutterstock_2216124455.jpg` | Home hero background |
 | `October 2022/shutterstock_1621160803.jpg` | Shadows RPG feature band background |
-| `March 2023/shutterstock_2022594419.jpg` | Writing page header (`writing/index.html`) |
+| `February 2023/shutterstock_1926604859.png` | Writing page header (`writing/index.html`) — swapped 2026-09-07, see note below |
 | `February 2023/shutterstock_260711438.jpg` | Blog page header (`blog/index.html`, also reused on every individual post via `_layouts/post.html`) |
 | `October 2022/shutterstock_1354127294.jpg` | YouTube page header (`youtube/index.html`) |
 | `November 2022/shutterstock_551337679.jpg` | Podcasts page header (`podcasts/index.html`) |
@@ -33,7 +33,7 @@ CLAUDE.md) — that's a deliberate design choice, confirm with Ken before changi
 |---|---|---|---|---|
 | shutterstock_1068257321.jpg | Boy walks into cluster of glowing rune-circles on scorched ground | Fiery red/gold, ominous portal magic | Shadows-band | Literal magic portal imagery |
 | shutterstock_1074377570.jpg | Figure under umbrella, glowing red eyes, shadow-tentacle creature looming behind | Teal-black, eerie noir horror | Hero / Writing | Huge flat dark backdrop, generous negative space |
-| shutterstock_1926604859.png | Woman in profile reaches toward a glowing blue-white butterfly | Deep blue/gold, mystical-elegant | Writing / Shadows-band | Character-driven, good margins both sides |
+| **shutterstock_1926604859.png** | Woman in profile reaches toward a glowing blue-white butterfly | Deep blue/gold, mystical-elegant | **Writing (in use)** | Smooth gradient backdrop with no hard graphic edges — crops cleanly at any wide-banner ratio |
 | shutterstock_2182865339.jpg | Silhouetted kid crouches on rubble overlooking a ruined sunset city, tentacled figure flies above | Warm orange, apocalyptic scale | Shadows-band | Sky busy with gradient, moderate space |
 | shutterstock_2218612343.jpg | Hooded spear-bearer on snowy peak beneath a ghostly wolf-spirit in the clouds | Cold blue monochrome, mythic | Hero / Shadows-band | Vast empty sky, strong silhouette |
 | shutterstock_260711438.jpg | Cramped cyberpunk cockpit wall of monitors and cabling | Purple-teal-red, dense tech-noir | General-texture | No open space, good detail/texture shot |
@@ -50,7 +50,7 @@ CLAUDE.md) — that's a deliberate design choice, confirm with Ken before changi
 | shutterstock_1633431265.jpg | Cyborg woman, back to camera, wired with tubes, before giant sunset orb | Warm sepia-pink, lonely android myth | Shadows-band | Large plain sky/sun disc |
 | shutterstock_1726923523.jpg | Suited gunman before a glowing neon triangle portal with tentacles | Pink/teal, occult-tech noir | Shadows-band | Portal motif fits flagship band well |
 | shutterstock_1991802452.jpg | Cyber-shaman warrior with wired dreadlock-antennae wields a glowing energy blade over ruins | Warm gold, tech-shaman hybrid | Shadows-band | Great magic+tech fusion image |
-| shutterstock_2022594419.jpg | Boy holds a glowing lantern facing a starfield rift torn in the sky | Sepia/cosmic blue, quiet wonder | Writing | Starfield + plain sky both sides |
+| shutterstock_2022594419.jpg | Boy holds a glowing lantern facing a starfield rift torn in the sky | Sepia/cosmic blue, quiet wonder | Writing (former pick) | Starfield rift has hard rectangular edges — reads as a visible seam once cropped into a wide page-header banner; replaced 2026-09-07 by shutterstock_1926604859.png |
 | **shutterstock_2216124455.jpg** | Trenchcoat-and-fedora figure with cybernetic arm surveys a rainy neon skyline | Deep blue/cyan, noir detective | **Hero (in use)** | Near-exact brand navy match |
 | shutterstock_403770319.jpg | Cloaked figure leaps rooftop-to-rooftop on a glowing board over a ruined sunlit city | Gold-amber, kinetic energy | Shadows-band | High energy but off-palette warm tones |
 
@@ -91,6 +91,6 @@ CLAUDE.md) — that's a deliberate design choice, confirm with Ken before changi
 
 - **Hero background alternates:** `February/shutterstock_1074377570.jpg` (umbrella figure, vast dark void — most negative space in the set), `February/shutterstock_2218612343.jpg` (spear-bearer under empty sky).
 - **Shadows-band alternates:** `March/shutterstock_1726923523.jpg` (gunman before neon portal), `October/shutterstock_1295291155.jpg` (cyber-mage with arcane staff).
-- **Writing section candidates:** `March/shutterstock_2022594419.jpg` (boy + starfield lantern), `February/shutterstock_1926604859.png` (woman + butterfly).
+- **Writing section candidates:** `March/shutterstock_2022594419.jpg` (boy + starfield lantern) — used until 2026-09-07, swapped out because its hard-edged rectangular "rift" reads as an odd seam once cropped into a wide page-header banner; kept here as a runner-up rather than deleted in case a squarer crop wants it again.
 - **Podcasts/YouTube candidates (photo-real, good for smaller UI):** `November/shutterstock_1911841012.jpg` (hologram smartwatch), `October/shutterstock_1354127294.jpg` (flying car convoy), `November/shutterstock_551337679.jpg` (neon street crowd).
 - **Avoid for public marketing:** `March/shutterstock_1450052378.jpg` and `November/shutterstock_1520824547.jpg` — both graphic/gory, tonally off even though technically licensed.

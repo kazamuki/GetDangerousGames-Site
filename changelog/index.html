@@ -1,0 +1,26 @@
+---
+layout: default
+title: Changelog
+description: What's changed on the Get Dangerous site — new pages, redesigns, and features.
+permalink: /changelog/
+---
+
+<section class="content-section changelog-intro">
+  <span class="eyebrow" style="color: var(--accent-gold);">SITE CHANGELOG</span>
+  <h1>What's Changed</h1>
+  <p>We rebuild this site in the open, and things move fast. This is where we log the site itself — new pages, redesigns, features like the one below. For new stories, videos, and episodes, check the <a href="{{ '/blog/' | relative_url }}">Blog</a> instead.</p>
+</section>
+
+<section class="content-section tight">
+  <div class="changelog-list">
+    {% for entry in site.data.changelog %}
+    <div class="changelog-entry">
+      <span class="changelog-date">{{ entry.date }}</span>
+      <div class="changelog-body">
+        <h3>{{ entry.title }}</h3>
+        <p>{{ entry.description }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

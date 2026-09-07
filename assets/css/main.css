@@ -1,29 +1,13 @@
-:root {
-  --aether-pulse: #712B8C;
-  --deep-circuit: #203F7B;
-  --neutral-zone: #E7E7E7;
-  --neon-veil: #BC489A;
-  --midnight: #0D1731;
-  --signal-gold: #F2C94C;
-  --static-cyan: #1BBBC4;
-  --ghostly-green: #71C388;
-  --text-light: #FFFFFF;
-  --text-dark: #111111;
-  /* Deep Circuit blended into Midnight — every card surface ties back to a
-     named brand color instead of an arbitrary navy. */
-  --card-bg: #16294F;
-  --card-border: rgba(32, 63, 123, 0.45);
-  --card-border-hover: rgba(27, 187, 196, 0.55);
-  --gutter: clamp(20px, 6vw, 48px);
-}
+/* Brand color constants and theme tokens (--bg-page, --card-bg, --text-*,
+   --accent-*, --gutter, etc.) live in theme.css, shared across sites. */
 
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--midnight);
-  color: var(--text-light);
+  background: var(--bg-page);
+  color: var(--text-primary);
   font-family: 'Inter', sans-serif;
 }
 
@@ -50,9 +34,9 @@ a { text-decoration: none; color: inherit; }
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(13, 23, 49, 0.88);
+  background: var(--bg-header);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border-subtle);
   flex-wrap: wrap;
 }
 
@@ -86,7 +70,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: clamp(12px, calc(12px + 3 * (100vw - 640px) / 560), 15px);
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-secondary);
   padding: 8px 2px;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
@@ -94,8 +78,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 .main-nav a:hover {
-  color: #ffffff;
-  border-bottom: 2px solid var(--static-cyan);
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-cyan);
 }
 
 .header-actions {
@@ -146,9 +130,9 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: var(--signal-gold);
+  color: var(--accent-gold);
   background: transparent;
-  border: 1.5px solid rgba(242, 201, 76, 0.55);
+  border: 1.5px solid color-mix(in srgb, var(--accent-gold) 55%, transparent);
   padding: 12px 22px;
   border-radius: 999px;
   display: inline-flex;
@@ -156,7 +140,7 @@ a { text-decoration: none; color: inherit; }
   gap: 8px;
 }
 
-.btn-ghost:hover { background: rgba(242, 201, 76, 0.08); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--accent-gold) 8%, transparent); }
 
 .social-row {
   display: flex;
@@ -168,11 +152,11 @@ a { text-decoration: none; color: inherit; }
   width: clamp(22px, calc(22px + 12 * (100vw - 640px) / 560), 34px);
   height: clamp(22px, calc(22px + 12 * (100vw - 640px) / 560), 34px);
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--border-visible);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-tertiary);
   flex: 0 0 auto;
   transition: color .15s, border-color .15s;
 }
@@ -184,7 +168,7 @@ a { text-decoration: none; color: inherit; }
   display: block;
 }
 
-.social-badge:hover { color: var(--signal-gold); border-color: var(--signal-gold); }
+.social-badge:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
 
 /* Hero */
 .hero {
@@ -209,6 +193,10 @@ a { text-decoration: none; color: inherit; }
 .hero .hero-overlay {
   position: absolute;
   inset: 0;
+  /* Unlike .page-header, the hero always transitions straight into
+     .shadows-band — another full-bleed photo band that's unconditionally
+     dark in both themes — so this never needs to fade toward --bg-page.
+     Ends in a fixed dark navy always, matching the section below it. */
   background:
     linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.55) 55%, var(--midnight) 100%),
     radial-gradient(60% 55% at 50% 0%, rgba(113, 43, 140, 0.35), transparent 70%),
@@ -225,6 +213,10 @@ a { text-decoration: none; color: inherit; }
   font-size: 88px;
   line-height: 0.98;
   margin: 0 0 26px;
+  /* Fixed white, not var(--text-primary) — this sits on the always-dark
+     hero photo scrim regardless of site theme (see the light-mode scoping
+     note in CLAUDE.md), so it must not flip to dark text in light mode. */
+  color: var(--text-light);
   max-width: 900px;
 }
 
@@ -346,7 +338,7 @@ a { text-decoration: none; color: inherit; }
   text-align: center;
 }
 
-.pillars-heading .eyebrow { color: var(--neon-veil); }
+.pillars-heading .eyebrow { color: var(--accent-magenta); }
 
 .pillars-heading h2 {
   font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
@@ -468,7 +460,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -495,7 +487,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-tertiary);
 }
 
 .about-cta {
@@ -509,7 +501,7 @@ a { text-decoration: none; color: inherit; }
 
 .about-cta p {
   font-size: 16px;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -523,7 +515,7 @@ a { text-decoration: none; color: inherit; }
 .blog-empty {
   width: 100%;
   max-width: 720px;
-  border: 1.5px dashed rgba(255, 255, 255, 0.18);
+  border: 1.5px dashed var(--border-visible);
   border-radius: 16px;
   padding: 56px 40px;
   display: flex;
@@ -531,10 +523,10 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   text-align: center;
   gap: 16px;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--chip-bg);
 }
 
-.blog-empty .eyebrow { color: rgba(255, 255, 255, 0.45); }
+.blog-empty .eyebrow { color: var(--text-tertiary); }
 
 .blog-empty h3 {
   font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
@@ -547,7 +539,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-size: 15px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--text-secondary);
   margin: 0;
   max-width: 440px;
 }
@@ -576,7 +568,7 @@ a { text-decoration: none; color: inherit; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.6) 55%, var(--midnight) 100%),
+    linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.6) 55%, var(--bg-page) 100%),
     radial-gradient(60% 55% at 50% 0%, rgba(113, 43, 140, 0.32), transparent 70%);
   pointer-events: none;
 }
@@ -590,6 +582,8 @@ a { text-decoration: none; color: inherit; }
   font-size: 54px;
   line-height: 1.05;
   margin: 0 0 20px;
+  /* Fixed white, not var(--text-primary) — see .hero h1 above. */
+  color: var(--text-light);
   max-width: 760px;
 }
 
@@ -632,7 +626,7 @@ a { text-decoration: none; color: inherit; }
 .section-heading p {
   font-size: 16px;
   line-height: 1.65;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   margin: 0;
   max-width: 660px;
 }
@@ -669,7 +663,7 @@ a { text-decoration: none; color: inherit; }
 .media-card p {
   font-size: 14px;
   line-height: 1.6;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   margin: 0;
   flex: 1;
 }
@@ -678,7 +672,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
-  color: var(--static-cyan);
+  color: var(--accent-cyan);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -702,7 +696,7 @@ a { text-decoration: none; color: inherit; }
 .podcast-show-head p {
   font-size: 15px;
   line-height: 1.65;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -719,9 +713,9 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   padding: 6px 14px;
   border-radius: 999px;
 }
@@ -792,7 +786,7 @@ a { text-decoration: none; color: inherit; }
   padding-top: 4px;
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-tertiary);
 }
 
 .story-card .coming-soon-tag {
@@ -817,9 +811,11 @@ a { text-decoration: none; color: inherit; }
 .story-card p {
   font-size: 14px;
   line-height: 1.6;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   margin: 0;
 }
+
+.story-card { border-top: 3px solid var(--story-accent-safe, var(--accent-cyan)); }
 
 /* Contact page */
 .contact-wrap {
@@ -845,7 +841,7 @@ a { text-decoration: none; color: inherit; }
 .contact-card p {
   font-size: 17px;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--text-secondary);
   margin: 0;
   max-width: 520px;
 }
@@ -866,7 +862,7 @@ a { text-decoration: none; color: inherit; }
   border-radius: 999px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 15px;
@@ -881,7 +877,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .contact-channel:hover {
-  color: var(--signal-gold);
+  color: var(--accent-gold);
   border-color: var(--card-border-hover);
   transform: translateY(-2px);
 }
@@ -905,16 +901,16 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.75);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   padding: 8px 16px;
   border-radius: 999px;
   cursor: pointer;
   transition: color .15s, border-color .15s, background .15s;
 }
 
-.tag-pill:hover { border-color: rgba(255, 255, 255, 0.32); color: #ffffff; }
+.tag-pill:hover { border-color: var(--card-border-hover); color: var(--text-primary); }
 
 .tag-pill.active {
   color: var(--text-dark);
@@ -925,7 +921,7 @@ a { text-decoration: none; color: inherit; }
 .post-list-empty {
   text-align: center;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-tertiary);
   padding: 30px 0 10px;
 }
 
@@ -953,7 +949,7 @@ a { text-decoration: none; color: inherit; }
 
 .post-card[hidden] { display: none; }
 
-.post-card-date { color: rgba(255, 255, 255, 0.45); }
+.post-card-date { color: var(--text-tertiary); }
 
 .post-card h3 {
   font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
@@ -965,7 +961,7 @@ a { text-decoration: none; color: inherit; }
 .post-card p {
   font-size: 15px;
   line-height: 1.65;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -983,7 +979,7 @@ a { text-decoration: none; color: inherit; }
 .story-body h1, .story-body h2, .story-body h3 {
   font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text-primary);
   margin: 40px 0 14px;
 }
 
@@ -994,20 +990,20 @@ a { text-decoration: none; color: inherit; }
 .post-body p, .story-body p {
   font-size: 16px;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--text-secondary);
   margin: 0 0 18px;
 }
 
 .post-body ul, .post-body ol, .story-body ul, .story-body ol {
   margin: 0 0 18px;
   padding-left: 22px;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--text-secondary);
   font-size: 16px;
   line-height: 1.7;
 }
 
-.post-body a { color: var(--static-cyan); text-decoration: underline; text-underline-offset: 2px; }
-.story-body a { color: var(--story-accent, var(--static-cyan)); text-decoration: underline; text-underline-offset: 2px; }
+.post-body a { color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 2px; }
+.story-body a { color: var(--story-accent-safe, var(--accent-cyan)); text-decoration: underline; text-underline-offset: 2px; }
 
 .post-body img, .story-body img {
   display: block;
@@ -1082,7 +1078,7 @@ a { text-decoration: none; color: inherit; }
 
 .story-header .page-header-overlay {
   background:
-    linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.6) 55%, var(--midnight) 100%),
+    linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.6) 55%, var(--bg-page) 100%),
     radial-gradient(60% 55% at 50% 0%, var(--story-glow-1, rgba(113, 43, 140, 0.32)), transparent 70%),
     radial-gradient(45% 45% at 85% 25%, var(--story-glow-2, rgba(27, 187, 196, 0.18)), transparent 70%);
 }
@@ -1119,7 +1115,14 @@ a { text-decoration: none; color: inherit; }
 .story-meta-divider { color: rgba(255, 255, 255, 0.25); }
 
 .status-badge {
-  --badge-tint: color-mix(in srgb, var(--story-accent, var(--static-cyan)) 45%, white 55%);
+  /* --badge-tint (text/border, outline style) mixes toward --text-primary,
+     which flips with the theme, so it stays readable against the page
+     behind it in both modes. --badge-fill (background, filled style) always
+     mixes toward white regardless of theme — it pairs with the fixed
+     --text-dark below, so it must stay light enough for that dark text to
+     read, in light mode as much as dark. */
+  --badge-tint: color-mix(in srgb, var(--story-accent, var(--accent-cyan)) 45%, var(--text-primary) 55%);
+  --badge-fill: color-mix(in srgb, var(--story-accent, var(--accent-cyan)) 45%, white 55%);
   font-family: 'Roboto Mono', monospace;
   font-size: 10px;
   font-weight: 700;
@@ -1132,12 +1135,23 @@ a { text-decoration: none; color: inherit; }
 }
 
 .status-badge--complete {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--chip-bg);
 }
 
 .status-badge--ongoing {
-  background: var(--badge-tint);
+  background: var(--badge-fill);
   color: var(--text-dark);
+}
+
+/* .story-header sits on the always-dark photo band (see the light-mode
+   scoping note in CLAUDE.md), so its badge stays pinned to a white-mix
+   tint and a fixed dark chip background regardless of site theme. */
+.story-header .status-badge {
+  --badge-tint: color-mix(in srgb, var(--story-accent, var(--static-cyan)) 45%, white 55%);
+}
+
+.story-header .status-badge--complete {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .story-status-note {
@@ -1150,7 +1164,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .story-body h2 {
-  border-left: 3px solid var(--story-accent, var(--static-cyan));
+  border-left: 3px solid var(--story-accent-safe, var(--accent-cyan));
   padding-left: 14px;
 }
 
@@ -1158,7 +1172,7 @@ a { text-decoration: none; color: inherit; }
   border: 0;
   text-align: center;
   margin: 44px 0;
-  color: var(--story-accent, rgba(255, 255, 255, 0.35));
+  color: var(--story-accent-safe, var(--text-faint));
   font-size: 13px;
   letter-spacing: 0.5em;
 }
@@ -1168,9 +1182,9 @@ a { text-decoration: none; color: inherit; }
 .story-body blockquote {
   margin: 28px 0;
   padding-left: 18px;
-  border-left: 3px solid var(--story-accent, var(--static-cyan));
+  border-left: 3px solid var(--story-accent-safe, var(--accent-cyan));
   font-style: italic;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--text-secondary);
 }
 
 /* Small phones — the 900px/700px breakpoints above shrink display type once,
@@ -1210,7 +1224,7 @@ a { text-decoration: none; color: inherit; }
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-subtle);
   padding: 44px var(--gutter) 32px;
   display: flex;
   flex-direction: column;
@@ -1225,13 +1239,13 @@ a { text-decoration: none; color: inherit; }
   flex-wrap: wrap;
   text-align: center;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .footer-discord span {
   font-family: 'Inter', sans-serif;
   font-size: 15px;
-  color: var(--neutral-zone);
+  color: var(--text-secondary);
 }
 
 .site-footer .footer-top {
@@ -1254,14 +1268,14 @@ a { text-decoration: none; color: inherit; }
 .footer-link {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-tertiary);
 }
 
-.footer-link:hover { color: #ffffff; }
+.footer-link:hover { color: var(--text-primary); }
 
 .footer-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--border-subtle);
 }
 
 .footer-legal {
@@ -1273,12 +1287,91 @@ a { text-decoration: none; color: inherit; }
 .footer-legal .copyright {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-tertiary);
 }
 
 .footer-legal .disclaimer {
   font-family: 'Inter', sans-serif;
   font-style: italic;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.30);
+  color: var(--text-faint);
+}
+
+/* Changelog — a utility page, not a narrative one, so it deliberately skips
+   the photo-band .page-header treatment every other page uses. */
+.changelog-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding-top: 100px;
+  padding-bottom: 20px;
+}
+
+.changelog-intro h1 {
+  font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  margin: 0;
+}
+
+.changelog-intro p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+}
+
+.changelog-intro p a { color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 2px; }
+
+.changelog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.changelog-entry {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.changelog-entry:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.changelog-date {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  color: var(--accent-gold);
+  flex: 0 0 auto;
+  width: 100px;
+  padding-top: 3px;
+}
+
+.changelog-body h3 {
+  font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
+  font-weight: 600;
+  font-size: 19px;
+  margin: 0 0 8px;
+}
+
+.changelog-body p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .changelog-intro { padding-top: 76px; }
+  .changelog-intro h1 { font-size: 32px; }
+}
+
+@media (max-width: 560px) {
+  .changelog-entry { flex-direction: column; gap: 6px; }
+  .changelog-date { width: auto; }
 }
