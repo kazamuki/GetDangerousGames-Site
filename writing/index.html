@@ -26,14 +26,19 @@ image: /assets/images/writing-header.jpg
     {% assign stories = site.stories | sort: "order" %}
     {% for story in stories %}
     <a class="story-card" href="{{ story.url | relative_url }}" style="border-top: 3px solid {{ story.accent }};">
-      <span class="status-badge status-badge--{{ story.status }}" style="--story-accent: {{ story.accent }};">
-        {% if story.status == "ongoing" %}Ongoing{% else %}Complete{% endif %}
-      </span>
-      <h3>{{ story.title }}</h3>
-      <p>{{ story.blurb }}</p>
-      <div class="story-card-foot">
-        <span>By {{ story.author }}</span>
-        <span>{{ story.reading_time }}</span>
+      {% if story.image %}
+      <img class="story-card-img" src="{{ story.image | relative_url }}" alt="">
+      {% endif %}
+      <div class="story-card-body">
+        <span class="status-badge status-badge--{{ story.status }}" style="--story-accent: {{ story.accent }};">
+          {% if story.status == "ongoing" %}Ongoing{% else %}Complete{% endif %}
+        </span>
+        <h3>{{ story.title }}</h3>
+        <p>{{ story.blurb }}</p>
+        <div class="story-card-foot">
+          <span>By {{ story.author }}</span>
+          <span>{{ story.reading_time }}</span>
+        </div>
       </div>
     </a>
     {% endfor %}

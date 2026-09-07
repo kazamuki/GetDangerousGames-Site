@@ -4,6 +4,7 @@ author: "d33Kode"
 status: complete
 blurb: "Ethen thought breaking a lock was the hardest spell he'd ever cast — until his mentor Xen reached into the last minute of his life and stole the memory of doing it. A short, sharp introduction to a mage who's about to learn exactly how small his magic really is."
 description: "Ethen thought breaking a lock was the hardest spell he'd ever cast — until his mentor Xen reached into the last minute of his life and stole the memory of doing it. A short, sharp introduction to a mage who's about to learn exactly how small his magic really is."
+image: /assets/images/stories/ethens-trial.jpg
 reading_time: "3 min read"
 order: 6
 accent: "#712B8C"
