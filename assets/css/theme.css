@@ -9,6 +9,29 @@
    first paint) and assets/js/theme-toggle.js (wires up the toggle button).
    See CLAUDE.md's "Light mode toggle" note for the full architecture and the
    WCAG contrast math behind the light-mode reassignments below.
+
+   PORTING TO A NEW SITE: this file only carries the token system and the
+   toggle button — your own component CSS still has to *use* these tokens
+   correctly. Three bug categories showed up wiring this into Get Dangerous's
+   own components; expect to hit the same shapes wiring it into yours:
+   1. Any text sitting on an "always-dark" photo/hero band must get an
+      explicit fixed color (var(--text-light) or a literal rgba(255,255,255,X)),
+      never a bare inherited color — inheriting body's --text-primary looks
+      fine in dark mode (it resolves to white) but silently flips to dark
+      text once a light theme exists.
+   2. If a photo-band's gradient fades toward --bg-page to blend with the
+      page below, check what's *actually* below it first. It's only correct
+      when the next section is real theme-aware content. If another
+      permanently-dark band follows instead, keep that gradient's end stop
+      on a fixed dark color — fading toward --bg-page there just washes out
+      toward a background that never appears.
+   3. A color-mix()'d "tint" that's reused for both an outline style (mixed
+      color as text/border) and a filled style (mixed color as background)
+      needs two separate custom properties, not one. Mix toward
+      var(--text-primary) (theme-aware) for the outline text/border, but
+      mix toward a fixed white for any fill paired with fixed dark text —
+      otherwise the filled version goes dark-background-plus-dark-text in
+      light mode.
    ========================================================================== */
 
 :root {
