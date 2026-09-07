@@ -5,6 +5,7 @@ status: ongoing
 status_note: "This one's still being written — new chapters post as they're finished."
 blurb: "Every witch is tested once. Ealga's mother warns her that magic cuts both ways, then sends her alone into the woods to prove it. Between a fae guide more interested in her hat than in helping, and something in the trees that doesn't want her reaching her grandmother's door, this is Red Riding Hood the way it always should have been told — with real stakes, and a girl who has to earn her power instead of being handed it."
 description: "Every witch is tested once. Ealga's mother warns her that magic cuts both ways, then sends her alone into the woods to prove it. Between a fae guide more interested in her hat than in helping, and something in the trees that doesn't want her reaching her grandmother's door, this is Red Riding Hood the way it always should have been told — with real stakes, and a girl who has to earn her power instead of being handed it."
+image: /assets/images/stories/lrrh-witches-trail.jpg
 reading_time: "65 min read"
 order: 2
 accent: "#71C388"

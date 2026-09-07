@@ -674,14 +674,27 @@ a { text-decoration: none; color: inherit; }
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 14px;
-  padding: 28px 26px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 14px;
   transition: transform .15s, border-color .15s;
 }
 
 .story-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover); }
+
+.story-card-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.story-card-body {
+  padding: 22px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
 .story-card .status-badge { align-self: flex-start; }
 
@@ -1042,7 +1055,8 @@ a { text-decoration: none; color: inherit; }
 
   .episode-list { grid-template-columns: 1fr; }
 
-  .story-card, .post-card { padding: 22px 20px; }
+  .post-card { padding: 22px 20px; }
+  .story-card-body { padding: 18px 20px 20px; }
 }
 
 /* Footer */

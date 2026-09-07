@@ -5,6 +5,7 @@ status: ongoing
 status_note: "Chapter One of an ongoing retelling — more chapters to come."
 blurb: "Everyone in the kingdom loves the Queen's stepdaughter. That's the problem. Told from the other side of the mirror, this is the story you already know — except the villain gets to explain herself first, and you might not like how convincing she is."
 description: "Everyone in the kingdom loves the Queen's stepdaughter. That's the problem. Told from the other side of the mirror, this is the story you already know — except the villain gets to explain herself first, and you might not like how convincing she is."
+image: /assets/images/stories/fairest.jpg
 reading_time: "17 min read"
 order: 1
 accent: "#BC489A"
