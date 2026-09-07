@@ -394,6 +394,38 @@ a { text-decoration: none; color: inherit; }
   gap: 6px;
 }
 
+/* About — crew cards */
+.crew-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  object-fit: cover;
+  display: block;
+}
+
+.crew-handle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.about-cta {
+  padding: 0 var(--gutter) 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.about-cta p {
+  font-size: 16px;
+  color: var(--neutral-zone);
+  margin: 0;
+}
+
 /* Blog empty state */
 .blog-empty-wrap {
   padding: 20px var(--gutter) 110px;
