@@ -218,6 +218,21 @@ straight over when those pages get designed.
 - **Nav structure ("Shadows-forward"):** `Home · Writing · Blog · YouTube · Podcasts` as primary text nav, plus a standout `Play Shadows RPG →` CTA button in the header (external link to shadowsrpg.com) since it's the flagship project despite living on a separate domain. Discord/Twitch/Twitter/Patreon/etc. are an icon row (footer only, as of 2026-09-07 — see below), not text nav items — Discord is no longer a full nav item like it was on the old site. **Updated 2026-09-07**: `About` was added as a sixth primary nav item (`Home · Writing · Blog · YouTube · Podcasts · About`), and the header's own copy of the social icon row was removed (it was pure duplication of the footer's) to make room and keep the header from getting crowded as more social platforms get added — see "Social links & nav redesign" above for the full reasoning.
 - **Contact page:** kept as a dedicated page (not folded into just a header icon) — Discord as the primary CTA, plus a labeled row linking the other social channels. **Updated 2026-09-06**: gained a Shutterstock page-header banner (see "Contact page hero + socials" above), matching every other primary page instead of being the one page without one.
 
+## Git workflow & collaboration
+
+**Two contributors as of 2026-09-07:** Ken (`kazamuki`, the GitHub account this repo lives under) and Deighton, being added as a repo collaborator so he can clone and push directly (no forking — see the reasoning below). Scott may follow the same path later.
+
+**`main` is branch-protected (GitHub ruleset "Protect Main," id `22490104`, added 2026-09-07):** required PR before merging (0 approvals required, so a solo contributor isn't blocked waiting on the other person), force-pushes blocked, branch deletion blocked, **no bypass actors — this applies to Ken too, not just Deighton.** This was a deliberate choice once a second person started touching the repo, to build the habit of branching properly on both sides rather than pushing straight to `main` like the solo-Ken history before it.
+
+**Practical effect, important for any Claude session working in this repo:** a direct `git push` to `main` will now be **rejected by GitHub**, regardless of who or what is pushing. Never attempt it — always work on a branch and open a PR instead:
+
+1. Branch off `main`: `feature/<short-name>` or `fix/<short-name>` (e.g. `feature/reddit-social-link`, `fix/broken-playlist-id`).
+2. Commit to that branch, push it (`git push -u origin <branch>`).
+3. Open a PR into `main` (`gh pr create` or the GitHub web UI).
+4. Merge the PR (merge/squash/rebase are all allowed — no fixed convention yet), then the branch can be deleted.
+
+Note: a Claude Code **worktree session** (like this one) already starts on its own `claude/<slug>` branch automatically — that's already compliant with this workflow. The only thing that changed is the *merge* step: it now has to go through an actual PR rather than a direct push/fast-forward onto `main`, even for a worktree branch that's ready to land.
+
 ## Repo structure
 
 ```
