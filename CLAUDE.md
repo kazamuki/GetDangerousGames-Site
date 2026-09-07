@@ -32,7 +32,7 @@ Sibling/related project: **Shadows RPG** (the TTRPG referenced throughout this s
 
 **Display-font fallback swap (2026-09-06):** Cerulean Nights' license still hasn't been purchased, so the display-type stand-in was swapped from Unbounded to **Audiowide** (Google Fonts, single 400 weight) — both the `<link>` in `_layouts/default.html` and every `font-family` rule in `main.css` now read `'Cerulean Nights', 'Audiowide', sans-serif`. Listing the real font name first (even though nothing serves it yet) means once the license lands and a `@font-face` is added, it takes over automatically with no further CSS changes needed. Note Audiowide only ships one weight, so the `font-weight: 600/800` declarations that used to matter for Unbounded currently have no visual effect on display text.
 
-**Live:** https://kazamuki.github.io/GetDangerousGames-Site/ — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded, confirmed rendering correctly including all asset paths under the project-page baseurl. Every push to `main` triggers a fresh Pages build automatically.
+**Live:** https://getdangerous.net — GitHub Pages was enabled 2026-09-05 (source: `main` branch, root), first build succeeded on the default `*.github.io` deployment, confirmed rendering correctly including all asset paths under the project-page baseurl. **Custom domain attached 2026-09-06**: Squarespace DNS (4 `A` records for `@` to GitHub's load-balancer IPs, plus a `www` CNAME to `kazamuki.github.io.`, replacing an old Squarespace-forwarding `A` record and a stale Google Sites-era `www` CNAME) now points `getdangerous.net`/`www.getdangerous.net` at this repo; a `CNAME` file in the repo root and `_config.yml`'s `url`/`baseurl` (now `""`) were updated to match. GitHub auto-issued the HTTPS cert and "Enforce HTTPS" is on, so `http://` redirects to `https://`. The `kazamuki.github.io/GetDangerousGames-Site/` URL now 301-redirects to the custom domain instead of serving directly. Every push to `main` triggers a fresh Pages build automatically.
 
 ### Only remaining content gap: "The Last Encounter"
 
@@ -50,9 +50,8 @@ For any *other* future page-level work (a genuinely new page, not a new story), 
 Standard Jekyll layout, buildable by GitHub Pages' native Jekyll support (no GitHub Actions workflow needed — `Gemfile` pins the `github-pages` gem so a local `bundle exec jekyll serve` matches GitHub's build).
 
 ```
-_config.yml       Site title/description, social URLs, baseurl set for a project page
-                  (kazamuki.github.io/GetDangerousGames-Site) — update if the custom domain ever
-                  gets attached, since a real domain typically means clearing baseurl.
+_config.yml       Site title/description, social URLs. url/baseurl point at the custom domain
+                  (getdangerous.net, baseurl "") since 2026-09-06 — see "Live" note above.
 Gemfile           gem "github-pages" — keeps local and GitHub's Jekyll versions in sync. Also
                   carries a Ruby-version compatibility shim — see below, don't remove it.
 Gemfile.lock      Committed — generated once Ruby was installed locally (2026-09-05).
@@ -156,7 +155,7 @@ straight over when those pages get designed.
 
 ## Decided
 
-- **Hosting:** GitHub Pages. Custom domain (GetDangerous.net) is **not** being pointed at it yet — Ken wants to confirm the default `*.github.io` deployment works end-to-end first, then add the CNAME later.
+- **Hosting:** GitHub Pages. **Custom domain attached 2026-09-06** — getdangerous.net now points at the deployment; see "Live" note above for the DNS/CNAME details.
 - **Stack:** Jekyll.
 - **Blogging:** native Jekyll posts, built 2026-09-06 — the external Blogspot embed (`getdangerousupdates.blogspot.com`) is retired. **Scope confirmed 2026-09-06**: one blog, lives on this (Get Dangerous Games) site only — Shadows RPG is a separate product/domain and doesn't get its own native blog or a content-sync pipeline; it can link out to specific posts if it wants a presence. **Backfill confirmed 2026-09-06**: Ken exported the full Blogspot history via Google Takeout, which unblocked this; rather than importing all 28 posts, a curated subset of 5 (the ones with real substance — Shadows dev/lore updates, a podcast-series announcement, a cadence-change reflection, a creator collab) were brought in as historical `_posts/`, skipping the daily "new video is up!" cross-posts the YouTube page already covers. See [blog.md](content/blog.md) for the full rundown.
 - **Writing:** stories are hosted natively (Jekyll `_stories` collection) instead of linking out to Belletristica, which is treated as defunct as a host. **Built 2026-09-06** — see "Writing built" above and [writing.md](content/writing.md) for the full lineup, per-story completion-status calls, and the still-missing "The Last Encounter."
@@ -284,7 +283,7 @@ Everything the old site pointed out to — needed wherever the new footer/nav is
 ## Still-open decisions for the rebuild (ask Ken before locking these in)
 
 1. ~~Import Blogspot's back-catalog or not~~ — decided 2026-09-06: Ken exported the full history via Google Takeout, a curated subset of 5 posts (out of 28) was backfilled as historical `_posts/`, the rest were left out as same-day video-cross-post filler. See [blog.md](content/blog.md).
-2. **Custom domain** — deferred until the default `*.github.io` deployment is confirmed working.
+2. ~~Custom domain~~ — done 2026-09-06, see "Live" note above.
 3. ~~Design for Writing, Podcasts, YouTube, Contact, Blog~~ — done 2026-09-05/06, built directly as real Jekyll pages extending `assets/css/main.css`'s existing component classes rather than a separate design-canvas pass (no layout shape needed that the style sheet didn't already cover). Writing's real story pages (with per-story accent theming) shipped 2026-09-06 — see "Writing built" above. Only "The Last Encounter" remains unhosted, blocked on locating its source text.
 4. ~~Enable GitHub Pages~~ — done 2026-09-05, see "Live" note above.
 
