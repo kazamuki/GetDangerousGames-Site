@@ -1,0 +1,9 @@
+{%- assign _author = include.author -%}
+{%- if _author == "Melf" -%}
+{%- assign _avatar = "/assets/images/about-scott.png" -%}
+{%- elsif _author == "d33Kode" -%}
+{%- assign _avatar = "/assets/images/about-deighton.png" -%}
+{%- else -%}
+{%- assign _avatar = "/assets/images/about-ken.png" -%}
+{%- endif -%}
+<img class="author-avatar" src="{{ _avatar | relative_url }}" alt="{{ _author }}">
