@@ -13,7 +13,9 @@ image: /assets/images/hero-skyline.jpg
 
   <h1><span>Get </span><span class="accent">Dangerous</span></h1>
 
-  <p class="tagline eyebrow">WRITING&nbsp;&nbsp;&middot;&nbsp;&nbsp;GAMING&nbsp;&nbsp;&middot;&nbsp;&nbsp;BADASSERY</p>
+  <p class="tagline eyebrow">
+    <a href="{{ '/writing/' | relative_url }}">WRITING</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ '/youtube/' | relative_url }}">GAMING</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ '/about/' | relative_url }}">BADASSERY</a>
+  </p>
 </section>
 
 <section class="shadows-band">
@@ -44,39 +46,150 @@ image: /assets/images/hero-skyline.jpg
   </div>
 
   <div class="pillars-grid">
-    <div class="pillar-card">
+    <a class="pillar-card" href="{{ '/writing/' | relative_url }}">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 20L14 10M14 10L20 4L20 8L16 12M14 10L18 14" stroke="var(--ghostly-green)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="eyebrow" style="color: var(--ghostly-green);">WRITING</span>
       <h3>Writing</h3>
       <p>Original short fiction from the Get Dangerous team — stories built in the same worlds we play and write in.</p>
-      <a class="pillar-link" href="{{ '/writing/' | relative_url }}" style="color: var(--ghostly-green);">
+      <span class="pillar-link" style="color: var(--ghostly-green);">
         Read the stories
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--ghostly-green)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
+      </span>
+    </a>
 
-    <div class="pillar-card">
+    <a class="pillar-card" href="{{ '/youtube/' | relative_url }}">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="var(--static-cyan)" stroke-width="1.7"/><path d="M10.5 9.5L14.5 12L10.5 14.5V9.5Z" fill="var(--static-cyan)"/></svg>
       <span class="eyebrow" style="color: var(--static-cyan);">YOUTUBE</span>
       <h3>YouTube</h3>
       <p>TTRPG campaigns, video game runs, and everything in between — years of footage, one channel.</p>
-      <a class="pillar-link" href="{{ '/youtube/' | relative_url }}" style="color: var(--static-cyan);">
+      <span class="pillar-link" style="color: var(--static-cyan);">
         Watch on YouTube
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--static-cyan)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
+      </span>
+    </a>
 
-    <div class="pillar-card">
+    <a class="pillar-card" href="{{ '/podcasts/' | relative_url }}">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" stroke="var(--neon-veil)" stroke-width="1.7"/><path d="M5 11V12C5 15.87 8.13 19 12 19C15.87 19 19 15.87 19 12V11M12 19V22" stroke="var(--neon-veil)" stroke-width="1.7" stroke-linecap="round"/></svg>
       <span class="eyebrow" style="color: var(--neon-veil);">PODCASTS</span>
       <h3>Podcasts</h3>
       <p>Two shows, two moods — reflective conversation on one, writing and TTRPG talk on the other.</p>
-      <a class="pillar-link" href="{{ '/podcasts/' | relative_url }}" style="color: var(--neon-veil);">
+      <span class="pillar-link" style="color: var(--neon-veil);">
         Listen now
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--neon-veil)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
+      </span>
+    </a>
+
+    {% assign spotlight_stories = site.stories | sort: "order" %}
+    <a class="spotlight-strip" data-spotlight="writing" href="{{ spotlight_stories.first.url | relative_url }}">
+      <img class="spotlight-strip-img" src="{{ spotlight_stories.first.image | relative_url }}" alt="" loading="lazy">
+      <div class="spotlight-strip-overlay"></div>
+      <div class="spotlight-strip-text">
+        <span class="spotlight-strip-kicker" style="color: var(--ghostly-green);">STORY SPOTLIGHT</span>
+        <span class="spotlight-strip-title">{{ spotlight_stories.first.title }}</span>
+        <span class="spotlight-strip-sub">By {{ spotlight_stories.first.author }}</span>
+      </div>
+    </a>
+
+    <a class="spotlight-strip" data-spotlight="youtube" href="https://youtube.com/playlist?list=PLWXG_a-sQ0aHNp24EYlbXnxCNVyn9cODd">
+      <img class="spotlight-strip-img" src="https://i.ytimg.com/vi/bxjEln6QhWQ/hqdefault.jpg" alt="" loading="lazy">
+      <div class="spotlight-strip-overlay"></div>
+      <div class="spotlight-strip-text">
+        <span class="spotlight-strip-kicker" style="color: var(--static-cyan);">FROM THE CHANNEL</span>
+        <span class="spotlight-strip-title">Shadows 2.0</span>
+        <span class="spotlight-strip-sub">Playlist</span>
+      </div>
+    </a>
+
+    <a class="spotlight-strip" data-spotlight="podcasts" href="https://open.spotify.com/episode/1sWfip7bmGr1TcHsh2cb64">
+      <img class="spotlight-strip-img" src="https://image-cdn-fa.spotifycdn.com/image/ab67656300005f1f0119cd0c1bbbe9d47410df6d" alt="" loading="lazy">
+      <div class="spotlight-strip-overlay"></div>
+      <div class="spotlight-strip-text">
+        <span class="spotlight-strip-kicker" style="color: var(--neon-veil);">FROM THE FEED</span>
+        <span class="spotlight-strip-title">Myriad Circle Episode 1: Welcome One and All!</span>
+        <span class="spotlight-strip-sub">Myriad Circle</span>
+      </div>
+    </a>
   </div>
+
+  <script type="application/json" id="spotlight-writing-data">[
+{% for story in spotlight_stories %}{"title": {{ story.title | jsonify }}, "sub": {{ story.author | prepend: "By " | jsonify }}, "image": {{ story.image | relative_url | jsonify }}, "url": {{ story.url | relative_url | jsonify }}}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]</script>
+
+  <script type="application/json" id="spotlight-youtube-data">[
+    {"title": "Shadows 2.0", "sub": "Playlist", "image": "https://i.ytimg.com/vi/bxjEln6QhWQ/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aHNp24EYlbXnxCNVyn9cODd"},
+    {"title": "Shadows: World's Apart", "sub": "Playlist", "image": "https://i.ytimg.com/vi/Hr7OZzsm7hY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aHPgd-lxZQ1fYZKdZ7s8rRD"},
+    {"title": "Shadows: The Old Regime", "sub": "Playlist", "image": "https://i.ytimg.com/vi/v0EDZyG1tGY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aH17eBKUAbGRgPzB_uPUHzr"},
+    {"title": "Shadows: 13th Floor", "sub": "Playlist", "image": "https://i.ytimg.com/vi/ocZsqTajNJk/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aH8bAdhppGoeE7lT11wuE1j"},
+    {"title": "Warhammer 40,000: Darktide", "sub": "Playlist", "image": "https://i.ytimg.com/vi/YPrFN3BF5Rs/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aFtmLGJ__VlTjNQpb_zkEEh"},
+    {"title": "Destiny 2", "sub": "Playlist", "image": "https://i.ytimg.com/vi/eYERI_fBC64/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aFaIARmDrRFNJSr7B7EH49y"},
+    {"title": "Shadow Warrior 2", "sub": "Playlist", "image": "https://i.ytimg.com/vi/MGlYkYWUxqY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aESrOWTQBQTqhGw-j1xmJ-m"},
+    {"title": "Elden Ring", "sub": "Playlist", "image": "https://i.ytimg.com/vi/3L2NR6l0PgY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aGCVcn14xSc9L1YV4hFsfo-"},
+    {"title": "Mass Effect 1 (Legendary Edition)", "sub": "Playlist", "image": "https://i.ytimg.com/vi/GUVmheFLIx8/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aEhfaMKDLIprj690yW6-MBe"},
+    {"title": "Mass Effect 2 (Legendary Edition)", "sub": "Playlist", "image": "https://i.ytimg.com/vi/6HkyaqM1ZVU/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aFZ5pvgtPGNHdCPmEppnwH5"}
+  ]</script>
+
+  <script type="application/json" id="spotlight-podcasts-data">[
+    {"title": "Myriad Circle Episode 1: Welcome One and All!", "sub": "Myriad Circle", "image": "https://image-cdn-fa.spotifycdn.com/image/ab67656300005f1f0119cd0c1bbbe9d47410df6d", "url": "https://open.spotify.com/episode/1sWfip7bmGr1TcHsh2cb64"},
+    {"title": "Myriad Circle Episode 2: Frustrations & Passion + Everything in Between", "sub": "Myriad Circle", "image": "https://image-cdn-ak.spotifycdn.com/image/ab67656300005f1f8026e1363563a53cce95ac4a", "url": "https://open.spotify.com/episode/1EQEFNfzYhYUVaPREwWrDw"},
+    {"title": "Myriad Circle Episode 3: Synchronicity, Patience, and Relief", "sub": "Myriad Circle", "image": "https://image-cdn-fa.spotifycdn.com/image/ab67656300005f1f11e4eec4e95ebd5e75161875", "url": "https://open.spotify.com/episode/6u8k66O40FJf3qCdSBBZ4H"},
+    {"title": "Fiction Factory Episode 1: Introducing Shadows", "sub": "Fiction Factory", "image": "https://image-cdn-ak.spotifycdn.com/image/ab67656300005f1f4e62ea66e979206a02dca55b", "url": "https://open.spotify.com/episode/5mWrTbMZWmzm0emOWxsn7t"},
+    {"title": "Fiction Factory Episode 2: Let's Talk Character", "sub": "Fiction Factory", "image": "https://image-cdn-ak.spotifycdn.com/image/ab67656300005f1fd1c0b7d4ae831dd53a5f8b1c", "url": "https://open.spotify.com/episode/7lAI5A8CQuEYXMdqoUF4vG"},
+    {"title": "Fiction Factory Episode 3: Skills, Advantages, Disadvantages, OH MY!", "sub": "Fiction Factory", "image": "https://image-cdn-ak.spotifycdn.com/image/ab67656300005f1ffa3cee368ab1a011b7baa761", "url": "https://open.spotify.com/episode/0LDNR8A2Y2oTzjh6LlfZhu"},
+    {"title": "Fiction Factory Episode 4: Let's Create a Character!", "sub": "Fiction Factory", "image": "https://image-cdn-ak.spotifycdn.com/image/ab67656300005f1f0d40372288c48154e5a79d78", "url": "https://open.spotify.com/episode/2quOtpgsT2VHfao1F9vkhz"},
+    {"title": "Fiction Factory Episode 5: Writing with Sean Crow", "sub": "Fiction Factory", "image": "https://image-cdn-ak.spotifycdn.com/image/ab67656300005f1ffe7e0a6de45963cb6e9bd387", "url": "https://open.spotify.com/episode/0Rl9sUZ3NjxBo4XIjy9vum"}
+  ]</script>
+
+  <script>
+    (function () {
+      var STRIPS = ['writing', 'youtube', 'podcasts'];
+      var ROTATE_MS = 30000;
+
+      function shuffle(arr) {
+        for (var i = arr.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+        }
+        return arr;
+      }
+
+      STRIPS.forEach(function (key) {
+        var el = document.querySelector('[data-spotlight="' + key + '"]');
+        var dataEl = document.getElementById('spotlight-' + key + '-data');
+        if (!el || !dataEl) return;
+
+        var items;
+        try { items = JSON.parse(dataEl.textContent); } catch (e) { return; }
+        if (!items || !items.length) return;
+
+        var img = el.querySelector('.spotlight-strip-img');
+        var title = el.querySelector('.spotlight-strip-title');
+        var sub = el.querySelector('.spotlight-strip-sub');
+        var order = shuffle(items.slice());
+        var index = 0;
+
+        function show(item) {
+          el.classList.add('is-fading');
+          window.setTimeout(function () {
+            img.src = item.image;
+            title.textContent = item.title;
+            sub.textContent = item.sub;
+            el.href = item.url;
+            el.classList.remove('is-fading');
+          }, 200);
+        }
+
+        show(order[index]);
+
+        if (order.length > 1) {
+          window.setInterval(function () {
+            index = (index + 1) % order.length;
+            show(order[index]);
+          }, ROTATE_MS);
+        }
+      });
+    })();
+  </script>
 </section>
 
 {% if site.posts.size > 0 %}
@@ -121,3 +234,11 @@ image: /assets/images/hero-skyline.jpg
   </div>
 </div>
 {% endif %}
+
+<section class="about-cta">
+  <p>Want to know who's actually behind all this, or just say hi?</p>
+  <a class="btn-gold" href="{{ '/contact/' | relative_url }}">
+    Get in touch
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
