@@ -5,6 +5,7 @@ universe: "Shadows RPG"
 status: ongoing
 status_note: "An ongoing serial set in NYTE City — new posts continue the story."
 blurb: "Doxie Rhodes processes crime scenes for a living. She isn't supposed to be able to see the magic bleeding out of them. Set in the neon-and-static sprawl of NYTE City, this is the opening chapters of an ongoing serial following one newly Awakened forensic tech, her wisecracking spirit guide, and the things that are starting to notice her back."
+description: "Doxie Rhodes processes crime scenes for a living. She isn't supposed to be able to see the magic bleeding out of them. Set in the neon-and-static sprawl of NYTE City, this is the opening chapters of an ongoing serial following one newly Awakened forensic tech, her wisecracking spirit guide, and the things that are starting to notice her back."
 reading_time: "17 min read"
 order: 5
 accent: "#203F7B"

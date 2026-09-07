@@ -3,6 +3,15 @@ description: Writing. Gaming. Badassery.
 url: "https://getdangerous.net"
 baseurl: ""
 google_analytics: "G-X7DGENNVDV"
+lang: en-US
+logo: /assets/images/gd-bear-icon.png
+twitter:
+  username: d33KODE
+  card: summary_large_image
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/

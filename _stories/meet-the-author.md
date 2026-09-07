@@ -3,6 +3,7 @@ title: "Meet the Author"
 author: "d33Kode"
 status: complete
 blurb: "Thomas orders the same breakfast every Saturday and expects the same nothing out of his life — until a stranger sits down, eats his hashbrowns, and casually mentions that he's been running the universe. A warm, funny, surprisingly tender standalone about the difference between the life you're stuck in and the one you're brave enough to order."
+description: "Thomas orders the same breakfast every Saturday and expects the same nothing out of his life — until a stranger sits down, eats his hashbrowns, and casually mentions that he's been running the universe. A warm, funny, surprisingly tender standalone about the difference between the life you're stuck in and the one you're brave enough to order."
 reading_time: "30 min read"
 order: 7
 accent: "#F2C94C"

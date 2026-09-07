@@ -3,6 +3,7 @@ title: "Once Bitten"
 author: "d33Kode"
 status: complete
 blurb: "A simple job goes bad fast — a compromised safehouse, gunfire in the dark, and a body count that's just getting started. Then the last one standing realizes the thing that tore through her crew was never human. A tense, bloody cyberpunk horror one-shot. Read it with the lights on."
+description: "A simple job goes bad fast — a compromised safehouse, gunfire in the dark, and a body count that's just getting started. Then the last one standing realizes the thing that tore through her crew was never human. A tense, bloody cyberpunk horror one-shot. Read it with the lights on."
 reading_time: "10 min read"
 order: 4
 accent: "#203F7B"
