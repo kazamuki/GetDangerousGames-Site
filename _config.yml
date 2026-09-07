@@ -2,6 +2,7 @@ title: Get Dangerous
 description: Writing. Gaming. Badassery.
 url: "https://getdangerous.net"
 baseurl: ""
+google_analytics: "G-X7DGENNVDV"
 
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
