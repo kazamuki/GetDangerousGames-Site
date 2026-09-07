@@ -946,6 +946,53 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Story pages — per-story accent theme, chapter breaks, status */
+.story-article { position: relative; }
+
+.story-back {
+  position: absolute;
+  top: 20px;
+  left: var(--gutter);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  background: rgba(13, 23, 49, 0.55);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--neutral-zone);
+}
+
+.story-back:hover {
+  border-color: var(--story-accent, var(--static-cyan));
+  color: var(--story-accent, var(--static-cyan));
+}
+
+.story-hero {
+  position: relative;
+  height: clamp(200px, 32vw, 360px);
+  overflow: hidden;
+}
+
+.story-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story-hero-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13, 23, 49, 0) 0%, rgba(13, 23, 49, 0.5) 60%, var(--midnight) 100%);
+}
+
+.story-header--with-hero { padding-top: 48px; }
+
 .story-header .page-header-overlay {
   background:
     linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.6) 55%, var(--midnight) 100%),
@@ -954,6 +1001,20 @@ a { text-decoration: none; color: inherit; }
 }
 
 .story-header .eyebrow { color: var(--story-accent, var(--static-cyan)); }
+
+.story-byline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
 
 .story-meta {
   position: relative;
@@ -971,6 +1032,7 @@ a { text-decoration: none; color: inherit; }
 .story-meta-divider { color: rgba(255, 255, 255, 0.25); }
 
 .status-badge {
+  --badge-tint: color-mix(in srgb, var(--story-accent, var(--static-cyan)) 45%, white 55%);
   font-family: 'Roboto Mono', monospace;
   font-size: 10px;
   font-weight: 700;
@@ -978,16 +1040,16 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
   padding: 4px 11px;
   border-radius: 999px;
-  border: 1px solid var(--story-accent, var(--static-cyan));
-  color: var(--story-accent, var(--static-cyan));
+  border: 1px solid var(--badge-tint);
+  color: var(--badge-tint);
 }
 
 .status-badge--complete {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .status-badge--ongoing {
-  background: var(--story-accent, var(--static-cyan));
+  background: var(--badge-tint);
   color: var(--text-dark);
 }
 

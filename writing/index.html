@@ -36,7 +36,7 @@ image: /assets/images/writing-header.jpg
         <h3>{{ story.title }}</h3>
         <p>{{ story.blurb }}</p>
         <div class="story-card-foot">
-          <span>By {{ story.author }}</span>
+          <span class="story-byline">{% include author-avatar.html author=story.author %}By {{ story.author }}</span>
           <span>{{ story.reading_time }}</span>
         </div>
       </div>

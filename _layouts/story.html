@@ -2,7 +2,19 @@
 layout: default
 ---
 <article class="story-article" style="--story-accent: {{ page.accent }}; --story-glow-1: {{ page.glow_1 }}; --story-glow-2: {{ page.glow_2 }};">
-  <header class="page-header story-header">
+  <a class="story-back" href="{{ '/writing/' | relative_url }}">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to Writing
+  </a>
+
+  {% if page.image %}
+  <div class="story-hero">
+    <img class="story-hero-img" src="{{ page.image | relative_url }}" alt="">
+    <div class="story-hero-fade"></div>
+  </div>
+  {% endif %}
+
+  <header class="page-header story-header{% if page.image %} story-header--with-hero{% endif %}">
     <div class="page-header-overlay"></div>
 
     <span class="eyebrow">
@@ -11,7 +23,7 @@ layout: default
     <h1>{{ page.title }}</h1>
 
     <div class="story-meta">
-      <span class="story-meta-item">By {{ page.author }}</span>
+      <span class="story-meta-item story-byline">{% include author-avatar.html author=page.author %}By {{ page.author }}</span>
       <span class="story-meta-divider">&middot;</span>
       <span class="story-meta-item">{{ page.reading_time }}</span>
       <span class="story-meta-divider">&middot;</span>
