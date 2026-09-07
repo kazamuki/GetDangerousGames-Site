@@ -54,24 +54,35 @@ permalink: /blog/
       var emptyMsg = document.getElementById('post-list-empty');
       if (!pills.length) return;
 
-      pills.forEach(function (pill) {
-        pill.addEventListener('click', function () {
-          pills.forEach(function (p) { p.classList.remove('active'); });
-          pill.classList.add('active');
+      function applyFilter(pill) {
+        pills.forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
 
-          var filter = pill.getAttribute('data-tag-filter');
-          var visibleCount = 0;
+        var filter = pill.getAttribute('data-tag-filter');
+        var visibleCount = 0;
 
-          cards.forEach(function (card) {
-            var tags = card.getAttribute('data-tags').split('|');
-            var show = filter === 'all' || tags.indexOf(filter) !== -1;
-            card.hidden = !show;
-            if (show) visibleCount++;
-          });
-
-          emptyMsg.hidden = visibleCount !== 0;
+        cards.forEach(function (card) {
+          var tags = card.getAttribute('data-tags').split('|');
+          var show = filter === 'all' || tags.indexOf(filter) !== -1;
+          card.hidden = !show;
+          if (show) visibleCount++;
         });
+
+        emptyMsg.hidden = visibleCount !== 0;
+      }
+
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function () { applyFilter(pill); });
       });
+
+      // Allows deep-linking straight to a filtered view, e.g. /blog/?tag=Shadows
+      var requestedTag = new URLSearchParams(window.location.search).get('tag');
+      if (requestedTag) {
+        var match = Array.prototype.find.call(pills, function (p) {
+          return p.getAttribute('data-tag-filter').toLowerCase() === requestedTag.toLowerCase();
+        });
+        if (match) applyFilter(match);
+      }
     })();
   </script>
   {% else %}

@@ -1,7 +1,7 @@
 title: Get Dangerous
 description: Writing. Gaming. Badassery.
-url: "https://kazamuki.github.io"
-baseurl: "/GetDangerousGames-Site"
+url: "https://getdangerous.net"
+baseurl: ""
 
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
