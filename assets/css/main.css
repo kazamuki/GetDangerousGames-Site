@@ -243,6 +243,19 @@ a { text-decoration: none; color: inherit; }
   margin: 0;
 }
 
+.hero .tagline a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: color .15s, text-decoration-color .15s;
+}
+
+.hero .tagline a:hover {
+  color: #ffffff;
+  text-decoration-color: currentColor;
+}
+
 /* Shadows RPG band */
 .shadows-band {
   position: relative;
@@ -352,6 +365,14 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 900px) {
   .pillars-grid { grid-template-columns: 1fr; }
+  /* Single column: interleave each pillar card with its own spotlight strip
+     instead of the row-major 3-up order (cards 1-3, strips 4-6) */
+  .pillars-grid > *:nth-child(1) { order: 1; }
+  .pillars-grid > *:nth-child(4) { order: 2; }
+  .pillars-grid > *:nth-child(2) { order: 3; }
+  .pillars-grid > *:nth-child(5) { order: 4; }
+  .pillars-grid > *:nth-child(3) { order: 5; }
+  .pillars-grid > *:nth-child(6) { order: 6; }
   .shadows-band { grid-template-columns: 1fr; }
   .hero h1 { font-size: 56px; }
 }
@@ -365,10 +386,76 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  text-decoration: none;
   transition: border-color .15s, transform .15s;
 }
 
-.pillar-card:hover { transform: translateY(-4px); }
+.pillar-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover); }
+
+/* Spotlight strips — rotating story/playlist/episode pick under each pillar card */
+.spotlight-strip {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  text-decoration: none;
+  transition: border-color .15s, transform .15s;
+}
+
+.spotlight-strip:hover { transform: translateY(-3px); border-color: var(--card-border-hover); }
+
+.spotlight-strip-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spotlight-strip-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(13, 23, 49, 0.94) 15%, rgba(13, 23, 49, 0.45) 65%, rgba(13, 23, 49, 0.05) 100%);
+}
+
+.spotlight-strip-text {
+  position: relative;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: opacity .2s ease;
+}
+
+.spotlight-strip.is-fading .spotlight-strip-text { opacity: 0; }
+
+.spotlight-strip-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.spotlight-strip-title {
+  font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  color: #ffffff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.spotlight-strip-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
 
 .pillar-card h3 {
   font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
@@ -1128,6 +1215,23 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 26px;
+}
+
+.footer-discord {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-discord span {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--neutral-zone);
 }
 
 .site-footer .footer-top {

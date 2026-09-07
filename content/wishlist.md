@@ -54,13 +54,18 @@ imagination...") — brought in line with the studio/creator-page voice call fro
 pass.
 
 Actual open items:
-- **Home's pillar cards are static teasers now that YouTube/Podcasts/Writing have real pages behind
-  them.** Worth considering a small "latest" strip — most recent video thumbnail, latest podcast
-  episode — to make Home feel more alive instead of three unchanging blurbs. Bigger scope than a copy
-  fix: needs either manual upkeep or a live embed/API call, so worth scoping with Ken before starting.
-- **Blog is the last unbuilt page in the primary nav/sitemap.** Once it exists, Home's "Nothing here
-  yet" empty-state block needs replacing with a real latest-posts teaser (2-3 most recent post cards,
-  matching the pillar-card visual language).
-- **Home has no direct link to Contact**, relying entirely on the footer link and header social icons.
-  The blog-empty CTA ("Join the Discord") already covers the "get in touch" impulse directly, so this
-  may be intentional — flagging only in case Ken wants a more explicit path to Contact from Home.
+- ~~Home's pillar cards are static teasers~~ **Resolved 2026-09-07**: added a small rotating
+  "spotlight" strip below each pillar card — Writing's cycles through the 7 live stories (real
+  cover art), YouTube's cycles through 10 playlists (real thumbnails pulled via YouTube's oEmbed
+  endpoint), Podcasts' cycles through 8 episodes (real art via Spotify's oEmbed endpoint). All
+  thumbnail URLs were resolved once and hardcoded into `index.html` rather than fetched live in the
+  browser — real art with no runtime API dependency or CORS risk. Picks a random item per strip on
+  page load and rotates every 30s with a short crossfade; see the `<script>` block at the bottom of
+  `index.html`'s pillars section.
+- ~~Blog is the last unbuilt page in the primary nav/sitemap~~ **Resolved 2026-09-06**: blog shipped
+  (`blog/index.html` + `_layouts/post.html` + `_posts/`, see "Blog built" in `CLAUDE.md`) and Home's
+  "Nothing here yet" empty-state is already conditional on `site.posts.size > 0` — real posts show a
+  latest-3 teaser automatically, no further work needed. This bullet was just never marked done.
+- ~~Home has no direct link to Contact~~ **Resolved 2026-09-07**: added a closing `.about-cta`-style
+  band ("Want to know who's actually behind all this, or just say hi?") after the blog section,
+  linking to `/contact/` — same component already used to close out the About page.
