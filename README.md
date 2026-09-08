@@ -108,3 +108,7 @@ git checkout -b feature/short-name main
 git push -u origin feature/short-name
 ```
 Then open a PR into `main` (`gh pr create` or the GitHub web UI) and merge once ready.
+
+## License
+
+All rights reserved — see [LICENSE](LICENSE). This repo is public so GitHub Pages can build and serve it, not because its contents are open for reuse.
