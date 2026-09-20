@@ -51,6 +51,9 @@ Either way, you now have the files — but nothing will run yet. That needs Ruby
   ```
   Both need to print a version number. Ruby adds itself to your system PATH during install, so these commands work from any folder, in any new terminal window you open — if a terminal was already open before you finished installing Ruby, close and reopen it.
 - Bundler usually ships with Ruby already; if `bundle -v` fails, run `gem install bundler`.
+- **If Ruby ever crashes with `[BUG] Aborted` — especially if it worked before and just stopped —
+  skip to [Troubleshooting: Ruby crashes on Windows](#troubleshooting-ruby-crashes-with-bug-aborted-on-windows)
+  below before assuming your install is broken.**
 
 ### 4. Install the project's dependencies
 
@@ -73,6 +76,54 @@ bundle exec jekyll serve
 ```
 
 Then open **http://localhost:4000**. Jekyll watches the filesystem and rebuilds automatically on save — refresh the browser to see changes (no live-reload injection is configured).
+
+## Troubleshooting: Ruby crashes with `[BUG] Aborted` on Windows
+
+If `ruby`/`bundle`/`jekyll` crashes on startup with something like `[BUG] Aborted` mentioning
+`enc/utf_16le.so` or `enc/trans/transdb.so` — especially if it worked fine before and just stopped
+one day with no changes to the project — **this isn't a Ruby or Jekyll bug.** It's **Windows Smart
+App Control** silently blocking a DLL bundled with RubyInstaller. Smart App Control can ship in a
+permissive "Evaluation" mode for the first couple of weeks after a fresh Windows setup, then lock
+itself to "On" without warning — RubyInstaller's DLLs worked right up until that switch flips.
+
+Confirm it: open PowerShell and check
+```powershell
+Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\CI\Policy" -Name "VerifiedAndReputablePolicyState"
+```
+A value of `1` means Smart App Control is On/Enforced.
+
+Smart App Control has no per-app allowlist, and turning it off system-wide is a real, largely
+irreversible tradeoff (you can't turn it back on without reinstalling Windows) — so don't do that
+just to fix Ruby. Instead, run Ruby inside **WSL2** (Windows Subsystem for Linux), which Smart App
+Control doesn't police at all — WSL binaries are Linux, not the native Windows executables SAC
+inspects:
+
+1. In an **elevated** (Run as Administrator) PowerShell:
+   ```powershell
+   wsl --install
+   ```
+   Reboot when it asks you to.
+2. After rebooting, install a Linux distro and Ruby's build dependencies (this part doesn't need
+   admin rights):
+   ```powershell
+   wsl --install -d Ubuntu --no-launch
+   wsl -d Ubuntu -- bash -lc "sudo apt-get update && sudo apt-get install -y build-essential ruby-full zlib1g-dev libyaml-dev libffi-dev libxml2-dev libxslt1-dev pkg-config libssl-dev && gem install bundler"
+   ```
+3. From then on, run this repo's usual commands (`bundle install`, `bundle exec jekyll build`,
+   `bundle exec jekyll serve`) prefixed with `wsl -d Ubuntu -- bash -lc "<command>"`, from a terminal
+   already sitting inside the cloned repo folder — `wsl.exe` automatically maps that Windows folder
+   to its Linux equivalent, so no path translation is needed. For example:
+   ```powershell
+   wsl -d Ubuntu -- bash -lc "bundle install"
+   wsl -d Ubuntu -- bash -lc "bundle exec jekyll serve"
+   ```
+   Then open **http://localhost:4000** as usual — WSL2 forwards `localhost` ports to Windows
+   automatically.
+
+This repo's `Gemfile` already carries a fix for a second, related bug this surfaces (`jekyll serve`
+crashing separately from `jekyll build` once you're in WSL2) — you shouldn't need to do anything
+extra for that one, it's just how `bundle install` behaves here. See [CLAUDE.md](CLAUDE.md)'s "Local
+dev environment (Ruby)" section for the full diagnosis and history if you want the details.
 
 ## Build / "test"
 
