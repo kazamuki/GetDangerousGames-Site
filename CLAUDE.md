@@ -172,6 +172,50 @@ If `bundle exec jekyll serve` ever breaks again with `command not found: jekyll`
 message — run with real args to see the underlying exception (`ruby.exe -S bundle exec jekyll build`
 without swallowing stderr) before assuming gems are missing.
 
+**Local Ruby stopped working entirely on 2026-09-20 — Windows Smart App Control, not a Ruby/Jekyll
+bug.** It had worked fine since the 2026-09-05/09-07 installs; then a routine content-only PR
+(adding a single `_posts/*.md` file) suddenly couldn't be build-verified — every `jekyll build`/
+`jekyll serve` attempt crashed on startup with `[BUG] Aborted` while loading
+`enc/utf_16le.so`/`enc/trans/transdb.so`, before Jekyll or even the Gemfile got touched. Confirmed
+the real cause via a live Windows notification Ken saw at the same time ("Part of this app has been
+blocked... can't confirm who published transdb.so") plus two checks on this end: the file has no
+`Zone.Identifier` alternate stream (rules out ordinary mark-of-the-web/SmartScreen blocking — this
+wasn't about the file being downloaded), and
+`HKLM:\SYSTEM\CurrentControlSet\Control\CI\Policy\VerifiedAndReputablePolicyState` reads `1` (Smart
+App Control **On/Enforced**). **Working theory for why it broke *now* and not on install day**: SAC
+ships in "Evaluation" mode on a fresh Windows setup — it observes app behavior for a while (days to
+weeks) before auto-locking into On or Off based on cloud reputation signals, silently and without
+prompting. The ~2-week gap between the successful 2026-09-07 build and this failure lines up with
+that evaluation window elapsing and SAC locking to On, at which point it started actively blocking
+`transdb.so` (a legitimate encoding-table DLL bundled in every RubyInstaller build, just one SAC
+doesn't yet recognize/trust) instead of silently allowing it. Not confirmed against Microsoft's
+internal telemetry — inferred from the timeline and SAC's documented behavior — but no other
+explanation fits (nothing in this repo's Ruby setup changed between the two dates).
+
+**Why this can't be fixed the same way as the other Ruby quirks above**: Smart App Control has no
+per-app allowlist (unlike Defender AV's folder/file exclusions) — it's a binary On/Off system
+setting, and once manually switched Off it **cannot be switched back On without a clean Windows
+reinstall**, so flipping it is a real, largely irreversible tradeoff against a genuine anti-malware
+feature, not a local project fix. Reinstalling Ruby (even the +Devkit variant) won't dodge it either
+— `transdb.so` ships in every RubyInstaller build, Windows or not.
+
+**Planned fix, not yet done: move local Ruby into WSL2.** Smart App Control only polices native
+Windows PE binaries — a Linux Ruby running inside WSL2 is invisible to it entirely, with no security
+setting changed and no reinstall risk. This would also likely retire the DLL-search-path/`ridk
+install`/`cmd.exe`-wrapper fragility documented above, since none of that is Windows-specific once
+Ruby runs under Linux. Blocked on: WSL isn't installed on this machine yet, and installing it
+(`wsl --install`, then a reboot) requires an elevated/admin shell — this Claude Code session's shell
+confirmed **not** running as Administrator, so Ken needs to run that step himself before a future
+session can set up Ruby/Jekyll inside it. Once WSL2 exists, the actual Ruby/Jekyll install inside it
+needs no further elevation and a Claude session can do it unassisted.
+
+**Until WSL2 is set up, local build verification is unavailable** — future sessions doing anything
+beyond a trivial content addition (a new page, template/Liquid changes, CSS/JS affecting layout,
+anything the "When to verify" preview workflow would normally catch) should say so explicitly rather
+than silently skipping verification, and lean harder on careful manual review of the diff before
+pushing. This is a real capability gap versus the "test it before calling it done" bar the rest of
+this file sets, not a corner being cut unnoticed.
+
 ## Design
 
 First-direction homepage mockup + style sheet, approved by Ken:
