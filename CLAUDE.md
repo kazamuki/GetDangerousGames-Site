@@ -209,12 +209,30 @@ confirmed **not** running as Administrator, so Ken needs to run that step himsel
 session can set up Ruby/Jekyll inside it. Once WSL2 exists, the actual Ruby/Jekyll install inside it
 needs no further elevation and a Claude session can do it unassisted.
 
-**Until WSL2 is set up, local build verification is unavailable** — future sessions doing anything
-beyond a trivial content addition (a new page, template/Liquid changes, CSS/JS affecting layout,
-anything the "When to verify" preview workflow would normally catch) should say so explicitly rather
-than silently skipping verification, and lean harder on careful manual review of the diff before
-pushing. This is a real capability gap versus the "test it before calling it done" bar the rest of
-this file sets, not a corner being cut unnoticed.
+**Resolved 2026-09-20: local Ruby now lives in WSL2, not Windows.** Ken installed WSL2 (`wsl
+--install`, one reboot) on his end; from this session's side, `wsl --install -d Ubuntu --no-launch`
+pulled Ubuntu 26.04 LTS, then `apt-get install build-essential ruby-full zlib1g-dev libyaml-dev
+libffi-dev libxml2-dev libxslt1-dev pkg-config libssl-dev` (Ruby 3.3.8) plus `gem install bundler`
+got a working toolchain. `bundle install` against the **existing, unmodified** `Gemfile`/
+`Gemfile.lock` completed clean — the taint-method/default-gem shim already in the Gemfile isn't
+OS-specific, so nothing needed to change there — and `bundle exec jekyll build` succeeds in ~4.5s
+with zero errors. Smart App Control never enters into it: it only polices native Windows PE
+binaries, and WSL2's Ruby is a Linux ELF binary Windows doesn't inspect at all. The repo itself
+never moved — WSL mounts the Windows drive at `/mnt/c/...`, so builds run directly against
+`/mnt/c/Apps/GetDangerousGames-Site/...` with no copying/syncing step.
+
+**How to invoke it going forward**: prefix the usual command with `wsl -d Ubuntu -- bash -lc "cd
+'/mnt/c/Apps/GetDangerousGames-Site/.claude/worktrees/<worktree>' && <command>"` from a normal
+Windows PowerShell/Bash tool call — no separate shell or tool needed, `wsl.exe` is just another
+Windows executable. Two loose ends, not yet done:
+1. Currently running as `root` inside the Ubuntu distro (no separate user account was created during
+   setup) — works fine for building/serving Jekyll, but worth creating a real user if that ever
+   matters.
+2. `.claude/launch.json`'s `jekyll-site` config still points at the old `cmd.exe` +
+   `C:\Ruby40-x64` path (see point 3 above) and hasn't been repointed at `wsl.exe` yet, so the
+   Browser-pane `preview_start` tool won't work until that's updated — `bundle exec jekyll build`
+   via the `wsl -d Ubuntu` invocation above works today for build verification, live-server preview
+   is the remaining piece.
 
 ## Design
 
