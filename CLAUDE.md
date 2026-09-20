@@ -209,30 +209,56 @@ confirmed **not** running as Administrator, so Ken needs to run that step himsel
 session can set up Ruby/Jekyll inside it. Once WSL2 exists, the actual Ruby/Jekyll install inside it
 needs no further elevation and a Claude session can do it unassisted.
 
-**Resolved 2026-09-20: local Ruby now lives in WSL2, not Windows.** Ken installed WSL2 (`wsl
---install`, one reboot) on his end; from this session's side, `wsl --install -d Ubuntu --no-launch`
-pulled Ubuntu 26.04 LTS, then `apt-get install build-essential ruby-full zlib1g-dev libyaml-dev
-libffi-dev libxml2-dev libxslt1-dev pkg-config libssl-dev` (Ruby 3.3.8) plus `gem install bundler`
-got a working toolchain. `bundle install` against the **existing, unmodified** `Gemfile`/
-`Gemfile.lock` completed clean — the taint-method/default-gem shim already in the Gemfile isn't
-OS-specific, so nothing needed to change there — and `bundle exec jekyll build` succeeds in ~4.5s
-with zero errors. Smart App Control never enters into it: it only polices native Windows PE
-binaries, and WSL2's Ruby is a Linux ELF binary Windows doesn't inspect at all. The repo itself
-never moved — WSL mounts the Windows drive at `/mnt/c/...`, so builds run directly against
+**Resolved 2026-09-20: local Ruby now lives in WSL2, not Windows — fully confirmed working,
+including live preview, not just `jekyll build`.** Ken installed WSL2 (`wsl --install`, one reboot)
+on his end; from this session's side, `wsl --install -d Ubuntu --no-launch` pulled Ubuntu 26.04 LTS,
+then `apt-get install build-essential ruby-full zlib1g-dev libyaml-dev libffi-dev libxml2-dev
+libxslt1-dev pkg-config libssl-dev` (Ruby 3.3.8) plus `gem install bundler` got a working toolchain.
+`bundle install` against the **existing, unmodified** `Gemfile`/`Gemfile.lock` completed clean — the
+taint-method/default-gem shim already in the Gemfile isn't OS-specific, so nothing needed to change
+there for `bundle install` or `jekyll build` — and `bundle exec jekyll build` succeeds in ~4.5s with
+zero errors. Smart App Control never enters into it: it only polices native Windows PE binaries, and
+WSL2's Ruby is a Linux ELF binary Windows doesn't inspect at all. The repo itself never moved — WSL
+mounts the Windows drive at `/mnt/c/...`, so builds run directly against
 `/mnt/c/Apps/GetDangerousGames-Site/...` with no copying/syncing step.
+
+**`jekyll build` working wasn't the whole story — `jekyll serve` needed one more fix.** `serve`
+starts a file-watcher that `build` alone never touches, and that path crashed with `no implicit
+conversion of Hash into Integer`. Root cause, found by reading the actual gem source: Jekyll 3.9.0
+has its own (for our purposes irrelevant) WSL-detection check — `Jekyll::Utils::Platforms#proc_version`
+reads `/proc/version` via `Pathutil#read`, and `pathutil` 0.16.2 passes its kwargs hash to
+`File.read` *positionally* (`File.read(self, *args, kwd)`, missing the `**` splat) — a pattern Ruby
+3.0+ no longer auto-converts from a trailing Hash into keyword arguments. Fixed with the same
+pattern as the existing taint-method shim: a small `Pathutil#read`/`binread` monkeypatch added to
+the **Gemfile** (not a `_plugins/` file — github-pages' safe mode blocks those), harmless on any
+Ruby version since the patched method behaves identically, just explicit about kwargs. Confirmed via
+the actual Browser-pane `preview_start` tool, not just a manual `wsl` command: the dev server came
+up on `localhost:4000`, `get_page_text` showed real Home-page content (including the new Social
+Encounters blog post, spotlight strips, etc.), the direct post URL rendered with the correct title,
+and `read_console_messages` showed zero JS errors.
 
 **How to invoke it going forward**: prefix the usual command with `wsl -d Ubuntu -- bash -lc "cd
 '/mnt/c/Apps/GetDangerousGames-Site/.claude/worktrees/<worktree>' && <command>"` from a normal
 Windows PowerShell/Bash tool call — no separate shell or tool needed, `wsl.exe` is just another
-Windows executable. Two loose ends, not yet done:
-1. Currently running as `root` inside the Ubuntu distro (no separate user account was created during
-   setup) — works fine for building/serving Jekyll, but worth creating a real user if that ever
-   matters.
-2. `.claude/launch.json`'s `jekyll-site` config still points at the old `cmd.exe` +
-   `C:\Ruby40-x64` path (see point 3 above) and hasn't been repointed at `wsl.exe` yet, so the
-   Browser-pane `preview_start` tool won't work until that's updated — `bundle exec jekyll build`
-   via the `wsl -d Ubuntu` invocation above works today for build verification, live-server preview
-   is the remaining piece.
+Windows executable that auto-translates the launching process's Windows working directory to the
+equivalent `/mnt/c/...` path (confirmed directly: `pwd` from PowerShell and `wsl -d Ubuntu -- bash
+-lc "pwd"` from the same directory printed the Windows path and its exact `/mnt/c/...` equivalent),
+so no hardcoded worktree path is needed in shared config. **`.claude/launch.json`'s `jekyll-site`
+config now reflects this** — `runtimeExecutable` is `wsl.exe`, `runtimeArgs` is `["-d", "Ubuntu",
+"--", "bash", "-lc", "bundle exec jekyll serve"]`, no `cd` needed since the auto-translation above
+handles it — so the Browser-pane `preview_start` tool works exactly like it did before Ruby moved.
+
+One loose end, not yet done: currently running as `root` inside the Ubuntu distro (no separate user
+account was created during setup) — works fine for building/serving Jekyll, no known issue, but
+worth creating a real user if that ever matters.
+
+**If SAC blocks Ruby on someone else's machine too** (Deighton's, Scott's, or a future clone): this
+whole section — diagnosis, WSL2 install steps, the `pathutil` fix, and the `launch.json` change — is
+already committed to the repo, so nobody else should have to re-diagnose it from scratch. If a
+`[BUG] Aborted` crash mentioning `enc/utf_16le.so` or `enc/trans/transdb.so` shows up on a Windows
+RubyInstaller setup, it's almost certainly this; check `HKLM:\SYSTEM\CurrentControlSet\Control\CI\
+Policy\VerifiedAndReputablePolicyState` (`1` = SAC On/Enforced) to confirm, then just follow the WSL2
+steps above rather than fighting Windows Ruby further.
 
 ## Design
 
