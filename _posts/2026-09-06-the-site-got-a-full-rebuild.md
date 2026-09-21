@@ -2,6 +2,7 @@
 title: "The Site Got a Full Rebuild"
 date: 2026-09-06
 tags: [Studio Update, Site]
+image: /assets/images/blog/site-rebuild-header.jpg
 excerpt: "We tore the old site down to the studs and rebuilt Get Dangerous Games from scratch — hosted fiction, a native blog, refreshed YouTube and Podcasts pages, and a lot more. Here's the tour."
 ---
 
