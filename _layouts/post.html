@@ -3,7 +3,7 @@ layout: default
 ---
 <article>
   <header class="page-header post-header">
-    <img class="page-header-bg" src="{{ '/assets/images/blog-header.jpg' | relative_url }}" alt="">
+    <img class="page-header-bg" src="{{ page.image | default: '/assets/images/blog-header.jpg' | relative_url }}" alt="">
     <div class="page-header-overlay"></div>
 
     <span class="eyebrow" style="color: var(--signal-gold);">
