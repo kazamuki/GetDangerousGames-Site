@@ -2,6 +2,10 @@
 # NOT for content updates (new stories, videos, episodes) — that's what the Blog is for.
 # Newest entry first.
 
+- date: "2026-09-22"
+  title: "Phone-Friendly Menu, and Thumbnails Everywhere"
+  description: "On phones the header now tucks the nav behind a menu button instead of eating a fifth of the screen. YouTube playlists and blog posts show real artwork, the blog has an RSS feed, and wrong turns land on a proper 404 page."
+
 - date: "2026-09-07"
   title: "Reddit, and About Moves Up Top"
   description: "Joined r/shadowsRPG, added it to the socials, and moved the About page into the main nav so it's not just a footer scroll away."

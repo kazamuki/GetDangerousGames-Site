@@ -12,6 +12,7 @@ twitter:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-feed
 
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
@@ -27,6 +28,9 @@ defaults:
       type: posts
     values:
       layout: post
+      # Fallback art for posts without their own header image — used by the
+      # post page header, the blog/Home post cards, and og:image previews.
+      image: /assets/images/blog-header.jpg
   - scope:
       path: ""
       type: stories

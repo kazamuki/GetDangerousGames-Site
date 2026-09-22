@@ -3,7 +3,9 @@ title: "The Unseen Court: What's Actually Been Living in Deighton's Head"
 date: 2026-09-12
 tags: [Shadows]
 image: /assets/images/blog/unseen-court-header.jpg
+patreon: https://www.patreon.com/d33kode/posts/unseen-court-in-169344153
 excerpt: "We'd had \"Unseen Court\" scattered across our notes for years without ever nailing down what it actually is — a vampire prince who is his entire bloodline, an alien intelligence steering NYTE City's tech since the 80s, and more. Full rundown's up on Patreon."
+description: "What is the Unseen Court? A vampire prince who is his entire bloodline, an alien intelligence steering NYTE City's tech since the 80s, and more."
 ---
 
 We'd had "Unseen Court" scattered across our notes for years without ever nailing down what it actually is. So we set aside a full meeting and just asked Deighton to tell us everything.

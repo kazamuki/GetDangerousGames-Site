@@ -1,0 +1,64 @@
+# YouTube playlists — one source for both the /youtube/ page's cards and the
+# Home page's rotating YouTube spotlight strip. `group` picks the /youtube/
+# section: "shadows" (actual-play campaigns) or "picks" (everything else).
+# Thumbnails were resolved via YouTube's public oEmbed endpoint and are
+# hotlinked from i.ytimg.com — no API key, nothing fetched at runtime.
+- title: Shadows 2.0
+  group: shadows
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aHNp24EYlbXnxCNVyn9cODd
+  thumb: https://i.ytimg.com/vi/bxjEln6QhWQ/hqdefault.jpg
+  blurb: Our longest-running campaign — 60-plus episodes following the Cult of Personality storyline that shaped N.Y.T.E City from the ground up.
+
+- title: "Shadows: World's Apart"
+  group: shadows
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aHPgd-lxZQ1fYZKdZ7s8rRD
+  thumb: https://i.ytimg.com/vi/Hr7OZzsm7hY/hqdefault.jpg
+  blurb: A new crew steps into N.Y.T.E City once the dust from the first great campaign finally settles.
+
+- title: "Shadows: The Old Regime"
+  group: shadows
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aH17eBKUAbGRgPzB_uPUHzr
+  thumb: https://i.ytimg.com/vi/v0EDZyG1tGY/hqdefault.jpg
+  blurb: Extra-long sessions following Arad's journey through a city on the edge — fewer episodes, a lot more table time in each one.
+
+- title: "Shadows: 13th Floor"
+  group: shadows
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aH8bAdhppGoeE7lT11wuE1j
+  thumb: https://i.ytimg.com/vi/ocZsqTajNJk/hqdefault.jpg
+  blurb: A tight two-part side story — a missing persons case that spirals into something much stranger.
+
+- title: "Warhammer 40,000: Darktide"
+  group: picks
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aFtmLGJ__VlTjNQpb_zkEEh
+  thumb: https://i.ytimg.com/vi/YPrFN3BF5Rs/hqdefault.jpg
+  blurb: Four-player chaos in the Warhammer 40K underhive — grim, loud, and exactly as messy as it sounds. Our biggest playlist on the channel.
+
+- title: Destiny 2
+  group: picks
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aFaIARmDrRFNJSr7B7EH49y
+  thumb: https://i.ytimg.com/vi/eYERI_fBC64/hqdefault.jpg
+  blurb: Bungie's sci-fi shooter, mostly through a PvP lens — high stakes, faster reflexes.
+
+- title: Shadow Warrior 2
+  group: picks
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aESrOWTQBQTqhGw-j1xmJ-m
+  thumb: https://i.ytimg.com/vi/MGlYkYWUxqY/hqdefault.jpg
+  blurb: Follow Lo Wang as he makes his way through the offbeat first-person shooter world of Shadow Warrior 2.
+
+- title: Elden Ring
+  group: picks
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aGCVcn14xSc9L1YV4hFsfo-
+  thumb: https://i.ytimg.com/vi/3L2NR6l0PgY/hqdefault.jpg
+  blurb: d33Kode's run through the Lands Between — the highs, the lows, and the deaths that come with them.
+
+- title: Mass Effect 1 (Legendary Edition)
+  group: picks
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aEhfaMKDLIprj690yW6-MBe
+  thumb: https://i.ytimg.com/vi/GUVmheFLIx8/hqdefault.jpg
+  blurb: The remaster treatment for one of our favorite series, start to finish.
+
+- title: Mass Effect 2 (Legendary Edition)
+  group: picks
+  url: https://youtube.com/playlist?list=PLWXG_a-sQ0aFZ5pvgtPGNHdCPmEppnwH5
+  thumb: https://i.ytimg.com/vi/6HkyaqM1ZVU/hqdefault.jpg
+  blurb: The Legendary Edition continues — Mass Effect 2, start to finish.

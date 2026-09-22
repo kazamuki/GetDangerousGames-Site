@@ -1,0 +1,22 @@
+---
+layout: default
+title: Page Not Found
+description: This page doesn't exist — here's the way back.
+permalink: /404.html
+sitemap: false
+---
+
+<section class="content-section changelog-intro not-found">
+  <span class="eyebrow" style="color: var(--accent-gold);">404 &middot; SIGNAL LOST</span>
+  <h1>This alley's a dead end</h1>
+  <p>Whatever you were looking for isn't here. Maybe it moved, maybe it never existed, maybe N.Y.T.E City ate it. Either way, here's the way back.</p>
+  <a class="btn-gold" href="{{ '/' | relative_url }}">
+    Back to Home
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <nav class="not-found-links" aria-label="Popular pages">
+    {%- for item in site.data.navigation.primary offset: 1 %}
+    <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+    {%- endfor %}
+  </nav>
+</section>

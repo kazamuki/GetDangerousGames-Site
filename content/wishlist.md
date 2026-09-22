@@ -69,3 +69,70 @@ Actual open items:
 - ~~Home has no direct link to Contact~~ **Resolved 2026-09-07**: added a closing `.about-cta`-style
   band ("Want to know who's actually behind all this, or just say hi?") after the blog section,
   linking to `/contact/` — same component already used to close out the About page.
+
+## From the full-site UX review (2026-09-22)
+
+Ideas from an open-ended review of the whole site, after the fixes that shipped with it (see
+"Full UX/accessibility review pass" in `CLAUDE.md`). Grouped by theme and roughly ordered by payoff
+within each group. **[decision]** = needs a call from Ken/the crew first; **[quick]** = under an
+hour; **[bigger]** = a real project.
+
+### Keep readers moving (every story/post page currently ends in a dead end)
+- **"Read next" at the end of stories and posts** [quick]: stories end with only "Back to
+  Writing". Show 2–3 other stories (same universe first, then by `order`), and the next and previous
+  posts on blog pages. It's the cheapest way to turn one read into two.
+- **Series links for multi-part posts** [quick, Ken revisiting]: a `series:` front-matter key (e.g.
+  `social-encounters`) plus a "Part 1 · 2 · 3" strip at the top and bottom of each part. Social
+  Encounters is the first real case.
+- **Chapter navigation for long stories** [quick–bigger]: LRRH is a 65-minute read. Add a chapter
+  table of contents built from the `## Chapter` headings, a thin reading-progress bar, and
+  "pick up where you left off" (browser storage only, per-device, no accounts needed).
+- **Tie stories to Shadows RPG** [quick]: stories set in NYTE City could carry a small "Set in the
+  world of Shadows RPG →" link to shadowsrpg.com. The fiction is a great on-ramp to the game.
+
+### Grow the audience
+- **Email updates** [decision]: Discord is currently the only "hear about new stuff" channel, and
+  plenty of readers will never join a Discord. A free Buttondown or Substack-style list, fed from the
+  new `/feed.xml`, would reach them. Also decide who owns sending it.
+- **Comments on stories/posts via giscus** [decision]: already listed as an open option in
+  `content/writing.md`. It runs on GitHub Discussions, so it's free with no backend, but readers need
+  a GitHub account to comment, and someone has to moderate.
+- **Press / creator kit page** [quick]: logos (bear mark, Shadows mark, banner), crew bios, and brand
+  colors in one place. Useful for collabs like the 20MinuteGamer showcase, and the assets already
+  exist.
+- **Crew social links on About** [quick]: each crew card could link that person's own channels
+  (d33Kode's Twitch/YouTube, etc.).
+
+### Copy & SEO
+- ~~Meta-description pass~~ **Resolved 2026-09-22**: all 7 stories and the 3 long posts got a ≤155-character `description:`, with cards unchanged. Still open from the original note: the Home description. Original note: [quick]: story `description:` fields run 250–420 characters and post
+  excerpts 120–320 (Google shows about 155). Add a short `description:` to each story and post and
+  keep `blurb`/`excerpt` as-is for the cards. The Home description ("Writing. Gaming. Badassery.")
+  should also say what the site actually is.
+- **Home copy tune-up** [quick]: the hero eyebrow "GET DANGEROUS GAMES" just repeats the headline
+  under it, so it could become a one-line pitch instead. The Shadows band has a dangling modifier
+  ("The brainchild of d33Kode, learn how you can use…") and "finally here" wording that may be
+  dated depending on where the book actually is.
+- **Story structured data** [quick]: stories are marked up for search engines as blog posts. They
+  could be marked up as short stories with the real author, which search engines understand better.
+
+### Performance
+- **Click-to-play Spotify embeds on Podcasts** [quick–bigger]: the page loads 17 full Spotify
+  players, and each one pulls in its own JavaScript. Show the episode art and title, then swap in
+  the real player on click. That's a big load-time win, especially on phones.
+- **Trim font weights** [quick]: the Google Fonts request pulls 5 Inter weights and 3 Roboto Mono
+  weights. Audit which ones the CSS actually uses and drop the rest.
+- **Self-host the spotlight/playlist thumbnails** [quick]: the YouTube and Spotify image URLs are
+  hotlinked. They're stable today, but if one changes the card just goes blank. Copies in
+  `assets/images/` would remove that risk.
+
+### Keep it healthy (maintenance tooling)
+- **Automatic link checking on PRs** [quick]: a GitHub Action running `html-proofer` against the
+  built site, including external links. A dead YouTube playlist (Vermintide) already slipped through
+  once. It could also run a weekly check for links that rot while nobody's touching the code.
+- **Lighthouse check on PRs** [bigger]: catches regressions in performance, accessibility, and SEO
+  automatically instead of relying on review passes like this one.
+
+### Already tracked elsewhere (listed so this stays the one place to look)
+- Cerulean Nights font license (`CLAUDE.md` → Outstanding brand items).
+- "The Last Encounter" story text (`CLAUDE.md` → Only remaining content gap).
+- Google Search Console sitemap submission; `/feed.xml` is new and worth submitting there too.

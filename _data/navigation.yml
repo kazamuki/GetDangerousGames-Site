@@ -1,0 +1,22 @@
+# Site navigation — shared by the header and footer in _layouts/default.html.
+# `primary` shows in the header nav AND the footer; `secondary` is footer-only
+# (the utility pages). Order here is the order on the page.
+primary:
+  - title: Home
+    url: /
+  - title: Writing
+    url: /writing/
+  - title: Blog
+    url: /blog/
+  - title: YouTube
+    url: /youtube/
+  - title: Podcasts
+    url: /podcasts/
+  - title: About
+    url: /about/
+
+secondary:
+  - title: Contact
+    url: /contact/
+  - title: Changelog
+    url: /changelog/

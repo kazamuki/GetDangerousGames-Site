@@ -4,7 +4,7 @@ author: "d33Kode"
 status: ongoing
 status_note: "Book One of an ongoing dark fantasy series — more chapters to come."
 blurb: "Alabas has the same nightmare every night: something with no eyes that never stops hunting him. Then one night it follows him out of his sleep and into his house. A fae companion, a cursed goblet, and a debt older than his family are the only things standing between Alabas and whatever comes next."
-description: "Alabas has the same nightmare every night: something with no eyes that never stops hunting him. Then one night it follows him out of his sleep and into his house. A fae companion, a cursed goblet, and a debt older than his family are the only things standing between Alabas and whatever comes next."
+description: "Alabas has the same nightmare every night. Then the thing with no eyes follows him home, and only a fae companion and a cursed goblet stand in its way."
 image: /assets/images/stories/alabas-warbold.jpg
 reading_time: "22 min read"
 order: 3

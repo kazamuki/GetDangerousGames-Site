@@ -20,29 +20,17 @@ image: /assets/images/blog-header.jpg
   {% assign all_tags = site.tags | sort %}
   {% if all_tags.size > 0 %}
   <div class="tag-filter" role="group" aria-label="Filter posts by tag">
-    <button type="button" class="tag-pill active" data-tag-filter="all">All</button>
+    <button type="button" class="tag-pill active" data-tag-filter="all" aria-pressed="true">All</button>
     {% for tag in all_tags %}
-    <button type="button" class="tag-pill" data-tag-filter="{{ tag[0] }}">{{ tag[0] }}</button>
+    <button type="button" class="tag-pill" data-tag-filter="{{ tag[0] }}" aria-pressed="false">{{ tag[0] }}</button>
     {% endfor %}
   </div>
   {% endif %}
 
+  <h2 class="visually-hidden">All posts</h2>
   <div class="post-list" id="post-list">
     {% for post in site.posts %}
-    <a class="post-card" data-tags="{{ post.tags | join: '|' }}" href="{{ post.url | relative_url }}">
-      <span class="eyebrow post-card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.excerpt | strip_html }}</p>
-      {% if post.tags.size > 0 %}
-      <ul class="topic-tags post-card-tags">
-        {% for tag in post.tags %}<li>{{ tag }}</li>{% endfor %}
-      </ul>
-      {% endif %}
-      <span class="pillar-link" style="color: var(--accent-gold);">
-        Read the post
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--accent-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-    </a>
+    {% include post-card.html post=post show_tags=true %}
     {% endfor %}
   </div>
 
@@ -56,8 +44,9 @@ image: /assets/images/blog-header.jpg
       if (!pills.length) return;
 
       function applyFilter(pill) {
-        pills.forEach(function (p) { p.classList.remove('active'); });
+        pills.forEach(function (p) { p.classList.remove('active'); p.setAttribute('aria-pressed', 'false'); });
         pill.classList.add('active');
+        pill.setAttribute('aria-pressed', 'true');
 
         var filter = pill.getAttribute('data-tag-filter');
         var visibleCount = 0;

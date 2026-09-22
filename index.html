@@ -90,12 +90,13 @@ image: /assets/images/hero-skyline.jpg
       </div>
     </a>
 
-    <a class="spotlight-strip" data-spotlight="youtube" href="https://youtube.com/playlist?list=PLWXG_a-sQ0aHNp24EYlbXnxCNVyn9cODd">
-      <img class="spotlight-strip-img" src="https://i.ytimg.com/vi/bxjEln6QhWQ/hqdefault.jpg" alt="" loading="lazy">
+    {% assign spotlight_playlist = site.data.playlists.first %}
+    <a class="spotlight-strip" data-spotlight="youtube" href="{{ spotlight_playlist.url }}">
+      <img class="spotlight-strip-img" src="{{ spotlight_playlist.thumb }}" alt="" loading="lazy">
       <div class="spotlight-strip-overlay"></div>
       <div class="spotlight-strip-text">
         <span class="spotlight-strip-kicker" style="color: var(--static-cyan);">FROM THE CHANNEL</span>
-        <span class="spotlight-strip-title">Shadows 2.0</span>
+        <span class="spotlight-strip-title">{{ spotlight_playlist.title }}</span>
         <span class="spotlight-strip-sub">Playlist</span>
       </div>
     </a>
@@ -117,17 +118,9 @@ image: /assets/images/hero-skyline.jpg
 ]</script>
 
   <script type="application/json" id="spotlight-youtube-data">[
-    {"title": "Shadows 2.0", "sub": "Playlist", "image": "https://i.ytimg.com/vi/bxjEln6QhWQ/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aHNp24EYlbXnxCNVyn9cODd"},
-    {"title": "Shadows: World's Apart", "sub": "Playlist", "image": "https://i.ytimg.com/vi/Hr7OZzsm7hY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aHPgd-lxZQ1fYZKdZ7s8rRD"},
-    {"title": "Shadows: The Old Regime", "sub": "Playlist", "image": "https://i.ytimg.com/vi/v0EDZyG1tGY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aH17eBKUAbGRgPzB_uPUHzr"},
-    {"title": "Shadows: 13th Floor", "sub": "Playlist", "image": "https://i.ytimg.com/vi/ocZsqTajNJk/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aH8bAdhppGoeE7lT11wuE1j"},
-    {"title": "Warhammer 40,000: Darktide", "sub": "Playlist", "image": "https://i.ytimg.com/vi/YPrFN3BF5Rs/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aFtmLGJ__VlTjNQpb_zkEEh"},
-    {"title": "Destiny 2", "sub": "Playlist", "image": "https://i.ytimg.com/vi/eYERI_fBC64/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aFaIARmDrRFNJSr7B7EH49y"},
-    {"title": "Shadow Warrior 2", "sub": "Playlist", "image": "https://i.ytimg.com/vi/MGlYkYWUxqY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aESrOWTQBQTqhGw-j1xmJ-m"},
-    {"title": "Elden Ring", "sub": "Playlist", "image": "https://i.ytimg.com/vi/3L2NR6l0PgY/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aGCVcn14xSc9L1YV4hFsfo-"},
-    {"title": "Mass Effect 1 (Legendary Edition)", "sub": "Playlist", "image": "https://i.ytimg.com/vi/GUVmheFLIx8/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aEhfaMKDLIprj690yW6-MBe"},
-    {"title": "Mass Effect 2 (Legendary Edition)", "sub": "Playlist", "image": "https://i.ytimg.com/vi/6HkyaqM1ZVU/hqdefault.jpg", "url": "https://youtube.com/playlist?list=PLWXG_a-sQ0aFZ5pvgtPGNHdCPmEppnwH5"}
-  ]</script>
+{% for playlist in site.data.playlists %}{"title": {{ playlist.title | jsonify }}, "sub": "Playlist", "image": {{ playlist.thumb | jsonify }}, "url": {{ playlist.url | jsonify }}}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]</script>
 
   <script type="application/json" id="spotlight-podcasts-data">[
     {"title": "Myriad Circle Episode 1: Welcome One and All!", "sub": "Myriad Circle", "image": "https://image-cdn-fa.spotifycdn.com/image/ab67656300005f1f0119cd0c1bbbe9d47410df6d", "url": "https://open.spotify.com/episode/1sWfip7bmGr1TcHsh2cb64"},
@@ -144,6 +137,7 @@ image: /assets/images/hero-skyline.jpg
     (function () {
       var STRIPS = ['writing', 'youtube', 'podcasts'];
       var ROTATE_MS = 30000;
+      var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function shuffle(arr) {
         for (var i = arr.length - 1; i > 0; i--) {
@@ -168,21 +162,30 @@ image: /assets/images/hero-skyline.jpg
         var order = shuffle(items.slice());
         var index = 0;
 
+        function apply(item) {
+          img.src = item.image;
+          title.textContent = item.title;
+          sub.textContent = item.sub;
+          el.href = item.url;
+        }
+
         function show(item) {
           el.classList.add('is-fading');
           window.setTimeout(function () {
-            img.src = item.image;
-            title.textContent = item.title;
-            sub.textContent = item.sub;
-            el.href = item.url;
+            apply(item);
             el.classList.remove('is-fading');
           }, 200);
         }
 
-        show(order[index]);
+        // First pick swaps in instantly — fading here would flash the
+        // server-rendered item away on every page load.
+        apply(order[index]);
 
-        if (order.length > 1) {
+        // Auto-rotation is decorative: skip it for reduced-motion visitors,
+        // and don't churn while the tab is in the background.
+        if (order.length > 1 && !REDUCED_MOTION) {
           window.setInterval(function () {
+            if (document.hidden) return;
             index = (index + 1) % order.length;
             show(order[index]);
           }, ROTATE_MS);
@@ -193,7 +196,7 @@ image: /assets/images/hero-skyline.jpg
 </section>
 
 {% if site.posts.size > 0 %}
-<section class="content-section tight">
+<section class="content-section tight home-latest">
   <div class="section-heading">
     <span class="eyebrow" style="color: var(--accent-gold);">FROM THE BLOG</span>
     <h2>Latest from the studio</h2>
@@ -201,15 +204,7 @@ image: /assets/images/hero-skyline.jpg
 
   <div class="post-list">
     {% for post in site.posts limit: 3 %}
-    <a class="post-card" href="{{ post.url | relative_url }}">
-      <span class="eyebrow post-card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.excerpt | strip_html }}</p>
-      <span class="pillar-link" style="color: var(--accent-gold);">
-        Read the post
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--accent-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-    </a>
+    {% include post-card.html post=post %}
     {% endfor %}
   </div>
 

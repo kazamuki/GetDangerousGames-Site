@@ -1,0 +1,13 @@
+<a class="media-card" href="{{ include.playlist.url }}">
+  <div class="media-card-thumb">
+    <img src="{{ include.playlist.thumb }}" alt="" loading="lazy">
+    <svg class="media-card-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+  </div>
+  <div class="media-card-body">
+    <h3>{{ include.playlist.title }}</h3>
+    <p>{{ include.playlist.blurb }}</p>
+    <span class="media-link">Watch the playlist
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--accent-cyan)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </div>
+</a>
