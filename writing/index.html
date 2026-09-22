@@ -17,7 +17,9 @@ image: /assets/images/writing-header.jpg
 
 <section class="content-section">
   <div class="section-heading">
-    <span class="eyebrow" style="color: var(--accent-magenta);">SEVEN STORIES</span>
+    {%- assign story_count = site.stories.size %}
+    {%- assign count_words = "ZERO,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,ELEVEN,TWELVE" | split: "," %}
+    <span class="eyebrow" style="color: var(--accent-magenta);">{% if story_count < count_words.size %}{{ count_words[story_count] }}{% else %}{{ story_count }}{% endif %} STORIES</span>
     <h2>Pick your poison</h2>
     <p>Dark fantasy, cyberpunk horror, a fairy tale retold from the other side of the mirror, and one story that isn't trying to scare you at all. A few are still being written — those are marked below.</p>
   </div>

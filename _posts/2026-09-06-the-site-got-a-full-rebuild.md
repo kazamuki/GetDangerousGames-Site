@@ -4,6 +4,7 @@ date: 2026-09-06
 tags: [Studio Update, Site]
 image: /assets/images/blog/site-rebuild-header.jpg
 excerpt: "We tore the old site down to the studs and rebuilt Get Dangerous Games from scratch — hosted fiction, a native blog, refreshed YouTube and Podcasts pages, and a lot more. Here's the tour."
+description: "We rebuilt Get Dangerous Games from scratch: hosted fiction, a native blog, refreshed YouTube and Podcasts pages, and more. Here's the tour."
 ---
 
 Get Dangerous Games has a new home. If you've clicked around the site already, welcome — this is the first real post from the new blog, and it feels right to spend it on the thing you're currently looking at.

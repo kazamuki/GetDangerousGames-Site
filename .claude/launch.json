@@ -6,6 +6,12 @@
       "runtimeExecutable": "wsl.exe",
       "runtimeArgs": ["-d", "Ubuntu", "--", "bash", "-lc", "bundle exec jekyll serve"],
       "port": 4000
+    },
+    {
+      "name": "jekyll-site-windows",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "set PATH=C:\\Ruby40-x64\\bin;%PATH% && ruby -S bundle exec jekyll serve --port 4001"],
+      "port": 4001
     }
   ]
 }

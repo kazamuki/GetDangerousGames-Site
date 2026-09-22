@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="{{ '/assets/js/theme-init.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/theme-init.js' | relative_url }}?v={{ site.time | date: "%s" }}"></script>
   {% seo %}
+  {% feed_meta %}
   <link rel="icon" type="image/png" href="{{ '/assets/images/gd-bear-icon.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/gd-bear-icon.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}?v={{ site.time | date: "%s" }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: "%s" }}">
   {% if site.google_analytics %}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
   <script>
@@ -22,6 +23,7 @@
   {% endif %}
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="{{ '/' | relative_url }}">
       <img src="{{ '/assets/images/gd-bear-icon.png' | relative_url }}" alt="">
@@ -29,25 +31,28 @@
       <span class="brand-short">GD</span>
     </a>
 
-    <nav class="main-nav">
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <a href="{{ '/writing/' | relative_url }}">Writing</a>
-      <a href="{{ '/blog/' | relative_url }}">Blog</a>
-      <a href="{{ '/youtube/' | relative_url }}">YouTube</a>
-      <a href="{{ '/podcasts/' | relative_url }}">Podcasts</a>
-      <a href="{{ '/about/' | relative_url }}">About</a>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      {%- for item in site.data.navigation.primary %}
+      {%- assign active = false %}
+      {%- if item.url == '/' %}{% if page.url == '/' %}{% assign active = true %}{% endif %}
+      {%- elsif page.url contains item.url %}{% assign active = true %}{% endif %}
+      <a href="{{ item.url | relative_url }}"{% if active %} class="is-active"{% if page.url == item.url %} aria-current="page"{% endif %}{% endif %}>{{ item.title }}</a>
+      {%- endfor %}
     </nav>
 
     <div class="header-actions">
       <a class="btn-cta" href="{{ site.social.shadows_rpg }}">Play Shadows RPG →</a>
       <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch between light and dark mode" aria-pressed="false">
-        <svg class="theme-toggle-icon theme-toggle-icon--sun" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
-        <svg class="theme-toggle-icon theme-toggle-icon--moon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13.5A8.5 8.5 0 1 1 10.5 4a6.8 6.8 0 0 0 9.5 9.5Z"/></svg>
+        <svg class="theme-toggle-icon theme-toggle-icon--sun" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+        <svg class="theme-toggle-icon theme-toggle-icon--moon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8.5 8.5 0 1 1 10.5 4a6.8 6.8 0 0 0 9.5 9.5Z"/></svg>
+      </button>
+      <button type="button" class="nav-toggle" data-nav-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Menu">
+        <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path class="nav-toggle-bars" d="M4 7h16M4 12h16M4 17h16"/><path class="nav-toggle-close" d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     {{ content }}
   </main>
 
@@ -63,14 +68,10 @@
     <div class="footer-top">
       <div class="footer-nav">
         <img src="{{ '/assets/images/gd-bear-icon.png' | relative_url }}" alt="">
-        <a class="footer-link" href="{{ '/' | relative_url }}">Home</a>
-        <a class="footer-link" href="{{ '/writing/' | relative_url }}">Writing</a>
-        <a class="footer-link" href="{{ '/blog/' | relative_url }}">Blog</a>
-        <a class="footer-link" href="{{ '/youtube/' | relative_url }}">YouTube</a>
-        <a class="footer-link" href="{{ '/podcasts/' | relative_url }}">Podcasts</a>
-        <a class="footer-link" href="{{ '/about/' | relative_url }}">About</a>
-        <a class="footer-link" href="{{ '/contact/' | relative_url }}">Contact</a>
-        <a class="footer-link" href="{{ '/changelog/' | relative_url }}">Changelog</a>
+        {%- assign footer_nav = site.data.navigation.primary | concat: site.data.navigation.secondary %}
+        {%- for item in footer_nav %}
+        <a class="footer-link" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {%- endfor %}
       </div>
       {% include social-icons.html %}
     </div>
@@ -81,6 +82,7 @@
     </div>
   </footer>
 
-  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ site.time | date: "%s" }}" defer></script>
+  <script src="{{ '/assets/js/site-nav.js' | relative_url }}?v={{ site.time | date: "%s" }}" defer></script>
 </body>
 </html>

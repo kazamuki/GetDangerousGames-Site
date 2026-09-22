@@ -110,6 +110,111 @@ a { text-decoration: none; color: inherit; }
 
 .btn-cta:hover { box-shadow: 0 6px 24px rgba(188, 72, 154, 0.55); }
 
+/* Current section — Writing stays lit on story pages, Blog on posts */
+.main-nav a.is-active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-gold);
+}
+
+/* Mobile menu button — hidden until the header's mobile breakpoint below */
+.nav-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-visible);
+  background: transparent;
+  color: var(--text-secondary);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.nav-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; }
+.nav-toggle-close { display: none; }
+.nav-open .nav-toggle-bars { display: none; }
+.nav-open .nav-toggle-close { display: inline; }
+
+/* Below 720px the fluid header would drop its nav links to ~12px text with
+   4px gaps — too small to tap — and then wrap to 2-3 rows of a sticky bar
+   that eats a fifth of a phone screen. Collapse the nav behind a menu
+   button instead so the header stays one short row. */
+@media (max-width: 720px) {
+  .site-header { flex-wrap: nowrap; padding: 12px var(--gutter); }
+  .brand img { width: 32px; }
+  .btn-cta { font-size: 12.5px; padding: 8px 14px; }
+  .theme-toggle { width: 36px; height: 36px; }
+  .nav-toggle { display: flex; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px var(--gutter) 16px;
+    background: var(--bg-page);
+    border-bottom: 1px solid var(--border-visible);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .nav-open .main-nav { display: flex; }
+
+  .main-nav a {
+    font-size: 17px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .main-nav a:last-child { border-bottom: 0; }
+  .main-nav a:hover, .main-nav a.is-active { border-bottom-color: var(--border-subtle); }
+  .main-nav a.is-active { color: var(--accent-gold); }
+}
+
+@media (max-width: 360px) {
+  .brand-short { display: none; }
+}
+
+/* Keyboard focus — the browser default ring disappears against the dark
+   navy, so give every interactive element a visible gold one. */
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.pillar-card:focus-visible, .post-card:focus-visible, .story-card:focus-visible,
+.media-card:focus-visible, .spotlight-strip:focus-visible { border-radius: 14px; }
+
+.btn-cta:focus-visible, .btn-gold:focus-visible, .btn-ghost:focus-visible,
+.theme-toggle:focus-visible, .nav-toggle:focus-visible, .social-badge:focus-visible,
+.contact-channel:focus-visible, .tag-pill:focus-visible { border-radius: 999px; }
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 50;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--signal-gold);
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.skip-link:focus { top: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+  .pillar-card:hover, .spotlight-strip:hover, .media-card:hover,
+  .story-card:hover, .post-card:hover, .contact-channel:hover { transform: none; }
+}
+
 .btn-gold {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
@@ -142,15 +247,19 @@ a { text-decoration: none; color: inherit; }
 
 .btn-ghost:hover { background: color-mix(in srgb, var(--accent-gold) 8%, transparent); }
 
+/* Footer-only since the header's copy was removed (2026-09-07), so these no
+   longer need the header's fluid clamp() sizing — which had shrunk them to
+   22px tap targets on phones. Fixed size, and the row wraps instead. */
 .social-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: clamp(3px, calc(3px + 5 * (100vw - 640px) / 560), 8px);
+  gap: 8px;
 }
 
 .social-badge {
-  width: clamp(22px, calc(22px + 12 * (100vw - 640px) / 560), 34px);
-  height: clamp(22px, calc(22px + 12 * (100vw - 640px) / 560), 34px);
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid var(--border-visible);
   display: flex;
@@ -162,8 +271,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 .social-badge svg {
-  width: clamp(12px, calc(12px + 4 * (100vw - 640px) / 560), 16px);
-  height: clamp(12px, calc(12px + 4 * (100vw - 640px) / 560), 16px);
+  width: 16px;
+  height: 16px;
   fill: currentColor;
   display: block;
 }
@@ -319,7 +428,24 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 0 60px rgba(113, 43, 140, 0.35);
 }
 
-.shadows-band .band-visual-card img { width: 170px; height: auto; display: block; }
+/* The logo's wordmark is near-black and vanished on the dark tile.
+   drop-shadow() follows the PNG's own alpha shape, so it rims the skull and
+   the wordmark in light, plus a soft radial glow behind the whole mark. */
+.shadows-band .band-visual-card {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(188, 72, 154, 0.45) 0%, rgba(113, 43, 140, 0.25) 38%, transparent 68%),
+    rgba(13, 23, 49, 0.55);
+}
+
+.shadows-band .band-visual-card img {
+  width: 170px;
+  height: auto;
+  display: block;
+  filter:
+    drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.85))
+    drop-shadow(0 0 10px rgba(231, 231, 231, 0.45))
+    drop-shadow(0 0 26px rgba(188, 72, 154, 0.7));
+}
 
 /* Pillars */
 .pillars {
@@ -640,18 +766,65 @@ a { text-decoration: none; color: inherit; }
   gap: 22px;
 }
 
+/* Whole card is the link (same pattern as .story-card/.post-card), with the
+   playlist's real YouTube thumbnail on top — see _includes/playlist-card.html
+   and _data/playlists.yml. */
 .media-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 14px;
-  padding: 26px 24px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   transition: transform .15s, border-color .15s;
 }
 
 .media-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover); }
+
+.media-card-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--midnight);
+}
+
+/* hqdefault thumbnails are 4:3 with baked-in letterbox bars — cropping to
+   16:9 with object-fit trims them off. Absolutely positioned so the 4:3
+   image can't stretch the aspect-ratio box back to its own height. */
+.media-card-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.media-card-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  padding: 12px 11px 12px 13px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(13, 23, 49, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  fill: #ffffff;
+  opacity: 0.85;
+  transition: opacity .15s, background .15s;
+}
+
+.media-card:hover .media-card-play { opacity: 1; background: var(--aether-pulse); }
+
+.media-card-body {
+  flex: 1;
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .media-card h3 {
   font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
@@ -668,7 +841,7 @@ a { text-decoration: none; color: inherit; }
   flex: 1;
 }
 
-.media-card a.media-link {
+.media-link {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -937,17 +1110,74 @@ a { text-decoration: none; color: inherit; }
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 14px;
-  padding: 30px 32px;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
   transition: transform .15s, border-color .15s;
 }
 
 .post-card:hover { transform: translateY(-3px); border-color: var(--card-border-hover); }
 
+/* Don't remove: .post-card's display:flex above would otherwise override
+   the browser's default [hidden] rule and break the /blog/ tag filter. */
 .post-card[hidden] { display: none; }
+
+.post-card-img {
+  flex: 0 0 34%;
+  width: 34%;
+  min-height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.post-card-img--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(70% 70% at 30% 20%, rgba(27, 187, 196, 0.18), transparent 70%),
+    linear-gradient(135deg, var(--deep-circuit), var(--aether-pulse));
+}
+
+.post-card-img--placeholder img { width: 56px; height: auto; opacity: 0.9; }
+
+.post-card-body {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+@media (max-width: 700px) {
+  .post-card { flex-direction: column; }
+  .post-card-img { width: 100%; flex-basis: auto; aspect-ratio: 16 / 9; min-height: 0; }
+}
+
+/* Home's "Latest from the studio": keep the heading and "Read the full blog"
+   button on the same centered 820px column as the cards, instead of the
+   heading hugging the 1200px section's left edge. */
+.home-latest .section-heading, .home-latest .section-cta {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-latest .section-heading { margin-bottom: 28px; }
+.home-latest .section-cta { justify-content: center; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .post-card-date { color: var(--text-tertiary); }
 
@@ -1023,9 +1253,32 @@ a { text-decoration: none; color: inherit; }
 
 .post-footer { padding-top: 0; padding-bottom: 90px; }
 
+/* "Read on Patreon" — rendered by _layouts/post.html when a post sets a
+   `patreon:` URL in its front matter. */
+.patreon-cta {
+  margin: 36px 0 8px;
+  padding: 24px 26px;
+  border-radius: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.patreon-cta > div { flex: 1 1 260px; }
+.patreon-cta .eyebrow { color: var(--accent-gold); display: block; margin-bottom: 6px; }
+.patreon-cta p { margin: 0; font-size: 15px; }
+
+/* Beat .post-body a (cyan + underline), which would otherwise restyle it */
+.post-body .patreon-cta .btn-gold { color: var(--text-dark); text-decoration: none; }
+
 @media (max-width: 700px) {
   .post-header h1 { font-size: 32px; }
-  .post-card { padding: 24px 22px; }
+  .post-card-body { padding: 24px 22px; }
 }
 
 /* Story pages — per-story accent theme, chapter breaks, status */
@@ -1076,9 +1329,21 @@ a { text-decoration: none; color: inherit; }
 
 .story-header--with-hero { padding-top: 48px; }
 
+/* Unlike other .page-headers, the story header has no photo of its own
+   behind the scrim — without a fixed dark base, light mode showed the light
+   page through it and left the white title/byline on muddy gray. Pin it
+   dark (matching .story-hero-fade above, so the cover art joins seamlessly)
+   and hold the fade to --bg-page until the bottom padding, below the text. */
+.story-header { background: var(--midnight); }
+
+/* Room for that 70px fade below the text at every width — the generic
+   .page-header phone padding (52px) would otherwise let it creep up over
+   the status note. Two classes so it outranks those media-query rules. */
+.page-header.story-header { padding-bottom: 88px; }
+
 .story-header .page-header-overlay {
   background:
-    linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.6) 55%, var(--bg-page) 100%),
+    linear-gradient(180deg, rgba(13, 23, 49, 0.35) 0%, rgba(13, 23, 49, 0.6) calc(100% - 70px), var(--bg-page) 100%),
     radial-gradient(60% 55% at 50% 0%, var(--story-glow-1, rgba(113, 43, 140, 0.32)), transparent 70%),
     radial-gradient(45% 45% at 85% 25%, var(--story-glow-2, rgba(27, 187, 196, 0.18)), transparent 70%);
 }
@@ -1218,7 +1483,7 @@ a { text-decoration: none; color: inherit; }
 
   .episode-list { grid-template-columns: 1fr; }
 
-  .post-card { padding: 22px 20px; }
+  .post-card-body { padding: 22px 20px; }
   .story-card-body { padding: 18px 20px 20px; }
 }
 
@@ -1325,6 +1590,25 @@ a { text-decoration: none; color: inherit; }
 }
 
 .changelog-intro p a { color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 2px; }
+
+/* 404 — reuses the changelog's text-only intro block */
+.not-found { padding-bottom: 120px; gap: 22px; }
+
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 8px;
+}
+
+.not-found-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent-cyan);
+}
+
+.not-found-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .changelog-list {
   display: flex;
