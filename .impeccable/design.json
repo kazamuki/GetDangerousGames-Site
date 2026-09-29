@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28T00:00:00Z",
+  "title": "Design System: Get Dangerous Games",
+  "extensions": {
+    "colorMeta": {
+      "midnight-underpass": { "role": "neutral", "displayName": "Midnight Underpass", "canonical": "#0D1731", "tonalRamp": ["#04070F","#060C18","#091022","#0B142B","#313A50","#6E7483","#AAAEB7","#E2E3E6"] },
+      "card-midnight-circuit": { "role": "neutral", "displayName": "Card Midnight Circuit", "canonical": "#16294F", "tonalRamp": ["#070C18","#0B1428","#0F1D37","#132446","#394969","#737F95","#ADB4C1","#E3E5EA"] },
+      "deep-circuit": { "role": "primary", "displayName": "Deep Circuit", "canonical": "#203F7B", "tonalRamp": ["#0A1325","#10203E","#162C56","#1C376C","#415C8F","#798CB0","#B1BCD1","#E4E8EF"] },
+      "aether-pulse": { "role": "primary", "displayName": "Aether Pulse", "canonical": "#712B8C", "tonalRamp": ["#220D2A","#381646","#4F1E62","#63267B","#864B9D","#AA80BA","#CDB5D7","#EEE6F1"] },
+      "neon-veil": { "role": "secondary", "displayName": "Neon Veil", "canonical": "#BC489A", "tonalRamp": ["#38162E","#5E244D","#84326C","#A53F88","#C663A9","#D791C2","#E8BFDC","#F7E9F3"] },
+      "signal-gold": { "role": "secondary", "displayName": "Signal Gold", "canonical": "#F2C94C", "tonalRamp": ["#493C17","#796426","#A98D35","#D5B143","#F4D167","#F7DF94","#FAECC0","#FDF9EA"] },
+      "static-cyan": { "role": "tertiary", "displayName": "Static Cyan", "canonical": "#1BBBC4", "tonalRamp": ["#08383B","#0E5E62","#138389","#18A5AC","#3DC5CD","#76D6DC","#AFE7EA","#E4F7F8"] },
+      "ghostly-green": { "role": "tertiary", "displayName": "Ghostly Green", "canonical": "#71C388", "tonalRamp": ["#223B29","#386244","#4F885F","#63AC78","#86CC9A","#AADBB8","#CDEAD5","#EEF8F1"] },
+      "neutral-zone": { "role": "primary", "displayName": "Neutral Zone", "canonical": "#E7E7E7", "tonalRamp": ["#454545","#747474","#A2A2A2","#CBCBCB","#EBEBEB","#F1F1F1","#F7F7F7","#FCFCFC"] },
+      "text-light": { "role": "neutral", "displayName": "Text Light", "canonical": "#FFFFFF", "tonalRamp": ["#4D4D4D","#808080","#B2B2B2","#E0E0E0","#F0F0F0","#F6F6F6","#FBFBFB","#FFFFFF"] },
+      "gutter-black": { "role": "neutral", "displayName": "Gutter Black", "canonical": "#111111", "tonalRamp": ["#050505","#080808","#0C0C0C","#0F0F0F","#353535","#707070","#ACACAC","#E2E2E2"] },
+      "daylight-paper": { "role": "neutral", "displayName": "Daylight Paper (light-mode page)", "canonical": "#F5F4F2", "tonalRamp": ["#4A4949","#7A7A79","#ACABA9","#D8D7D5","#F6F6F4","#F9F8F7","#FCFBFA","#FEFEFD"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Home hero headline only; 88px → 56px (≤900px) → 38px (≤560px)." },
+      "headline": { "displayName": "Headline", "purpose": "Page-header titles on photo bands; 54px → 36px → 28px. Posts/stories 44px." },
+      "section": { "displayName": "Section", "purpose": "Section and band headings, 27–46px depending on context." },
+      "title": { "displayName": "Title", "purpose": "Card titles and prose h1–h3, 18–26px." },
+      "body": { "displayName": "Body", "purpose": "Post and story prose in a 720px column." },
+      "body-card": { "displayName": "Card body", "purpose": "Card copy and ledes in secondary text color." },
+      "label": { "displayName": "Label (HUD eyebrow)", "purpose": "Mono capitals eyebrow above every heading; also dates, tags, metadata." }
+    },
+    "shadows": [
+      { "name": "neon-cta-glow", "value": "0 4px 18px rgba(188, 72, 154, 0.35)", "purpose": "Play Shadows RPG CTA at rest; hover 0 6px 24px rgba(188, 72, 154, 0.55)." },
+      { "name": "gold-glow", "value": "0 6px 22px rgba(242, 201, 76, 0.30)", "purpose": "Gold primary button." },
+      { "name": "portal-aura", "value": "0 0 60px rgba(113, 43, 140, 0.35)", "purpose": "Shadows logo tile in the Shadows band." },
+      { "name": "menu-drop", "value": "0 18px 30px rgba(0, 0, 0, 0.35)", "purpose": "Open mobile nav panel only." },
+      { "name": "photo-band-scrim", "value": "linear-gradient(180deg, rgba(13,23,49,0.35) 0%, rgba(13,23,49,0.6) 55%, var(--bg-page) 100%), radial-gradient(60% 55% at 50% 0%, rgba(113,43,140,0.32), transparent 70%)", "purpose": "Page-header scrim over a ~50% opacity photo. Hero ends on fixed var(--midnight) instead." }
+    ],
+    "motion": [
+      { "name": "state-fast", "value": "150ms ease", "purpose": "Color, border-color, and transform transitions on links, cards, pills, badges." },
+      { "name": "card-lift", "value": "translateY(-4px)", "purpose": "Card hover lift (post cards and spotlight strips -3px, contact channels -2px). Disabled under prefers-reduced-motion." },
+      { "name": "spotlight-crossfade", "value": "opacity 200ms ease, every 30s", "purpose": "Spotlight strip rotation; paused when tab hidden, off under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "wordmark-collapse", "value": "1180px" },
+      { "name": "single-column", "value": "900px" },
+      { "name": "mobile-nav", "value": "720px" },
+      { "name": "stack", "value": "700px" },
+      { "name": "small-phone", "value": "560px" },
+      { "name": "tiny", "value": "360px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Play Shadows RPG CTA",
+      "kind": "button",
+      "refersTo": "button-cta",
+      "description": "Header-only flagship CTA: violet→magenta gradient pill with a neon glow.",
+      "html": "<a class=\"ds-btn-cta\" href=\"#\">Play Shadows RPG &rarr;</a>",
+      "css": ".ds-btn-cta { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #fff; background: linear-gradient(135deg, var(--aether-pulse, #712B8C), var(--neon-veil, #BC489A)); padding: 12px 22px; border-radius: 999px; box-shadow: 0 4px 18px rgba(188,72,154,0.35); text-decoration: none; display: inline-block; white-space: nowrap; transition: box-shadow .15s; } .ds-btn-cta:hover { box-shadow: 0 6px 24px rgba(188,72,154,0.55); } .ds-btn-cta:focus-visible { outline: 2px solid var(--accent-gold, #F2C94C); outline-offset: 3px; }"
+    },
+    {
+      "name": "Gold Button",
+      "kind": "button",
+      "refersTo": "button-gold",
+      "description": "Primary action: Discord, Patreon, and section CTAs.",
+      "html": "<a class=\"ds-btn-gold\" href=\"#\">Join the Discord &rarr;</a>",
+      "css": ".ds-btn-gold { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px; color: #111111; background: var(--signal-gold, #F2C94C); padding: 14px 26px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 6px 22px rgba(242,201,76,0.30); text-decoration: none; } .ds-btn-gold:hover { filter: brightness(1.06); } .ds-btn-gold:focus-visible { outline: 2px solid var(--accent-gold, #F2C94C); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action alongside a gold button.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">See the changelog &rarr;</a>",
+      "css": ".ds-btn-ghost { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: var(--accent-gold, #F2C94C); background: transparent; border: 1.5px solid color-mix(in srgb, var(--accent-gold, #F2C94C) 55%, transparent); padding: 12px 22px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: background .15s; } .ds-btn-ghost:hover { background: color-mix(in srgb, var(--accent-gold, #F2C94C) 8%, transparent); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--accent-gold, #F2C94C); outline-offset: 3px; }"
+    },
+    {
+      "name": "Content Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Shared navy card (pillar/story/post/media) — whole card is the link, lifts on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-eyebrow\">WRITING</span><h3>Serialized fiction</h3><p>Original stories from the crew, hosted right here.</p><span class=\"ds-card-link\">Read the stories &rarr;</span></a>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 14px; max-width: 340px; background: var(--card-bg, #16294F); border: 1px solid var(--card-border, rgba(32,63,123,0.45)); border-radius: 14px; padding: 34px 30px; color: var(--text-primary, #fff); text-decoration: none; transition: transform .15s, border-color .15s; } .ds-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover, rgba(27,187,196,0.55)); } .ds-card:focus-visible { outline: 2px solid var(--accent-gold, #F2C94C); outline-offset: 3px; } .ds-card .ds-eyebrow { font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: var(--accent-cyan, #1BBBC4); } .ds-card h3 { font-family: 'Cerulean Nights', 'Audiowide', sans-serif; font-weight: 600; font-size: 22px; margin: 0; } .ds-card p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: var(--text-secondary, rgba(255,255,255,0.8)); margin: 0; } .ds-card-link { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: var(--accent-cyan, #1BBBC4); }"
+    },
+    {
+      "name": "Tag Pill",
+      "kind": "chip",
+      "refersTo": "tag-pill",
+      "description": "Mono filter pill; active state fills Signal Gold.",
+      "html": "<div class=\"ds-tags\"><button class=\"ds-tag is-active\" aria-pressed=\"true\">All</button><button class=\"ds-tag\" aria-pressed=\"false\">Shadows</button><button class=\"ds-tag\" aria-pressed=\"false\">Podcast</button></div>",
+      "css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 10px; } .ds-tag { font-family: 'Roboto Mono', monospace; font-size: 12px; letter-spacing: 0.05em; color: var(--text-secondary, rgba(255,255,255,0.8)); background: var(--chip-bg, rgba(255,255,255,0.06)); border: 1px solid var(--chip-border, rgba(255,255,255,0.12)); padding: 8px 16px; border-radius: 999px; cursor: pointer; transition: color .15s, border-color .15s, background .15s; } .ds-tag:hover { border-color: var(--card-border-hover, rgba(27,187,196,0.55)); color: var(--text-primary, #fff); } .ds-tag.is-active { color: #111111; background: var(--signal-gold, #F2C94C); border-color: var(--signal-gold, #F2C94C); } .ds-tag:focus-visible { outline: 2px solid var(--accent-gold, #F2C94C); outline-offset: 3px; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "description": "Sticky translucent header nav; cyan hover underline, gold current-page underline.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Home</a><a href=\"#\" class=\"is-active\" aria-current=\"page\">Writing</a><a href=\"#\">Blog</a><a href=\"#\">YouTube</a><a href=\"#\">Podcasts</a><a href=\"#\">About</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 30px; padding: 16px 24px; background: var(--bg-header, rgba(13,23,49,0.88)); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,0.08)); } .ds-nav a { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 15px; color: var(--text-secondary, rgba(255,255,255,0.8)); padding: 8px 2px; border-bottom: 2px solid transparent; text-decoration: none; transition: color .15s, border-color .15s; } .ds-nav a:hover { color: var(--text-primary, #fff); border-bottom-color: var(--accent-cyan, #1BBBC4); } .ds-nav a.is-active { color: var(--text-primary, #fff); border-bottom-color: var(--accent-gold, #F2C94C); } .ds-nav a:focus-visible { outline: 2px solid var(--accent-gold, #F2C94C); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "description": "Story completion badge tinted from the story's accent; Complete = outline, Ongoing = filled.",
+      "html": "<div class=\"ds-badges\" style=\"--story-accent:#BC489A\"><span class=\"ds-badge\">Complete</span><span class=\"ds-badge ds-badge--ongoing\">Ongoing</span></div>",
+      "css": ".ds-badges { display: flex; gap: 10px; } .ds-badge { --tint: color-mix(in srgb, var(--story-accent, #1BBBC4) 45%, var(--text-primary, #fff) 55%); --fill: color-mix(in srgb, var(--story-accent, #1BBBC4) 45%, white 55%); font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--tint); color: var(--tint); background: var(--chip-bg, rgba(255,255,255,0.06)); } .ds-badge--ongoing { background: var(--fill); color: #111111; }"
+    },
+    {
+      "name": "Photo Band Header",
+      "kind": "custom",
+      "description": "Signature cinematic page header: navy scrim + violet top glow over a dim photo, fixed-white type.",
+      "html": "<header class=\"ds-band\"><span class=\"ds-band-eyebrow\">FROM THE STUDIO</span><h1>The Blog</h1><p>Dev notes, lore drops, and what the crew is building next.</p></header>",
+      "css": ".ds-band { position: relative; padding: 72px 32px 56px; text-align: center; background: linear-gradient(180deg, rgba(13,23,49,0.35) 0%, rgba(13,23,49,0.6) 55%, #0D1731 100%), radial-gradient(60% 55% at 50% 0%, rgba(113,43,140,0.45), transparent 70%), radial-gradient(45% 45% at 85% 30%, rgba(27,187,196,0.15), transparent 70%), #1a2140; border-radius: 14px; overflow: hidden; } .ds-band-eyebrow { font-family: 'Roboto Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: #1BBBC4; } .ds-band h1 { font-family: 'Cerulean Nights', 'Audiowide', sans-serif; font-weight: 800; font-size: 48px; line-height: 1.05; margin: 18px 0 16px; color: #ffffff; } .ds-band p { font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.82); max-width: 520px; margin: 0 auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Neon Underpass",
+    "overview": "The site is a rainy city after dark, seen from street level. The ground is Midnight Underpass navy (#0D1731), and light comes only from signs, portals, and screens: violet haze pooling at the top of every photo band, a cyan ping off to one side, gold where you're meant to act. Depth comes from glows and scrims rather than shadows cast by a sun. It's the NYTE City of Shadows RPG, but pulled back one step into the studio that makes it. The setting sets the mood, and the real work stays readable.\n\nThe page structure is cinematic bands, quiet rooms. Full-bleed photo bands (hero, page headers, the Shadows RPG feature band, story headers) are the dramatic moments. They're always dark, always scrimmed, and white type sits over licensed art. Between them sit calm, legible rooms: card grids, prose columns, and lists on the plain page background. There the palette steps back to navy cards, near-white copy, and one lit signal color per element. Density is moderate and generous. Sections breathe at 84–130px of vertical padding, and nothing is crammed.\n\nDark is the default and the identity. Light mode is an opt-in courtesy that reassigns the same eight brand colors (it never adds new hues). The photo bands stay dark in both themes.",
+    "keyCharacteristics": [
+      "Dark navy ground. Light is emitted by glows and gradients, not cast as shadows.",
+      "Full-bleed photo bands with violet/cyan radial glows over a navy scrim, always dark.",
+      "Calm navy cards with Deep Circuit borders that light cyan on hover and lift 3–4px.",
+      "Every interactive shape is a pill. Every content surface is a softly rounded card (14px).",
+      "Three voices of type: a display face for names, Inter for reading, Roboto Mono for HUD labels.",
+      "Gold means \"act here\", cyan means \"link or data\", violet/magenta means \"the Shadows world\"."
+    ],
+    "rules": [
+      { "name": "The Contrast Decides the Role Rule", "body": "On navy, only cyan, gold, and green are legible as text (7.5–11:1). Violet, Deep Circuit, and magenta fail there (2–3.8:1), so on dark grounds they only glow, fill, or border. In light mode it flips exactly: Deep Circuit and Aether Pulse carry every text accent, and cyan, gold, and green disappear from text. Use the `--accent-*` semantic tokens, never the raw brand constant, for any accent text on theme-aware surfaces.", "section": "colors" },
+      { "name": "The Gold Means Go Rule", "body": "Signal Gold marks the one thing to do next: the primary button, the active filter, the current page, the focused element. Don't use it for decoration.", "section": "colors" },
+      { "name": "The Eight-Color Rule", "body": "Every color on the site is one of the eight brand colors, a blend of two of them, or white or black at an opacity. Light mode reassigns these colors and never invents new hues.", "section": "colors" },
+      { "name": "The Eyebrow Before the Name Rule", "body": "Every major heading gets a short mono capitals eyebrow in a single accent color above it, like a HUD tag on the thing it labels.", "section": "typography" },
+      { "name": "The Display Face Never Reads Rule", "body": "The display face stays at title size and above and never sets running text. Cerulean Nights is mixed-case only, never all-caps (a brand-guide constraint). Anything longer than a line is Inter.", "section": "typography" },
+      { "name": "The Light Is Emitted Rule", "body": "Shadows are colored and come from the element (a glow), never grey and cast downward. Cards don't get drop shadows. They respond to hover with a lift and a border color change.", "section": "elevation" },
+      { "name": "The Always-Dark Band Rule", "body": "Photo bands keep their navy scrim in both themes, and any text on them gets an explicit fixed white (`--text-light` or a literal rgba white), never inherited color. A band's final gradient stop fades to `--bg-page` only when theme-aware content follows it. When another dark band follows, it ends on fixed Midnight.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put every new hero or page header on the photo-band pattern: licensed photo at about 50% opacity, a navy scrim, and a violet top glow, with text pinned to fixed white.",
+      "Do reuse `--card-bg` / `--card-border` / `--card-border-hover` for any new card, and make the whole card the link.",
+      "Do head every section with a mono capitals eyebrow in one accent, then a display-face heading.",
+      "Do use `--accent-cyan/gold/green/magenta` for accent text on theme-aware surfaces so light mode swaps them correctly. Reserve raw brand constants for fills, glows, and always-dark bands.",
+      "Do make every pressable element a pill and give it the gold focus ring.",
+      "Do check contrast against both navy and Daylight Paper before giving any brand color a text role (WCAG AA 4.5:1).",
+      "Do honor `prefers-reduced-motion`: no hover lifts, no auto-rotation."
+    ],
+    "donts": [
+      "Don't drift toward a generic SaaS landing page: light-first layouts, flat gradient blobs, stock illustration, or icon-and-three-bullets feature grids.",
+      "Don't echo the old Google Sites build this site replaced.",
+      "Don't set Aether Pulse, Deep Circuit, or Neon Veil as text on the navy ground. They fail contrast there, so let them glow, fill, or border instead.",
+      "Don't add grey drop shadows to cards or panels. Depth is emitted light and hover lift.",
+      "Don't let text on a photo band inherit its color, because it flips to dark in light mode.",
+      "Don't introduce a ninth hue, or give light mode colors of its own.",
+      "Don't set running text in the display face, or set Cerulean Nights in all caps.",
+      "Don't use Signal Gold decoratively. It marks the next action."
+    ]
+  }
+}
