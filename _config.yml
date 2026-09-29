@@ -54,3 +54,5 @@ exclude:
   - brand
   - README.md
   - CLAUDE.md
+  - PRODUCT.md
+  - DESIGN.md
