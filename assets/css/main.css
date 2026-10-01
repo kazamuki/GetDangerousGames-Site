@@ -336,28 +336,18 @@ a { text-decoration: none; color: inherit; }
   filter: drop-shadow(0 2px 14px rgba(113, 43, 140, 0.75));
 }
 
-.hero .tagline {
+/* Fixed white on the always-dark scrim; says in one sentence what the studio is. */
+.hero .hero-lede {
   position: relative;
-  color: var(--signal-gold);
-  font-size: 15px;
-  letter-spacing: 0.22em;
+  max-width: 560px;
   margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  text-wrap: balance;
 }
 
-.hero .tagline a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 4px;
-  transition: color .15s, text-decoration-color .15s;
-}
-
-.hero .tagline a:hover {
-  color: #ffffff;
-  text-decoration-color: currentColor;
-}
-
-.hero .hero-cta { position: relative; margin-top: 40px; }
+.hero .hero-cta { position: relative; margin-top: 36px; }
 
 /* Fixed cyan, not --accent-cyan, which turns navy in light mode on this always-dark band. */
 .shadows-band p a { color: var(--static-cyan); text-decoration: underline; text-underline-offset: 3px; }
@@ -613,6 +603,46 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 6px;
 }
+
+/* Quiet Patreon line under the hero CTA. The hero is always dark, so fixed white. */
+.hero .hero-patreon {
+  position: relative;
+  margin-top: 20px;
+  padding: 8px 4px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 4px;
+  transition: color .15s, text-decoration-color .15s;
+}
+.hero .hero-patreon:hover { color: var(--text-light); text-decoration-color: var(--signal-gold); }
+
+.shadows-band .band-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 6px;
+}
+.shadows-band .band-actions .btn-ghost { margin-top: 0; }
+
+/* Pause control for the spotlight rotation (WCAG 2.2.2). */
+.pillars .spotlight-pause {
+  margin-top: -24px;
+  min-height: 44px;
+  padding: 10px 18px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.pillars .spotlight-pause:hover { color: var(--text-primary); border-color: var(--card-border-hover); }
+.pillars .spotlight-pause[hidden] { display: none; }
 
 /* About — crew cards */
 .crew-avatar {
@@ -891,6 +921,7 @@ a { text-decoration: none; color: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: 44px;
 }
 
 /* Podcast shows & episode rows */
@@ -1152,6 +1183,7 @@ a { text-decoration: none; color: inherit; }
   background: var(--chip-bg);
   border: 1px solid var(--chip-border);
   padding: 8px 16px;
+  min-height: 44px;
   border-radius: 999px;
   cursor: pointer;
   transition: color .15s, border-color .15s, background .15s;
@@ -1409,6 +1441,7 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 6px;
   padding: 8px 14px 8px 10px;
+  min-height: 44px;
   border-radius: 999px;
   background: rgba(13, 23, 49, 0.55);
   backdrop-filter: blur(4px);
@@ -1575,7 +1608,7 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 560px) {
   .hero { padding-top: 84px; padding-bottom: 64px; }
   .hero h1 { font-size: 38px; }
-  .hero .tagline { font-size: 13px; letter-spacing: 0.14em; }
+  .hero .hero-lede { font-size: 16px; }
 
   .shadows-band { padding-top: 64px; padding-bottom: 64px; gap: 32px; }
   .shadows-band h2 { font-size: 28px; }
@@ -1640,7 +1673,7 @@ a { text-decoration: none; color: inherit; }
 .footer-nav {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 4px 22px;
   flex-wrap: wrap;
 }
 
@@ -1650,6 +1683,9 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   color: var(--text-tertiary);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .footer-link:hover { color: var(--text-primary); }
@@ -1675,7 +1711,8 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Inter', sans-serif;
   font-style: italic;
   font-size: 12px;
-  color: var(--text-faint);
+  /* --text-faint (28%) measured 2.5:1; tertiary is 6:1 dark / 5:1 light. */
+  color: var(--text-tertiary);
 }
 
 /* Changelog — a utility page, not a narrative one, so it deliberately skips
