@@ -1365,23 +1365,14 @@ a { text-decoration: none; color: inherit; }
   margin: 36px 0 8px;
   padding: 24px 26px;
   border-radius: 14px;
-  background: var(--card-bg);
+  /* 3px gold top bar as a background layer, so it follows the rounded corners */
+  background: linear-gradient(var(--accent-gold), var(--accent-gold)) top / 100% 3px no-repeat, var(--card-bg);
   border: 1px solid var(--card-border);
-  position: relative;
-  overflow: hidden; /* clips the gold top bar to the rounded corners */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
-}
-
-.patreon-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 3px;
-  background: var(--accent-gold);
 }
 
 .patreon-cta > div { flex: 1 1 260px; }
