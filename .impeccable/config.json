@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-01T02:18:21.636Z",
+        "reason": "user confirmed: brand/theme.md specifies Inter for body text"
+      },
+      {
+        "rule": "overused-font",
+        "value": "roboto",
+        "createdAt": "2026-10-01T02:18:21.730Z",
+        "reason": "user confirmed: brand/theme.md specifies Roboto Mono for labels/HUD text"
+      }
+    ]
+  }
+}

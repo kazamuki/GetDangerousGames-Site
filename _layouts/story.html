@@ -41,6 +41,36 @@ layout: default
     {{ content }}
   </div>
 
+  {% assign all_stories = site.stories | sort: "order" %}
+  {% assign next_story = all_stories.first %}
+  {% for s in all_stories %}{% if s.order > page.order %}{% assign next_story = s %}{% break %}{% endif %}{% endfor %}
+  <aside class="content-section tight story-end" aria-label="After the story">
+    {% if next_story and next_story.url != page.url %}
+    <a class="story-end-next" href="{{ next_story.url | relative_url }}" style="--story-accent: {{ next_story.accent }};">
+      {% if next_story.image %}<img src="{{ next_story.image | relative_url }}" alt="" loading="lazy">{% endif %}
+      <span class="story-end-next-text">
+        <span class="story-end-label">Next story</span>
+        <span class="story-end-title">{{ next_story.title }}</span>
+        <span class="story-end-sub">By {{ next_story.author }} &middot; {{ next_story.reading_time }}</span>
+      </span>
+    </a>
+    {% endif %}
+
+    <div class="story-end-ask">
+      <h2>Like the world? You can play in it.</h2>
+      <p>{% if page.status == "ongoing" %}This story is still being written. Backing the studio helps keep the chapters coming.{% else %}Our stories are built in the same worlds we play in, and Shadows RPG is the one you can sit down at.{% endif %}</p>
+      <div class="story-end-actions">
+        {% if page.status == "ongoing" %}
+        <a class="btn-gold" href="{{ site.social.patreon }}">Follow along on Patreon</a>
+        <a class="btn-ghost" href="{{ site.social.shadows_rpg }}">Play Shadows RPG</a>
+        {% else %}
+        <a class="btn-gold" href="{{ site.social.shadows_rpg }}">Play Shadows RPG</a>
+        <a class="btn-ghost" href="{{ site.social.discord }}">Join the Discord</a>
+        {% endif %}
+      </div>
+    </div>
+  </aside>
+
   <div class="content-section tight post-footer">
     <a class="pillar-link" href="{{ '/writing/' | relative_url }}" style="color: var(--story-accent-safe);">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="var(--story-accent-safe)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>

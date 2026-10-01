@@ -34,6 +34,44 @@ layout: default
     {% endif %}
   </div>
 
+  {%- comment -%} Up to 2 other posts: same-tag first, then newest to fill. {%- endcomment -%}
+  {% assign related = "" | split: "" %}
+  {% for p in site.posts %}
+    {% if related.size < 2 and p.url != page.url %}
+      {% assign shared = p.tags | where_exp: "t", "page.tags contains t" %}
+      {% if shared.size > 0 %}{% assign related = related | push: p %}{% endif %}
+    {% endif %}
+  {% endfor %}
+  {% for p in site.posts %}
+    {% if related.size < 2 and p.url != page.url %}
+      {% unless related contains p %}{% assign related = related | push: p %}{% endunless %}
+    {% endif %}
+  {% endfor %}
+
+  <aside class="content-section tight story-end post-end" aria-label="After the post">
+    {% if related.size > 0 %}
+    <div class="post-end-more">
+      <h2>Keep reading</h2>
+      <div class="post-list">
+        {% for p in related %}{% include post-card.html post=p %}{% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="story-end-ask">
+      <h2>Come talk it over with us</h2>
+      <p>{% if page.patreon %}The Discord is where this stuff gets argued about at the table, and Shadows RPG is where you can try it yourself.{% else %}The Discord is where the crew and the community talk shop. Patreon keeps the work coming.{% endif %}</p>
+      <div class="story-end-actions">
+        <a class="btn-gold" href="{{ site.social.discord }}">Join the Discord</a>
+        {% if page.patreon %}
+        <a class="btn-ghost" href="{{ site.social.shadows_rpg }}">Play Shadows RPG</a>
+        {% else %}
+        <a class="btn-ghost" href="{{ site.social.patreon }}">Back us on Patreon</a>
+        {% endif %}
+      </div>
+    </div>
+  </aside>
+
   <div class="content-section tight post-footer">
     <a class="pillar-link" href="{{ '/blog/' | relative_url }}" style="color: var(--accent-cyan);">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="var(--accent-cyan)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
