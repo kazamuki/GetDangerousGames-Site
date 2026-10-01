@@ -202,7 +202,7 @@ Depth is **emitted light plus scrims**, not a material shadow stack. Surfaces si
 
 ## Shapes
 
-The form language is soft-cornered and pill-driven. Anything you press is a full pill (999px): buttons, tag pills, contact channels, social badges, the theme and menu toggles, status badges, the skip link. Anything that holds content is a softly rounded card (14px), and dashed empty-state panels are 16px. Embedded media and images inside prose round to 12px. The Shadows logo tile is the one 20px square. Avatars are circles, and crew avatars get a 2px ring in their role accent. Cards clip their cover art with `overflow: hidden`, so imagery takes on the card corner. Story cards carry a 3px top rule in their story accent. Story h2s and blockquotes, and the Patreon CTA, take a 3px left rule in an accent.
+The form language is soft-cornered and pill-driven. Anything you press is a full pill (999px): buttons, tag pills, contact channels, social badges, the theme and menu toggles, status badges, the skip link. Anything that holds content is a softly rounded card (14px), and dashed empty-state panels are 16px. Embedded media and images inside prose round to 12px. The Shadows logo tile is the one 20px square. Avatars are circles, and crew avatars get a 2px ring in their role accent. Cards clip their cover art with `overflow: hidden`, so imagery takes on the card corner. Story cards carry a 3px top rule in their story accent. Story h2s carry a short 40px × 3px accent bar above them, story blockquotes sit on a soft accent-tinted 12px panel, and the Patreon CTA takes a 3px gold top rule like the story cards. There are no side-tab left borders anywhere.
 
 ## Components
 
