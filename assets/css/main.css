@@ -359,6 +359,10 @@ a { text-decoration: none; color: inherit; }
 
 .hero .hero-cta { position: relative; margin-top: 40px; }
 
+/* Fixed cyan, not --accent-cyan, which turns navy in light mode on this always-dark band. */
+.shadows-band p a { color: var(--static-cyan); text-decoration: underline; text-underline-offset: 3px; }
+.shadows-band p strong { color: var(--text-light); }
+
 /* The Shadows band is always dark, so its ghost button must not use the
    theme-aware --accent-gold (violet in light mode). */
 .shadows-band .btn-ghost {
