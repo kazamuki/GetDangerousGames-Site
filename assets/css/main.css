@@ -1367,12 +1367,21 @@ a { text-decoration: none; color: inherit; }
   border-radius: 14px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-top: 3px solid var(--accent-gold);
+  position: relative;
+  overflow: hidden; /* clips the gold top bar to the rounded corners */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.patreon-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--accent-gold);
 }
 
 .patreon-cta > div { flex: 1 1 260px; }
