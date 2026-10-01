@@ -2,6 +2,10 @@
 # NOT for content updates (new stories, videos, episodes) — that's what the Blog is for.
 # Newest entry first.
 
+- date: "2026-10-01"
+  title: "Easier to Read, Easier to Tap"
+  description: "Home now opens with a one-line answer to what we are, and the Shadows section has its own Learn button. Small text and pink accents are brighter on dark backgrounds, the Home spotlights can be paused, and footer links and filter pills are bigger tap targets."
+
 - date: "2026-09-30"
   title: "Clearer Paths to Shadows, Discord, and Patreon"
   description: "Home now has a Play Shadows RPG button right in the hero, a plainer intro to the game, and a Back the Studio band. Every story and blog post ends with what to read next and a way to join in, and Contact leads with Discord and Patreon, with our other channels tucked underneath."

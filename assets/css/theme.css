@@ -71,7 +71,11 @@
   --accent-cyan: var(--static-cyan);
   --accent-green: var(--ghostly-green);
   --accent-gold: var(--signal-gold);
-  --accent-magenta: var(--neon-veil);
+  /* Raw Neon Veil is 3.83:1 on Midnight and 3.10:1 on the card surface, so it
+     can't be text on dark. A 70% veil / 30% white blend is 6.3:1 and 5.1:1
+     and still reads as magenta. --veil-text is the always-dark-band version. */
+  --veil-text: color-mix(in srgb, var(--neon-veil) 70%, white);
+  --accent-magenta: var(--veil-text);
 
   --gutter: clamp(20px, 6vw, 48px);
 }
@@ -90,7 +94,7 @@
 
   --text-primary: var(--text-dark);
   --text-secondary: rgba(17, 17, 17, 0.78);
-  --text-tertiary: rgba(17, 17, 17, 0.58);
+  --text-tertiary: rgba(17, 17, 17, 0.62); /* 0.58 measured 4.49:1, just under AA */
   --text-faint: rgba(17, 17, 17, 0.32);
 
   /* Static Cyan / Signal Gold / Ghostly Green all fail WCAG text contrast
