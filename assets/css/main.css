@@ -1857,25 +1857,33 @@ a { text-decoration: none; color: inherit; }
   right: -14px;
   width: 64px;
   height: 64px;
-  border-radius: 50%;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--signal-gold);
-  color: var(--text-dark);
+  background: var(--rank-bg, var(--signal-gold));
+  color: var(--rank-fg, var(--text-dark));
   border: 3px solid var(--midnight);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
-  font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
-  font-size: 30px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
   line-height: 1;
 }
 .rank-badge small {
   font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
   font-size: 9px;
   letter-spacing: 0.14em;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
+/* One color per tier so the letter and the color both carry the verdict. */
+.rank-badge[data-rank="S"] { --rank-bg: #F2C94C; }
+.rank-badge[data-rank="A"] { --rank-bg: #71C388; }
+.rank-badge[data-rank="B"] { --rank-bg: #1BBBC4; }
+.rank-badge[data-rank="C"] { --rank-bg: #BC489A; --rank-fg: #FFFFFF; }
+.rank-badge[data-rank="D"] { --rank-bg: #E5484D; }
 @media (min-width: 900px) {
   .post-layout {
     display: grid;

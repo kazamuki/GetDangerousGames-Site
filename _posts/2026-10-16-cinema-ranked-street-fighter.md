@@ -3,7 +3,8 @@ title: "Cinema Ranked: Street Fighter (B Rank)"
 date: 2026-10-16
 tags: [Community, Cinema Ranked]
 author: Kris
-image: /assets/images/blog/cinema-ranked-card.jpg
+image: /assets/images/blog/street-fighter-share.jpg
+card_image: /assets/images/blog/cinema-ranked-card.jpg
 header_image: /assets/images/blog/cinema-ranked-header.jpg
 poster: /assets/images/blog/street-fighter-poster.jpg
 poster_alt: "Street Fighter theatrical poster: Chun-Li, Ken and Ryu mid-attack against a red and orange burst, tagline Ready. Set. Fight."

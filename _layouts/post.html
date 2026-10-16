@@ -23,7 +23,7 @@ layout: default
     <figure class="post-poster">
       <div class="post-poster-frame">
         <img src="{{ page.poster | relative_url }}" alt="{{ page.poster_alt }}" width="720" height="1064">
-        {% if page.rank %}<span class="rank-badge" aria-label="Cinema Ranked: {{ page.rank }} rank"><small>RANK</small>{{ page.rank }}</span>{% endif %}
+        {% if page.rank %}<span class="rank-badge" data-rank="{{ page.rank | upcase }}" aria-label="Cinema Ranked: {{ page.rank | upcase }} rank"><small>RANK</small>{{ page.rank | upcase }}</span>{% endif %}
       </div>
       <figcaption>{{ page.poster_credit | default: "Poster art © its respective owners." }}</figcaption>
     </figure>

@@ -6,10 +6,11 @@
   instead, so a run of older posts doesn't repeat the same photo.
 {%- endcomment -%}
 <a class="post-card" data-tags="{{ include.post.tags | join: '|' }}" href="{{ include.post.url | relative_url }}">
-  {%- if include.post.image == '/assets/images/blog-header.jpg' %}
+  {%- assign _img = include.post.card_image | default: include.post.image %}
+  {%- if _img == '/assets/images/blog-header.jpg' %}
   <span class="post-card-img post-card-img--placeholder"><img src="{{ '/assets/images/gd-bear-icon.png' | relative_url }}" alt="" loading="lazy"></span>
   {%- else %}
-  <img class="post-card-img" src="{{ include.post.image | relative_url }}" alt="" loading="lazy">
+  <img class="post-card-img" src="{{ _img | relative_url }}" alt="" loading="lazy">
   {%- endif %}
   <div class="post-card-body">
     <span class="eyebrow post-card-date">{{ include.post.date | date: "%B %-d, %Y" }}</span>
