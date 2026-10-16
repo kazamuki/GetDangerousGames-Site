@@ -1,6 +1,6 @@
 ---
 title: "Building the Cyborg: Kicker Dice, Plasma Cannons, and a Name That Didn't Stick"
-date: 2026-10-10
+date: 2026-10-06
 tags: [Shadows]
 image: /assets/images/blog/cyborg-archetype-header.jpg
 patreon: https://www.patreon.com/d33kode/posts/building-cyborg-170113235
