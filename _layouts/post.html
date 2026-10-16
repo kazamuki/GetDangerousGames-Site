@@ -3,7 +3,7 @@ layout: default
 ---
 <article>
   <header class="page-header post-header">
-    <img class="page-header-bg" src="{{ page.image | relative_url }}" alt="">
+    <img class="page-header-bg" src="{{ page.header_image | default: page.image | relative_url }}" alt="">
     <div class="page-header-overlay"></div>
 
     <span class="eyebrow" style="color: var(--signal-gold);">
@@ -59,8 +59,13 @@ layout: default
     {% endif %}
 
     <div class="story-end-ask">
+      {% if page.tags contains "Community" %}
+      <h2>Want to join the conversation?</h2>
+      <p>This one started as a conversation in our Discord. Come tell {{ page.author | default: "us" }} where you landed on it, or bring your own take.</p>
+      {% else %}
       <h2>Come talk it over with us</h2>
       <p>{% if page.patreon %}The Discord is where this stuff gets argued about at the table, and Shadows RPG is where you can try it yourself.{% else %}The Discord is where the crew and the community talk shop. Patreon keeps the work coming.{% endif %}</p>
+      {% endif %}
       <div class="story-end-actions">
         <a class="btn-gold" href="{{ site.social.discord }}">Join the Discord</a>
         {% if page.patreon %}

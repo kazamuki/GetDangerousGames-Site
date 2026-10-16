@@ -1818,3 +1818,14 @@ a { text-decoration: none; color: inherit; }
   .changelog-entry { flex-direction: column; gap: 6px; }
   .changelog-date { width: auto; }
 }
+
+/* Short callout inside a post body (spoiler warning, "these are the author's
+   own opinions" disclaimer). Use kramdown's `{: .post-note}` after a paragraph. */
+.post-body p.post-note {
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 12px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+}
