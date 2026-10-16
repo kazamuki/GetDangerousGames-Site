@@ -1,6 +1,6 @@
 ---
 title: "Getting Combat Out of Deighton's Head, One Question at a Time"
-date: 2026-10-09
+date: 2026-10-03
 tags: [Shadows]
 image: /assets/images/blog/combat-mechanics-header.jpg
 patreon: https://www.patreon.com/d33kode/posts/getting-combat-170113040
