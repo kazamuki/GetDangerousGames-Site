@@ -17,7 +17,20 @@ layout: default
     {% endif %}
   </header>
 
+  {%- comment -%} Optional poster (front matter: poster, poster_alt, poster_credit, rank): top of the body on phones, sticky left column on wide screens. {%- endcomment -%}
+  {% if page.poster %}
+  <div class="content-section tight post-layout">
+    <figure class="post-poster">
+      <div class="post-poster-frame">
+        <img src="{{ page.poster | relative_url }}" alt="{{ page.poster_alt }}" width="720" height="1064">
+        {% if page.rank %}<span class="rank-badge" data-rank="{{ page.rank | upcase }}" aria-label="Cinema Ranked: {{ page.rank | upcase }} rank"><small>RANK</small>{{ page.rank | upcase }}</span>{% endif %}
+      </div>
+      <figcaption>{{ page.poster_credit | default: "Poster art © its respective owners." }}</figcaption>
+    </figure>
+    <div class="post-body">
+  {% else %}
   <div class="content-section tight post-body">
+  {% endif %}
     {{ content }}
 
     {% if page.patreon %}
@@ -32,6 +45,7 @@ layout: default
       </a>
     </aside>
     {% endif %}
+  {% if page.poster %}</div>{% endif %}
   </div>
 
   {%- comment -%} Up to 2 other posts: same-tag first, then newest to fill. {%- endcomment -%}

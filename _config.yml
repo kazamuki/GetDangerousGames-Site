@@ -52,6 +52,7 @@ exclude:
   - Google-Page-Oriignal
   - content
   - brand
+  - scripts
   - README.md
   - CLAUDE.md
   - PRODUCT.md

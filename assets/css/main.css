@@ -1829,3 +1829,68 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid var(--card-border);
   border-radius: 10px;
 }
+
+/* Post with a poster (front matter `poster:`): poster on top on phones,
+   sticky left column from 900px. `rank:` adds a tier stamp on the poster. */
+.post-layout { max-width: 1040px; display: block; }
+.post-layout .post-body { max-width: 720px; margin: 0 auto; }
+.post-poster { margin: 0 auto 32px; max-width: 260px; }
+.post-poster-frame { position: relative; }
+.post-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+.post-poster figcaption {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+.rank-badge {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--rank-bg, var(--signal-gold));
+  color: var(--rank-fg, var(--text-dark));
+  border: 3px solid var(--midnight);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1;
+}
+.rank-badge small {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  margin-bottom: 1px;
+}
+/* One color per tier so the letter and the color both carry the verdict. */
+.rank-badge[data-rank="S"] { --rank-bg: #F2C94C; }
+.rank-badge[data-rank="A"] { --rank-bg: #71C388; }
+.rank-badge[data-rank="B"] { --rank-bg: #1BBBC4; }
+.rank-badge[data-rank="C"] { --rank-bg: #BC489A; --rank-fg: #FFFFFF; }
+.rank-badge[data-rank="D"] { --rank-bg: #E5484D; }
+@media (min-width: 900px) {
+  .post-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .post-layout .post-body { margin: 0; }
+  .post-poster { position: sticky; top: 110px; margin: 0; }
+}
