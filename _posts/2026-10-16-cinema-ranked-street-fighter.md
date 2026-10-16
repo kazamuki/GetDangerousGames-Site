@@ -1,12 +1,12 @@
 ---
-title: "Cinema Ranked: Street Fighter (7/10)"
+title: "Cinema Ranked: Street Fighter (B Rank)"
 date: 2026-10-16
 tags: [Community, Cinema Ranked]
 author: Kris
 image: /assets/images/blog/cinema-ranked-card.jpg
 header_image: /assets/images/blog/cinema-ranked-header.jpg
-excerpt: "Kris saw Street Fighter in IMAX with his brother, a fellow lifelong player. Great visuals, a real Blanka, a few misses, and a 7/10 verdict."
-description: "Kris reviews the new Street Fighter movie after seeing it in IMAX: great anime flashbacks, a convincing Blanka, uneven pacing. Final score 7/10."
+excerpt: "Kris saw Street Fighter in IMAX with his brother, a fellow lifelong player. Great visuals, a real Blanka, a few misses, and a B-rank verdict."
+description: "Kris reviews the new Street Fighter movie after seeing it in IMAX: great anime flashbacks, a convincing Blanka, uneven pacing. Final rank: B."
 ---
 
 *Light spoilers: this review mentions the film's ending.*
@@ -26,7 +26,7 @@ The movie ends on a "to be continued" cliffhanger, which caught me off guard. My
 
 Overall, Street Fighter is a good movie for fans of the games, but not a great one. The action, visuals, music, and character moments make it worth watching, even if the pacing and some character choices hold it back.
 
-**Final Score: 7/10**
+**Final Rank: B**
 
 *Cinema Ranked is a community series. These are Kris's own opinions, not Get Dangerous Games' or the Shadows RPG crew's.*
 {: .post-note}
