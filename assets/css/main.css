@@ -1252,7 +1252,7 @@ a { text-decoration: none; color: inherit; }
   background-size: cover;
   background-position: center;
 }
-.post-card-img--poster img {
+.post-card-img--poster > img:not(.post-card-series) {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1274,6 +1274,18 @@ a { text-decoration: none; color: inherit; }
   z-index: 1;
 }
 .post-card .rank-badge--card small { font-size: 7px; }
+/* Series logo (Cinema Ranked), bottom-right of the image tile like the share card. */
+.post-card-series {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--midnight);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
 
 .post-card-body {
   flex: 1;
@@ -1317,9 +1329,12 @@ a { text-decoration: none; color: inherit; }
 .post-card-date { color: var(--text-tertiary); }
 
 .post-card h3 {
-  font-family: 'Cerulean Nights', 'Audiowide', sans-serif;
-  font-weight: 600;
+  /* Inter, not the display face: Audiowide is hard to read at title length. */
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
   font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -1333,7 +1348,7 @@ a { text-decoration: none; color: inherit; }
 .post-card-tags { margin: 2px 0 0; }
 
 /* Blog post */
-.post-header h1 { font-size: 44px; max-width: 820px; }
+.post-header h1 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; font-size: 44px; max-width: 820px; }
 
 .post-body, .story-body {
   max-width: 720px;
