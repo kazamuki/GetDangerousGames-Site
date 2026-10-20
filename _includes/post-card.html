@@ -18,6 +18,7 @@
   <span class="post-card-img post-card-img--poster" style="background-image: url('{{ _img | relative_url }}'); --focus: {{ _focus }}; --zoom: {{ _zoom }};">
     <img src="{{ include.post.poster | relative_url }}" alt="" loading="lazy" onerror="this.remove()">
     {%- if include.post.rank %}<span class="rank-badge rank-badge--card" data-rank="{{ include.post.rank | upcase }}" aria-label="Rank {{ include.post.rank | upcase }}"><small>RANK</small>{{ include.post.rank | upcase }}</span>{% endif %}
+    {%- if include.post.tags contains "Cinema Ranked" %}<img class="post-card-series" src="{{ '/assets/images/about-kris.png' | relative_url }}" alt="Cinema Ranked" loading="lazy">{% endif %}
   </span>
   {%- elsif _img == '/assets/images/blog-header.jpg' %}
   <span class="post-card-img post-card-img--placeholder"><img src="{{ '/assets/images/gd-bear-icon.png' | relative_url }}" alt="" loading="lazy"></span>
