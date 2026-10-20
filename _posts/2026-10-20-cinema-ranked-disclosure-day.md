@@ -8,6 +8,8 @@ card_image: /assets/images/blog/cinema-ranked-card.jpg
 header_image: /assets/images/blog/cinema-ranked-header.jpg
 poster: /assets/images/blog/disclosure-day-poster.jpg
 poster_alt: "Disclosure Day theatrical poster: a glowing blue eye in streaks of light, tagline We Deserve to Know, directed by Steven Spielberg."
+card_focus: "50% 35%"
+card_zoom: 1.6
 rank: D
 excerpt: "Kris on Steven Spielberg's Disclosure Day: an intriguing premise, a disjointed and predictable story, a toothless climax, and a D-tier verdict for 2026."
 description: "Kris reviews Spielberg's Disclosure Day: a predictable story, a toothless climax and a dated alien reveal. Final rank: D for 2026."

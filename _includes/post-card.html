@@ -7,7 +7,19 @@
 {%- endcomment -%}
 <a class="post-card" data-tags="{{ include.post.tags | join: '|' }}" href="{{ include.post.url | relative_url }}">
   {%- assign _img = include.post.card_image | default: include.post.image %}
-  {%- if _img == '/assets/images/blog-header.jpg' %}
+  {%- if include.post.poster %}
+  {%- comment -%}
+    Poster posts: the poster (cropped/zoomed on `card_focus:` / `card_zoom:`) with
+    the rank stamp; the logo tile (`card_image:`) is the backdrop, so it shows if
+    the poster fails to load.
+  {%- endcomment -%}
+  {%- assign _focus = include.post.card_focus | default: "50% 30%" %}
+  {%- assign _zoom = include.post.card_zoom | default: 1 %}
+  <span class="post-card-img post-card-img--poster" style="background-image: url('{{ _img | relative_url }}'); --focus: {{ _focus }}; --zoom: {{ _zoom }};">
+    <img src="{{ include.post.poster | relative_url }}" alt="" loading="lazy" onerror="this.remove()">
+    {%- if include.post.rank %}<span class="rank-badge rank-badge--card" data-rank="{{ include.post.rank | upcase }}" aria-label="Rank {{ include.post.rank | upcase }}"><small>RANK</small>{{ include.post.rank | upcase }}</span>{% endif %}
+  </span>
+  {%- elsif _img == '/assets/images/blog-header.jpg' %}
   <span class="post-card-img post-card-img--placeholder"><img src="{{ '/assets/images/gd-bear-icon.png' | relative_url }}" alt="" loading="lazy"></span>
   {%- else %}
   <img class="post-card-img" src="{{ _img | relative_url }}" alt="" loading="lazy">

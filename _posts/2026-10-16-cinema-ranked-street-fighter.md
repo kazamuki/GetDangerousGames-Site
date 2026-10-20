@@ -8,6 +8,8 @@ card_image: /assets/images/blog/cinema-ranked-card.jpg
 header_image: /assets/images/blog/cinema-ranked-header.jpg
 poster: /assets/images/blog/street-fighter-poster.jpg
 poster_alt: "Street Fighter theatrical poster: Chun-Li, Ken and Ryu mid-attack against a red and orange burst, tagline Ready. Set. Fight."
+card_focus: "50% 32%"
+card_zoom: 1.15
 rank: B
 excerpt: "Kris saw Street Fighter in IMAX with his brother, a fellow lifelong player. Great visuals, a real Blanka, a few misses, and a B-rank verdict."
 description: "Kris reviews the new Street Fighter movie after seeing it in IMAX: great anime flashbacks, a convincing Blanka, uneven pacing. Final rank: B."
