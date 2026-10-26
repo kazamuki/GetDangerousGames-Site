@@ -36,7 +36,7 @@ That emotional complexity is supported by surprisingly strong character developm
 
 Wildwood succeeds on nearly every level: extraordinary stop-motion craftsmanship, fluid animation, beautiful scenery, expressive lighting, a superb voice cast, and a narrative that balances spectacle with genuine emotional substance. Its world is rich enough to receive close attention, even if that abundance of detail occasionally becomes a distraction.
 
-For me, Wildwood is both an exceptional piece of animation and a heartfelt celebration of Oregon’s landscapes, culture, and peculiarities. It is ambitious, visually unforgettable, and emotionally resonant film that reminds us how far animation can go when artistry and storytelling are given room to flourish.
+For me, Wildwood is both an exceptional piece of animation and a heartfelt celebration of Oregon’s landscapes, culture, and peculiarities. It is an ambitious, visually unforgettable, and emotionally resonant film that reminds us how far animation can go when artistry and storytelling are given room to flourish.
 
 Verdict: One of the year’s best films, and an especially rewarding experience for anyone who calls Oregon home.
 
