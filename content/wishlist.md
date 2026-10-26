@@ -136,3 +136,38 @@ hour; **[bigger]** = a real project.
 - Cerulean Nights font license (`CLAUDE.md` → Outstanding brand items).
 - "The Last Encounter" story text (`CLAUDE.md` → Only remaining content gap).
 - Google Search Console sitemap submission; `/feed.xml` is new and worth submitting there too.
+
+## Shared content platform (2026-10-26)
+
+Not scoped work, a direction Ken and Claude talked through. Today `shadowsrpg.com/news` pulls from
+getdangerous.net (it links to `/blog/?tag=Shadows`). The goal is for neither site to be upstream of
+the other: both read from one shared source. Do these in order; each step stands on its own.
+
+**Triggers to start:** the repo passes ~300–500MB, we want to host video or audio, or we need
+something Pages can't do (comments/likes backend, email signup).
+
+1. **Shared content repo** [bigger]: a small repo (e.g. `gd-content`) holding the Markdown posts and a
+   media manifest. Both sites pull it in at build time (git submodule or an Actions checkout step) and
+   render posts in their own theme. Notes:
+   - GitHub Pages' built-in Jekyll build won't fetch a second repo, so both sites move to a small
+     GitHub Actions workflow. That also retires the pinned `github-pages` gem and the Ruby shims in
+     the Gemfile (see `CLAUDE.md` → Local dev environment).
+   - Each post needs one **canonical home**. Where a post shows on both domains, set `canonical_url`
+     on the non-canonical copy, or search engines treat them as duplicates. Rough default: studio
+     posts canonicalise to getdangerous.net, Shadows-specific ones to shadowsrpg.com. Ken's call.
+   - Replaces the `?tag=Shadows` deep link from shadowsrpg.com with native rendering (keep the
+     deep-link behavior working until then, see `CLAUDE.md` → Working notes).
+2. **Media on Cloudflare R2** [bigger]: posters, share cards, story art, and any future video/audio
+   served from a subdomain like `media.getdangerous.net`, referenced by the content repo's manifest so
+   both sites share one copy. R2 has no egress fees and a generous free tier. A small script can push
+   new images on merge. Pages keeps serving HTML/CSS/JS.
+3. **Comments and likes** [bigger]: decide canonical homes (step 1) first, so comments key off a
+   post's canonical identity instead of a domain, otherwise the same post gets two threads.
+   - Comments: giscus (GitHub Discussions) is the quick, backend-free option. Catch: commenters need
+     a GitHub account, which may not suit a gaming community.
+   - Likes, view counts, newsletter signup: a Cloudflare Worker with D1 or KV. Extends the older
+     "Hosting features" note in `content/writing.md`.
+
+**Optional, separate from the above:** Cloudflare Pages as a replacement for GitHub Pages (per-PR
+preview URLs, headers/redirects, Workers). The Jekyll build is the same, but the `github-pages` gem pin
+would need a small tweak. Not needed for any of the three steps.
