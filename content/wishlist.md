@@ -193,3 +193,25 @@ text, blocked out by default. Roughly an hour including testing; touches `main.c
   - The bar has to work in both light and dark mode, and revealed text should print.
   - The "Light spoilers" callout at the top of reviews can stay as a general warning.
 - Build it on a test post, not one of Kris's.
+
+## Community section (2026-10-26)
+
+Not yet, build when there's a second contributor or the Community tag outgrows the blog. Community posts
+(Kris's Cinema Ranked reviews so far) are tagged `Community` and live in the main blog feed, so a reader who
+only wants community content has to use the tag filter. Goal: a dedicated place to find community work
+without filtering through the studio's Shadows posts.
+
+- **Cheapest version** [quick]: a `/community/` page that is the blog index pre-filtered to `Community`
+  (the `?tag=` deep link already works, e.g. `/blog/?tag=Community`). Add it to `_data/navigation.yml`
+  (header or footer-only) and a "From the community" link on Home. No new layout needed.
+- **Fuller version**: a real `/community/` page using `_includes/post-card.html`, filtered with
+  `site.tags.Community` (or `where_exp`), with series sub-sections (Cinema Ranked first) and a short intro
+  about how to contribute (Discord link, what we accept).
+- **Decisions to make when building:**
+  - Nav placement: primary header, or footer-only like Contact/Changelog? The header already has six items.
+  - Whether community posts should stay in the main `/blog/` feed and Home's "Latest from the studio" strip
+    (current call: yes, the community's work matters more than a pure Shadows funnel), or move out of both.
+  - Contributor identity: an author index (avatar, short bio, their posts) pairs naturally with this; the
+    byline avatar mechanism in `_includes/author-avatar.html` is the starting point.
+  - Feed: whether `/feed.xml` should get a community-only feed too.
+  - Interacts with the shared content platform entry above if comments/likes ever get built.
