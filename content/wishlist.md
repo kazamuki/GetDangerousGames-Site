@@ -171,3 +171,25 @@ something Pages can't do (comments/likes backend, email signup).
 **Optional, separate from the above:** Cloudflare Pages as a replacement for GitHub Pages (per-PR
 preview URLs, headers/redirects, Workers). The Jekyll build is the same, but the `github-pages` gem pin
 would need a small tweak. Not needed for any of the three steps.
+
+## Spoiler tags (2026-10-26)
+
+Not yet, build when a post actually needs it. Kris asked about it for Cinema Ranked reviews. Click-to-reveal
+text, blocked out by default. Roughly an hour including testing; touches `main.css`, one small JS file,
+`_layouts/post.html` (to load the script), and a how-to note in `CLAUDE.md`.
+
+- **Inline spoilers** [quick]: a `.spoiler` span rendered as a solid bar (text color matches the bar so it
+  can't be read or copy-selected by accident), toggled by a `.revealed` class. Make it a real `<button>`
+  (or `role="button"` + `tabindex="0"` + Enter/Space) with `aria-expanded` so keyboard users can reveal it.
+  Give authors an include or Kramdown attribute so nobody hand-writes HTML.
+- **Block spoilers** [quick]: `<details><summary>Spoilers</summary>…</details>` for whole paragraphs. Works
+  with no JavaScript at all.
+- **Decisions to make when building:**
+  - With JS off, inline spoilers would stay blocked forever; only hide text when a `js` class is on `<html>`
+    so those readers just see the text.
+  - `/feed.xml` will show spoiler text plainly (fine for a feed; optionally wrap it in "(spoiler)" brackets).
+  - Hidden text is still in the HTML, so search can index it. Keep `description:` and `excerpt:`
+    spoiler-free by convention.
+  - The bar has to work in both light and dark mode, and revealed text should print.
+  - The "Light spoilers" callout at the top of reviews can stay as a general warning.
+- Build it on a test post, not one of Kris's.
