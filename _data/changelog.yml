@@ -2,6 +2,10 @@
 # NOT for content updates (new stories, videos, episodes) — that's what the Blog is for.
 # Newest entry first.
 
+- date: "2026-10-29"
+  title: "A Home for the Community"
+  description: "There's a new Community page collecting guest writing and ongoing series from the people in our Discord, starting with Kris's Cinema Ranked movie reviews. It has a contributors strip, a series section, and an easy way to pitch your own."
+
 - date: "2026-10-01"
   title: "Easier to Read, Easier to Tap"
   description: "Home now opens with a one-line answer to what we are, and the Shadows section has its own Learn button. Small text and pink accents are brighter on dark backgrounds, the Home spotlights can be paused, and footer links and filter pills are bigger tap targets."

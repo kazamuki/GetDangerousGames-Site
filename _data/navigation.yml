@@ -16,6 +16,8 @@ primary:
     url: /about/
 
 secondary:
+  - title: Community
+    url: /community/
   - title: Contact
     url: /contact/
   - title: Changelog

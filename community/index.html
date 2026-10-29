@@ -1,0 +1,117 @@
+---
+layout: default
+title: Community
+description: Reviews, series, and guest writing from the Get Dangerous community.
+permalink: /community/
+image: /assets/images/contact-header.jpg
+---
+
+{%- assign community_posts = site.tags.Community | default: empty -%}
+
+<section class="page-header">
+  <img class="page-header-bg" src="{{ '/assets/images/contact-header.jpg' | relative_url }}" alt="">
+  <div class="page-header-overlay"></div>
+
+  <span class="eyebrow" style="color: var(--signal-gold);">FROM THE COMMUNITY</span>
+  <h1>Made by <span class="accent" style="background: linear-gradient(120deg, var(--signal-gold), var(--neon-veil)); -webkit-background-clip: text; background-clip: text; color: transparent;">You Lot</span></h1>
+  <p>The Get Dangerous crew isn't the only one with something to say. This is where guest writing, reviews, and ongoing series from the people in our Discord live.</p>
+</section>
+
+{% if community_posts.size > 0 %}
+
+<section class="content-section tight community-section">
+  <div class="section-heading">
+    <span class="eyebrow" style="color: var(--accent-gold);">THE CONTRIBUTORS</span>
+    <h2>Who's writing</h2>
+  </div>
+
+  <div class="contributors">
+    {% for person in site.data.community.contributors %}
+    {%- assign person_posts = community_posts | where: "author", person.name -%}
+    <div class="contributor-card" data-accent="{{ person.accent | default: 'cyan' }}">
+      <img class="crew-avatar" src="{{ person.avatar | relative_url }}" alt="{{ person.name }}">
+      <span class="eyebrow">{{ person.role | upcase }}</span>
+      <h3>{{ person.name }}</h3>
+      <p>{{ person.blurb }}</p>
+      <span class="contributor-meta">{{ person.series }} &middot; {{ person_posts.size }} post{% if person_posts.size != 1 %}s{% endif %}</span>
+    </div>
+    {% endfor %}
+
+    <a class="contributor-card contributor-card--invite" href="#join">
+      <span class="invite-plus" aria-hidden="true">+</span>
+      <span class="eyebrow">YOUR NAME HERE</span>
+      <h3>Got something to say?</h3>
+      <p>Reviews, actual-play recaps, homebrew, fiction. If it'd make the crew's day, we'd love to host it.</p>
+      <span class="pillar-link" style="color: var(--accent-gold);">
+        How to contribute
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--accent-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+{%- comment -%}
+  Series blocks, then whatever Community posts don't belong to a series.
+  `leftover` collects the ids of posts already shown, so a post only appears once.
+{%- endcomment -%}
+{%- assign shown = "" -%}
+
+{% for s in site.data.community.series %}
+{%- assign series_posts = community_posts | where_exp: "p", "p.tags contains s.tag" -%}
+{% if series_posts.size > 0 %}
+{%- for p in series_posts -%}{%- assign shown = shown | append: p.url | append: "|" -%}{%- endfor -%}
+<section class="content-section tight community-section" id="{{ s.tag | slugify }}">
+  <div class="section-heading series-heading" data-accent="{{ s.accent | default: 'cyan' }}">
+    <span class="eyebrow">{{ s.eyebrow | default: "THE SERIES" }}</span>
+    <h2>{{ s.tag }}</h2>
+    <p>{{ s.description }}</p>
+    <a class="series-link" href="{{ '/blog/?tag=' | append: s.tag | uri_escape | relative_url }}">
+      See the whole series in the blog feed
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="post-list">
+    {% for post in series_posts %}
+    {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endfor %}
+
+{%- assign other_posts = "" | split: "" -%}
+{%- for p in community_posts -%}
+{%- assign marker = p.url | append: "|" -%}
+{%- unless shown contains marker -%}{%- assign other_posts = other_posts | push: p -%}{%- endunless -%}
+{%- endfor -%}
+
+{% if other_posts.size > 0 %}
+<section class="content-section tight community-section">
+  <div class="section-heading">
+    <span class="eyebrow" style="color: var(--accent-cyan);">ALSO FROM THE COMMUNITY</span>
+    <h2>More from the community</h2>
+  </div>
+
+  <div class="post-list">
+    {% for post in other_posts %}
+    {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% else %}
+<section class="content-section tight">
+  <p class="post-list-empty">No community posts yet. Be the first.</p>
+</section>
+{% endif %}
+
+<section class="about-cta" id="join">
+  <h2 class="join-heading">Want to join the conversation?</h2>
+  <p>Contributors are people from the Discord who've got a take worth sharing: a review series, a campaign write-up, a bit of homebrew, a short story. Say hi, pitch the idea, and we'll help get it posted. It stays your voice, with your name on it.</p>
+  <a class="btn-gold" href="{{ site.social.discord }}">
+    Pitch us on Discord
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
