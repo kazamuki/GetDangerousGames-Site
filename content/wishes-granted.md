@@ -85,7 +85,7 @@ Decisions made:
 - **Organized by series, not by contributor.** With one contributor, a per-contributor layout would be a
   page of one. Series scale to many authors, and the contributors strip covers who's writing. A contributor
   with several series just shows up in the strip once.
-- **Nav:** footer-only (`secondary` in `_data/navigation.yml`) since the header already has six items,
+- **Nav:** first shipped footer-only, then promoted to the primary header nav (after Blog) the same day since Ken wants to promote it; it still fits one row at 740px,
   plus a "From the community" button next to "Read the full blog" on Home.
 - **Community posts stay** in the main `/blog/` feed and Home's "Latest from the studio" strip.
 - The page reuses `post-card.html`, `.crew-avatar`, and the Contact page's header photo; the only new CSS

@@ -8,6 +8,8 @@ primary:
     url: /writing/
   - title: Blog
     url: /blog/
+  - title: Community
+    url: /community/
   - title: YouTube
     url: /youtube/
   - title: Podcasts
@@ -16,8 +18,6 @@ primary:
     url: /about/
 
 secondary:
-  - title: Community
-    url: /community/
   - title: Contact
     url: /contact/
   - title: Changelog
