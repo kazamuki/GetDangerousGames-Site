@@ -1,0 +1,18 @@
+# Feeds /community/. Posts join the page by being tagged `Community`; a post that also carries a
+# series' `tag` shows up under that series, and every other Community post lands in "More from the
+# community". To add a series: add an entry here, and tag its posts with the same `tag`.
+
+contributors:
+  - name: Kris
+    avatar: /assets/images/about-kris.png
+    role: Movie reviewer
+    series: Cinema Ranked
+    blurb: "Watches the big releases so you can decide where to spend your ticket money. Every review ends in a letter rank, S down to D."
+    accent: gold
+
+series:
+  - tag: Cinema Ranked
+    author: Kris
+    eyebrow: THE SERIES
+    description: "Kris sees the movies, writes the review, and hands down a letter rank. S is a don't-miss, D is a pass. Light spoilers are flagged at the top of every review."
+    accent: gold
