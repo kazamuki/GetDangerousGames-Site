@@ -143,8 +143,10 @@ text, blocked out by default. Roughly an hour including testing; touches `main.c
 
 The `/community/` page shipped (see wishes-granted.md). What's still open:
 
-- **Promote Community to the header nav** [decision]: it's footer-only for now because the header already
-  has six items. Revisit once there's a second contributor or a second series.
+- **Automate grouping** [bigger]: today new series and contributors need a `_data/community.yml` entry
+  (plus an avatar branch in `_includes/author-avatar.html`). If submissions start coming from many people,
+  move to a `series:` front-matter key and put avatars in the contributor data. Decided 2026-10-29 to stay
+  manual until then.
 - **Per-contributor pages** [bigger]: today contributors are cards on `/community/`. A full author page
   (bio, all their posts) is worth building once someone has more than one series or a longer bio.
 - **Community-only RSS feed** [quick]: `/feed.xml` covers everything. A `/community/feed.xml` would let
