@@ -1,9 +1,9 @@
 ---
 title: "Cyborg Playtest, Part One: Three Builds and a Hard Question"
-date: 2026-11-06
+date: 2026-11-07
 tags: [Shadows]
-image: /assets/images/blog/cyborg-playtest-header.jpg
-header_image: /assets/images/blog/cyborg-playtest-header.jpg
+image: /assets/images/blog/016-cyborg-playtest.jpg
+header_image: /assets/images/blog/016-cyborg-playtest.jpg
 patreon: https://www.patreon.com/d33kode/posts/we-built-three-174693389
 excerpt: "Ken, Scott, and Bill each built a Cyborg from scratch to see whether the new cybernetics system holds up. Then the playtest showed us the real problem: too many moving parts, and a question about what Cyborg really is."
 description: "Three cyborgs built from scratch to test Shadows' new cybernetics system, and the design question the playtest forced us to answer."

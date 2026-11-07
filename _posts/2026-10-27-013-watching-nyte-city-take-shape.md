@@ -2,8 +2,8 @@
 title: "Watching NYTE City Take Shape: The Night We Finally Saw the Map"
 date: 2026-10-27
 tags: [Shadows]
-image: /assets/images/blog/nyte-city-map-header.jpg
-header_image: /assets/images/blog/nyte-city-map-header.jpg
+image: /assets/images/blog/013-nyte-city-map.jpg
+header_image: /assets/images/blog/013-nyte-city-map.jpg
 patreon: https://www.patreon.com/d33kode/posts/watching-nyte-we-170114450
 excerpt: "Twenty years of NYTE City living in Deighton's head, finally on a real map: a navigable city, the Appalachians running down its spine, and a borough that turned out to be all gated communities."
 description: "Twenty years of NYTE City in Deighton's head, finally mapped: the Appalachians, glowing combat zones, and a borough that's all gated communities."

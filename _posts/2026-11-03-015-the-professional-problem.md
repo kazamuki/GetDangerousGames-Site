@@ -1,9 +1,9 @@
 ---
 title: "The Professional Problem: What Happens When an Archetype Doesn't Have an Answer"
-date: 2026-10-31
+date: 2026-11-03
 tags: [Shadows]
-image: /assets/images/blog/professional-problem-group.jpg
-header_image: /assets/images/blog/professional-problem-group.jpg
+image: /assets/images/blog/015-professional-problem.jpg
+header_image: /assets/images/blog/015-professional-problem.jpg
 patreon: https://www.patreon.com/d33kode/posts/professional-170114910
 excerpt: "Every other Shadows archetype has a verb. Professional didn't, and figuring out what belonged in that blank spot took a whole night, plus a hard look at Cyborg botches and Vampire hunger."
 description: "Every other Shadows archetype has a verb. Professional didn't, so we spent a night finding one, plus Cyborg botches and Vampire hunger."

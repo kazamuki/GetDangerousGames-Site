@@ -1,9 +1,9 @@
 ---
 title: "The Five Questions: How We Test Whether an Archetype Earns Its Place"
-date: 2026-10-29
+date: 2026-10-31
 tags: [Shadows]
-image: /assets/images/blog/five-questions-group.jpg
-header_image: /assets/images/blog/five-questions-group.jpg
+image: /assets/images/blog/014-five-questions.jpg
+header_image: /assets/images/blog/014-five-questions.jpg
 patreon: https://www.patreon.com/d33kode/posts/five-questions-170114764
 excerpt: "Five questions, asked of all five Shadows archetypes, meant to catch the thing every game like this risks: an archetype that's really just another archetype wearing a different coat."
 description: "Five questions asked of all five Shadows archetypes, to catch any archetype that's just another one wearing a different coat."
