@@ -34,14 +34,17 @@ end
 # blocks a _plugins/ file from running first. Harmless on older Ruby too -- the patched method
 # behaves identically, it's just explicit about kwargs instead of relying on Ruby's pre-3.0 implicit
 # Hash-to-kwargs conversion.
-require "pathutil"
-Pathutil.class_eval do
-  def read(*args, **kwd)
-    kwd[:encoding] ||= encoding
-    if normalize[:read]
-      File.read(self, *args, **kwd).encode(:universal_newline => true)
-    else
-      File.read(self, *args, **kwd)
+# CI only runs `jekyll build`, so it doesn't need this file-watcher compatibility patch.
+unless ENV["GITHUB_ACTIONS"] == "true"
+  require "pathutil"
+  Pathutil.class_eval do
+    def read(*args, **kwd)
+      kwd[:encoding] ||= encoding
+      if normalize[:read]
+        File.read(self, *args, **kwd).encode(:universal_newline => true)
+      else
+        File.read(self, *args, **kwd)
+      end
     end
   end
 end
