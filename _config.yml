@@ -49,6 +49,7 @@ social:
   instagram: https://www.instagram.com/d33kode/
 
 exclude:
+  - vendor
   - Google-Page-Oriignal
   - content
   - brand
