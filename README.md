@@ -133,7 +133,13 @@ This is a static site with no test suite — the meaningful check is whether it 
 bundle exec jekyll build
 ```
 
-This generates the static site into `_site/`. A clean build (no errors/warnings) plus a manual look at the page(s) you changed via `jekyll serve` is the standard way to verify a change here. There's no CI pipeline — GitHub Pages runs its own Jekyll build directly from the `main` branch on every push.
+This generates the static site into `_site/`. A clean build (no errors/warnings) plus a manual look at the page(s) you changed via `jekyll serve` is the standard way to verify a change here.
+
+GitHub Pages is deployed by [`.github/workflows/pages.yml`](.github/workflows/pages.yml) on pushes to `main` and on a daily schedule. To enable it, merge the workflow, then change **Settings → Pages → Build and deployment → Source** to **GitHub Actions** and run the workflow once. The scheduled build runs at 08:17 UTC (12:17 a.m. Pacific Standard Time / 1:17 a.m. Pacific Daylight Time) so future-dated posts appear on their intended Pacific calendar day.
+
+To schedule a blog post, add it to `_posts/` ahead of time and use the intended publication day in its filename and `date` front matter. Jekyll excludes future-dated posts from the site until that date; the daily build then publishes it without another push.
+
+To preview a scheduled post before it goes live, run `bundle exec jekyll serve --future` locally.
 
 ## Project structure
 
