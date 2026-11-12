@@ -1,12 +1,12 @@
 ---
-title: "1 Month to Playable"
+title: "Ninety Days to Playable"
 date: 2026-11-15
 tags: [Shadows]
 image: /assets/images/blog/018-froze-the-scope.jpg
 header_image: /assets/images/blog/018-froze-the-scope.jpg
 patreon: https://www.patreon.com/d33kode/posts/day-we-froze-174695605
 excerpt: "We froze the Scope"
-description: "We discuss how we can get to a shippable prodcut."
+description: "We discuss how we can get to a shippable product."
 ---
 
 **We just set the clock.** At our October 1 meeting the team agreed on a rule for the next three months: finish what we have before building anything new. Every idea still gets a hearing, but the new ones go in a parking lot unless the game can't ship without them. The test is a single question, and it changed how fast the meeting moved.
