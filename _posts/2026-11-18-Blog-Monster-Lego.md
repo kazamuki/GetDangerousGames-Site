@@ -2,6 +2,8 @@
 title: "Monster Lego"
 date: 2026-11-18
 tags: [Shadows]
+image: /assets/images/blog/018b-monster-lego.jpg
+header_image: /assets/images/blog/018b-monster-lego.jpg
 patreon: https://www.patreon.com/d33kode/posts/pile-of-lego-and-174696647
 excerpt: "Building the Quickstart Guide"
 description: "We discuss the Quickstart guide, and how to add monsters to the game."
