@@ -4,7 +4,7 @@ date: 2026-11-29
 tags: [Shadows]
 image: /assets/images/blog/020-recipe-problem.jpg
 header_image: /assets/images/blog/020-recipe-problem.jpg
-patreon: https://www.patreon.com/d33kode/posts/recipe-problem-17469699
+patreon: https://www.patreon.com/d33kode/posts/recipe-problem-174696995
 excerpt: "How do we get folks excited for our game?"
 description: "We set the date for our first QuickStart playtest"
 ---
@@ -16,4 +16,4 @@ description: "We set the date for our first QuickStart playtest"
 
 **And we said yes to something one of us didn't want to say yes to.** Want to know what, and how the GM tools are coming along?
 
-Full rundown on [Patreon](https://www.patreon.com/d33kode/posts/recipe-problem-17469699).
+Full rundown on [Patreon](https://www.patreon.com/d33kode/posts/recipe-problem-174696995).
