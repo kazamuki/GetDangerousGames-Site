@@ -2,6 +2,8 @@
 title: "We Cut the Cyborg (and Kept the Good Parts)"
 date: 2026-11-11
 tags: [Shadows]
+image: /assets/images/blog/017-archetype-that-wasnt.jpg
+header_image: /assets/images/blog/017-archetype-that-wasnt.jpg
 patreon: https://www.patreon.com/d33kode/posts/archetype-that-174694325
 excerpt: "The Archetype that wasn't"
 description: "Two days after our Cyborg play test, we cut it."

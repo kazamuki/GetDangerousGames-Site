@@ -2,6 +2,8 @@
 title: "First Contact Is on the Calendar"
 date: 2026-11-29
 tags: [Shadows]
+image: /assets/images/blog/020-recipe-problem.jpg
+header_image: /assets/images/blog/020-recipe-problem.jpg
 patreon: https://www.patreon.com/d33kode/posts/recipe-problem-17469699
 excerpt: "How do we get folks excited for our game?"
 description: "We set the date for our first QuickStart playtest"

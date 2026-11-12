@@ -2,6 +2,8 @@
 title: "A Job Board and a Better Claw"
 date: 2026-11-25
 tags: [Shadows]
+image: /assets/images/blog/019b-job-board.jpg
+header_image: /assets/images/blog/019b-job-board.jpg
 patreon: https://www.patreon.com/d33kode/posts/job-board-and-174696798
 excerpt: "Let's talk CRANK"
 description: "We discuss CRANK and how Vampires or Werewolves attack multiple times in a turn."

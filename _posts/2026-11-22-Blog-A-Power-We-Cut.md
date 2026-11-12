@@ -2,6 +2,8 @@
 title: "A Power We Cut and a Dead Man Walking"
 date: 2026-11-22
 tags: [Shadows]
+image: /assets/images/blog/019-power-we-cut.jpg
+header_image: /assets/images/blog/019-power-we-cut.jpg
 patreon: https://www.patreon.com/d33kode/posts/wolves-breakers-174696722
 excerpt: "Werewolves and deadman"
 description: "We discuss werewolves and what happens when the cybernetics don't let you die."

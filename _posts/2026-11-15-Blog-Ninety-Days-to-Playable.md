@@ -2,6 +2,8 @@
 title: "1 Month to Playable"
 date: 2026-11-15
 tags: [Shadows]
+image: /assets/images/blog/018-froze-the-scope.jpg
+header_image: /assets/images/blog/018-froze-the-scope.jpg
 patreon: https://www.patreon.com/d33kode/posts/day-we-froze-174695605
 excerpt: "We froze the Scope"
 description: "We discuss how we can get to a shippable prodcut."
