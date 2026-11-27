@@ -210,7 +210,7 @@ a { text-decoration: none; color: inherit; }
 .skip-link:focus { top: 12px; }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
   .pillar-card:hover, .spotlight-strip:hover, .media-card:hover,
   .story-card:hover, .post-card:hover, .contact-channel:hover { transform: none; }
 }
@@ -530,7 +530,19 @@ a { text-decoration: none; color: inherit; }
 
 .spotlight-strip:hover { transform: translateY(-3px); border-color: var(--card-border-hover); }
 
-.spotlight-strip-img {
+/* Two stacked frames per strip: the visible pick and the incoming one, so a
+   swap is a crossfade rather than an image pop. See "Motion" below. */
+.spotlight-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity .7s ease;
+}
+
+.spotlight-frame.is-front { opacity: 1; }
+
+.spotlight-frame img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -550,10 +562,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 4px;
-  transition: opacity .2s ease;
 }
-
-.spotlight-strip.is-fading .spotlight-strip-text { opacity: 0; }
 
 .spotlight-strip-kicker {
   font-family: 'Inter', sans-serif;
@@ -2029,3 +2038,79 @@ a { text-decoration: none; color: inherit; }
 .community-section ~ .about-cta p { max-width: 560px; text-wrap: pretty; }
 
 .home-latest .section-cta { gap: 12px; flex-wrap: wrap; }
+
+/* ==========================================================================
+   Motion (2026-11-26)
+   A few deliberate moves, not motion everywhere: the Home hero plays once on
+   load, the spotlight strips change channel, and the Play Shadows RPG buttons
+   get an occasional heartbeat (assets/js/heartbeat.js). Only opacity, filter,
+   and the individual translate/scale properties are animated. The
+   reduced-motion block near the top of this file switches all of it off.
+   ========================================================================== */
+
+/* Hero entrance (Home only, via .hero--entrance). `translate` carries the
+   scroll parallax and `scale` the entrance, so the two compose. */
+.hero--entrance .hero-bg {
+  translate: 0 var(--hero-parallax, 0px);
+  animation: hero-bg-in 1.8s cubic-bezier(.2, .7, .2, 1) both;
+}
+.hero--entrance .hero-rise { animation: hero-rise .8s cubic-bezier(.2, .7, .2, 1) both; animation-delay: var(--d, 0s); }
+.hero--entrance h1 .hero-get { animation: hero-fade .6s ease both .3s; }
+.hero--entrance h1 .accent { animation: hero-ignite 1.3s linear both .55s; }
+
+@keyframes hero-bg-in { from { opacity: 0; scale: 1.07; } to { opacity: .55; scale: 1; } }
+@keyframes hero-rise  { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
+@keyframes hero-fade  { from { opacity: 0; } to { opacity: 1; } }
+
+/* A neon tube warming up: two soft stutters, then it holds and the violet
+   glow blooms. Ends exactly on .hero h1 .accent's resting filter. */
+@keyframes hero-ignite {
+  0%   { opacity: .05; filter: drop-shadow(0 2px 4px rgba(113, 43, 140, 0)); }
+  9%   { opacity: .75; }
+  12%  { opacity: .25; }
+  21%  { opacity: .9; }
+  25%  { opacity: .5; }
+  36%  { opacity: 1; filter: drop-shadow(0 2px 6px rgba(113, 43, 140, .35)); }
+  100% { opacity: 1; filter: drop-shadow(0 2px 14px rgba(113, 43, 140, .75)); }
+}
+
+/* Spotlight strips: slow push-in while a pick is on screen. Both frames drift
+   in sync from page load, so a crossfade never shows a jump in framing. */
+.spotlight-frame img { animation: spotlight-drift 26s ease-in-out infinite alternate; }
+@keyframes spotlight-drift { from { scale: 1.02; } to { scale: 1.09; translate: -1.5% -1%; } }
+
+/* Signal tick: the incoming frame arrives as a few horizontal slices for a
+   third of a second while it's still mostly transparent, then settles. */
+.spotlight-strip.is-swapping .spotlight-frame.is-front { animation: spotlight-slice .36s steps(1, end) both; }
+@keyframes spotlight-slice {
+  0%   { clip-path: inset(38% 0 48% 0); translate: -5px 0; }
+  14%  { clip-path: inset(62% 0 22% 0); translate: 4px 0; }
+  28%  { clip-path: inset(16% 0 70% 0); translate: -2px 0; }
+  42%, 100% { clip-path: inset(0); translate: 0 0; }
+}
+
+/* One faint scanline sweeps down in the strip's own accent (--strip-tint,
+   set inline per strip in index.html). Sits under the text, over the art. */
+.spotlight-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 45%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--strip-tint, var(--static-cyan)) 10%, transparent) 85%,
+    color-mix(in srgb, var(--strip-tint, var(--static-cyan)) 55%, transparent) 99%,
+    transparent 100%);
+}
+.spotlight-strip.is-swapping .spotlight-scan { animation: spotlight-scan .85s cubic-bezier(.3, .6, .3, 1) both; }
+@keyframes spotlight-scan {
+  0%   { opacity: 0; translate: 0 -100%; }
+  15%  { opacity: 1; }
+  80%  { opacity: .8; }
+  100% { opacity: 0; translate: 0 240%; }
+}
+
+.spotlight-strip.is-swapping .spotlight-strip-sub { animation: hero-fade .5s ease both .25s; }
