@@ -5,22 +5,22 @@ description: Writing. Gaming. Badassery.
 image: /assets/images/hero-skyline.jpg
 ---
 
-<section class="hero">
+<section class="hero hero--entrance">
   <img class="hero-bg" src="{{ '/assets/images/hero-skyline.jpg' | relative_url }}" alt="">
   <div class="hero-overlay"></div>
 
-  <span class="eyebrow">GET DANGEROUS GAMES</span>
+  <span class="eyebrow hero-rise" style="--d: .1s;">GET DANGEROUS GAMES</span>
 
-  <h1><span>Get </span><span class="accent">Dangerous</span></h1>
+  <h1><span class="hero-get">Get </span><span class="accent">Dangerous</span></h1>
 
-  <p class="hero-lede">An original tabletop RPG set in 2099 NYTE City, plus the stories, actual play and podcasts from the crew building it.</p>
+  <p class="hero-lede hero-rise" style="--d: 1.15s;">An original tabletop RPG set in 2099 NYTE City, plus the stories, actual play and podcasts from the crew building it.</p>
 
-  <a class="btn-gold hero-cta" href="{{ site.social.shadows_rpg }}">
+  <a class="btn-gold hero-cta hero-rise" style="--d: 1.3s;" data-heartbeat="1" data-heartbeat-glow="rgba(242, 201, 76, 0.6)" href="{{ site.social.shadows_rpg }}">
     Play Shadows RPG
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#111111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 
-  <a class="hero-patreon" href="{{ site.social.patreon }}">Or back the studio on Patreon →</a>
+  <a class="hero-patreon hero-rise" style="--d: 1.45s;" href="{{ site.social.patreon }}">Or back the studio on Patreon →</a>
 </section>
 
 <section class="shadows-band">
@@ -92,9 +92,11 @@ image: /assets/images/hero-skyline.jpg
     </a>
 
     {% assign spotlight_stories = site.stories | sort: "order" %}
-    <a class="spotlight-strip" data-spotlight="writing" href="{{ spotlight_stories.first.url | relative_url }}">
-      <img class="spotlight-strip-img" src="{{ spotlight_stories.first.image | relative_url }}" alt="" loading="lazy">
+    <a class="spotlight-strip" data-spotlight="writing" style="--strip-tint: var(--ghostly-green);" href="{{ spotlight_stories.first.url | relative_url }}">
+      <div class="spotlight-frame is-front"><img src="{{ spotlight_stories.first.image | relative_url }}" alt="" loading="lazy"></div>
+      <div class="spotlight-frame" aria-hidden="true"></div>
       <div class="spotlight-strip-overlay"></div>
+      <div class="spotlight-scan"></div>
       <div class="spotlight-strip-text">
         <span class="spotlight-strip-kicker" style="color: var(--ghostly-green);">STORY SPOTLIGHT</span>
         <span class="spotlight-strip-title">{{ spotlight_stories.first.title }}</span>
@@ -103,9 +105,11 @@ image: /assets/images/hero-skyline.jpg
     </a>
 
     {% assign spotlight_playlist = site.data.playlists.first %}
-    <a class="spotlight-strip" data-spotlight="youtube" href="{{ spotlight_playlist.url }}">
-      <img class="spotlight-strip-img" src="{{ spotlight_playlist.thumb }}" alt="" loading="lazy">
+    <a class="spotlight-strip" data-spotlight="youtube" style="--strip-tint: var(--static-cyan);" href="{{ spotlight_playlist.url }}">
+      <div class="spotlight-frame is-front"><img src="{{ spotlight_playlist.thumb }}" alt="" loading="lazy"></div>
+      <div class="spotlight-frame" aria-hidden="true"></div>
       <div class="spotlight-strip-overlay"></div>
+      <div class="spotlight-scan"></div>
       <div class="spotlight-strip-text">
         <span class="spotlight-strip-kicker" style="color: var(--static-cyan);">FROM THE CHANNEL</span>
         <span class="spotlight-strip-title">{{ spotlight_playlist.title }}</span>
@@ -113,9 +117,11 @@ image: /assets/images/hero-skyline.jpg
       </div>
     </a>
 
-    <a class="spotlight-strip" data-spotlight="podcasts" href="https://open.spotify.com/episode/1sWfip7bmGr1TcHsh2cb64">
-      <img class="spotlight-strip-img" src="{{ '/assets/images/podcasts/ab67656300005f1f0119cd0c1bbbe9d47410df6d.jpg' | relative_url }}" alt="" loading="lazy">
+    <a class="spotlight-strip" data-spotlight="podcasts" style="--strip-tint: var(--neon-veil);" href="https://open.spotify.com/episode/1sWfip7bmGr1TcHsh2cb64">
+      <div class="spotlight-frame is-front"><img src="{{ '/assets/images/podcasts/ab67656300005f1f0119cd0c1bbbe9d47410df6d.jpg' | relative_url }}" alt="" loading="lazy"></div>
+      <div class="spotlight-frame" aria-hidden="true"></div>
       <div class="spotlight-strip-overlay"></div>
+      <div class="spotlight-scan"></div>
       <div class="spotlight-strip-text">
         <span class="spotlight-strip-kicker" style="color: var(--veil-text);">FROM THE FEED</span>
         <span class="spotlight-strip-title">Myriad Circle Episode 1: Welcome One and All!</span>
@@ -173,7 +179,7 @@ image: /assets/images/hero-skyline.jpg
         return arr;
       }
 
-      STRIPS.forEach(function (key) {
+      STRIPS.forEach(function (key, n) {
         var el = document.querySelector('[data-spotlight="' + key + '"]');
         var dataEl = document.getElementById('spotlight-' + key + '-data');
         if (!el || !dataEl) return;
@@ -182,30 +188,45 @@ image: /assets/images/hero-skyline.jpg
         try { items = JSON.parse(dataEl.textContent); } catch (e) { return; }
         if (!items || !items.length) return;
 
-        var img = el.querySelector('.spotlight-strip-img');
+        var frames = el.querySelectorAll('.spotlight-frame');
         var title = el.querySelector('.spotlight-strip-title');
         var sub = el.querySelector('.spotlight-strip-sub');
         var order = shuffle(items.slice());
         var index = 0;
+        var front = 0;
+        var busy = false;
 
-        function apply(item) {
-          img.src = item.image;
-          title.textContent = item.title;
-          sub.textContent = item.sub;
-          el.href = item.url;
-        }
-
-        function show(item) {
-          el.classList.add('is-fading');
-          window.setTimeout(function () {
-            apply(item);
-            el.classList.remove('is-fading');
-          }, 200);
-        }
-
-        // First pick swaps in instantly — fading here would flash the
+        // First pick swaps in instantly — animating here would flash the
         // server-rendered item away on every page load.
-        apply(order[index]);
+        frames[0].querySelector('img').src = order[0].image;
+        title.textContent = order[0].title;
+        sub.textContent = order[0].sub;
+        el.href = order[0].url;
+
+        // Channel change: load the next art into the hidden frame, then
+        // crossfade to it with a signal tick, a scanline, and the title
+        // decoding in. See the "Motion" section of main.css.
+        function show(item) {
+          busy = true;
+          var back = frames[1 - front];
+          var img = back.querySelector('img');
+          if (!img) { img = new Image(); img.alt = ''; back.appendChild(img); }
+          img.src = item.image;
+          // Wait for the art to decode so the crossfade never shows a blank.
+          var ready = img.decode ? img.decode().catch(function () {}) : Promise.resolve();
+          ready.then(function () {
+            el.classList.remove('is-swapping');
+            void el.offsetWidth; // restart the CSS animations
+            el.classList.add('is-swapping');
+            back.classList.add('is-front');
+            frames[front].classList.remove('is-front');
+            front = 1 - front;
+            el.href = item.url;
+            sub.textContent = item.sub;
+            decode(title, item.title);
+            window.setTimeout(function () { el.classList.remove('is-swapping'); busy = false; }, 900);
+          });
+        }
 
         // Never swap the link out from under a pointer or keyboard focus.
         function engage() { engaged++; }
@@ -218,14 +239,63 @@ image: /assets/images/hero-skyline.jpg
         // Auto-rotation is decorative: skip it for reduced-motion visitors,
         // don't churn while the tab is in the background, and hold while the
         // visitor has paused it or is interacting with a strip.
+        // Staggered by a third of the interval each, so the three strips
+        // never change in the same moment.
         if (order.length > 1 && !REDUCED_MOTION) {
-          window.setInterval(function () {
-            if (document.hidden || userPaused || engaged > 0) return;
-            index = (index + 1) % order.length;
-            show(order[index]);
-          }, ROTATE_MS);
+          window.setTimeout(function () {
+            window.setInterval(function () {
+              if (document.hidden || userPaused || engaged > 0 || busy) return;
+              index = (index + 1) % order.length;
+              show(order[index]);
+            }, ROTATE_MS);
+          }, n * (ROTATE_MS / STRIPS.length));
         }
       });
+
+      // Title decode: characters resolve left to right out of noise. Noise
+      // matches each character's case so the line width barely moves.
+      var UPPER = 'ABCDEFGHJKLMNPQRSTUVWXYZ', LOWER = 'abcdefghjkmnpqrstuvwxyz', DIGIT = '0123456789';
+      function noiseFor(c) {
+        var set = /[A-Z]/.test(c) ? UPPER : /[a-z]/.test(c) ? LOWER : /[0-9]/.test(c) ? DIGIT : null;
+        return set ? set[(Math.random() * set.length) | 0] : c;
+      }
+      function decode(el, text) {
+        var n = text.length;
+        var dur = Math.min(650, 260 + n * 8);
+        var start = performance.now();
+        var last = 0;
+        (function frame(t) {
+          var p = (t - start) / dur;
+          if (p >= 1) { el.textContent = text; return; }
+          if (t - last > 45) {
+            last = t;
+            var out = '';
+            for (var i = 0; i < n; i++) {
+              out += p >= 0.15 + (i / n) * 0.75 ? text[i] : noiseFor(text[i]);
+            }
+            el.textContent = out;
+          }
+          window.requestAnimationFrame(frame);
+        })(start);
+      }
+
+      // Hero parallax: the skyline lags slightly behind the scroll.
+      var hero = document.querySelector('.hero--entrance');
+      var heroBg = hero && hero.querySelector('.hero-bg');
+      if (heroBg && !REDUCED_MOTION) {
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(function () {
+            var top = hero.getBoundingClientRect().top;
+            if (top > -hero.offsetHeight) {
+              heroBg.style.setProperty('--hero-parallax', Math.max(0, -top * 0.18).toFixed(1) + 'px');
+            }
+            ticking = false;
+          });
+        }, { passive: true });
+      }
     })();
   </script>
 </section>
